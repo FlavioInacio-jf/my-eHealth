@@ -1,12 +1,38 @@
 package javas.modules.person.repositories.implementations;
 
+import javas.config.AppDataSource;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.person.models.Person;
 
+import javax.swing.*;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class PersonRepository implements IPersonRepository {
+
+    private Statement repository;
+
+    public PersonRepository() {
+        this.repository = AppDataSource.execute();
+    }
     @Override
     public Person create(Person data) {
-        return null;
+        return  this.save(data);
+    }
+
+    private Person save(Person data) {
+        try {
+            final String query = String.format("INSERT INTO people VALUES (%s, '%s', '%s', '%s', '%s', %s)",
+                                                data.getId(), data.getFirstName(),
+                                                data.getLastName(), data.getCPF(),
+                                                data.bloodType(), data.getAge());
+            this.repository.execute(query);
+            this.repository.close();
+            return data;
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi criar o usuário no banco!");
+            return null;
+        }
     }
 
     @Override

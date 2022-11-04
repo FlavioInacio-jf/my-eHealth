@@ -1,8 +1,11 @@
 package javas.config;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AppDataSource {
     private static Connection connection;
@@ -49,7 +52,29 @@ public class AppDataSource {
         return connection;
     }
 
-    public static void init() {
+    public static void init(ArrayList<String> tables) {
+        try {
+            Statement stm = execute();
+            for (String table : tables) {
+                stm.execute(table);
+            }
 
+            stm.close();
+
+        }catch(Exception error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível criar as tabelas no banco!");
+        }
+    }
+
+    public static Statement execute() {
+        try {
+            connection = getConnection();
+            Statement stm = connection.createStatement();
+            return stm;
+
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possivel executar a query");
+            return null;
+        }
     }
 }

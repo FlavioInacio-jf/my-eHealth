@@ -1,6 +1,7 @@
 package javas.modules.person.models;
 
 import javas.modules.person.enums.BloodTypeEnum;
+import jdk.jfr.Name;
 
 import java.util.UUID;
 
@@ -60,6 +61,16 @@ public class Person {
 
     public String getFullName() {
         return this.firstName + this.lastName;
+    }
+
+    public static  String getQueryTable() {
+        return "CREATE TABLE people" +
+                "( _id TEXT NOT NULL PRIMARY KEY," +
+                "firstName TEXT NOT NULL," +
+                "lastName TEXT NOT NULL," +
+                "cpf TEXT NOT NULL," +
+                "bloodType Text," +
+                "age INTEGER )";
     }
 
 }
