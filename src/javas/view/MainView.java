@@ -17,7 +17,7 @@ public class MainView extends JFrame {
 
 
     private void init() {
-        setTitle(AppContants.MAINVIEW_TITLE);
+        this.setTitle(AppContants.MAIN_VIEW_TITLE);
 
         // North panel
         jPanelNorth = new JPanel();
@@ -34,12 +34,12 @@ public class MainView extends JFrame {
         this.add(jPanelSouth, BorderLayout.SOUTH);
 
 
-        setBounds(  AppContants.SCREEN_CENTER.x - AppContants.SCREEN_SIZE.x / 2,
+        this.setBounds(  AppContants.SCREEN_CENTER.x - AppContants.SCREEN_SIZE.x / 2,
                     AppContants.SCREEN_CENTER.y - AppContants.SCREEN_SIZE.y  / 2,
                     AppContants.SCREEN_SIZE.x, AppContants.SCREEN_SIZE.y);
 
-        setResizable(false);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setVisible(true);
     }
 }

@@ -1,37 +1,52 @@
 package javas.view;
 
+import javas.AppContants;
+import javas.view.components.FormGroup;
+import javas.view.components.Input;
+import javas.view.components.Label;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 
-public class PersonRegistrationView implements ActionListener {
-    private JFrame frame;
+public class PersonRegistrationView extends JFrame {
+
+    private Label name;
+    private Input field;
     public PersonRegistrationView() {
-       this.makeFrame();
+        this.init();
     }
 
-    public void actionPerformed(ActionEvent event) {
-        System.out.println(event.getActionCommand());
+    private void init() {
+        setTitle(AppContants.PERSON_REGISTRATION_VIEW_TITLE);
+        Container contentPane = getContentPane();
+
+        JPanel jPanelNorth = new JPanel();
+        jPanelNorth.setLayout(new GridLayout(1, 1));
+
+        FormGroup name = new FormGroup();
+        jPanelNorth.add(name.init("Name"));
+
+
+        FormGroup idade = new FormGroup();
+        jPanelNorth.add(idade.init("Idade"));
+
+
+
+        add(jPanelNorth);
+
+        setBounds(  AppContants.SCREEN_CENTER.x - AppContants.SCREEN_SIZE.x / 2,
+                AppContants.SCREEN_CENTER.y - AppContants.SCREEN_SIZE.y  / 2,
+                AppContants.SCREEN_SIZE.x, AppContants.SCREEN_SIZE.y);
+
+        setResizable(false);
+        contentPane.setBackground(Color.WHITE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
-    private void makeFrame() {
-        this.frame = new JFrame("Registrar pessoa");
-        Container contentPane = this.frame.getContentPane();
 
-        JMenuBar menuBar = new JMenuBar();
-        frame.setJMenuBar(menuBar);
-
-        JMenu fileMenu = new JMenu("File");
-        menuBar.add(fileMenu);
-
-        JMenuItem openItem = new JMenuItem("Open");
-        openItem.addActionListener(this);
-        fileMenu.add(openItem);
-
-        menuBar.add(new JMenu("Quit"));
-        JLabel label = new JLabel("Nome");
-
-        contentPane.add(label);
-        frame.pack();
-        frame.setVisible(true);
+    public static void main(String args[]) {
+        new PersonRegistrationView();
     }
 }

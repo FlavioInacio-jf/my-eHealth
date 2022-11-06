@@ -14,6 +14,6 @@ public class Main {
         // tables.add(Person.getQueryTable());
         // AppDataSource.init(tables);
 
-        MainView view = new MainView();
+        // PersonRegistrationView view = new PersonRegistrationView();
     }
 }
