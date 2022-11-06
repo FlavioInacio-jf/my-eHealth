@@ -15,12 +15,10 @@ public class FormGroupInput {
         this.label = new Label(title);
         this.label.setLabelFor(this.input);
 
-        Box box = new Box(BoxLayout.Y_AXIS);
+        Box box = new Box(BoxLayout.X_AXIS);
         box.setBackground(Color.WHITE);
         box.add(this.label);
-        box.add(Box.createVerticalStrut(5));
         box.add(this.input);
-        box.setMaximumSize(new Dimension(500, 45));
         return box;
     }
 
