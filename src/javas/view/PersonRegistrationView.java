@@ -1,14 +1,12 @@
 package javas.view;
 
 import javas.AppContants;
-import javas.view.components.FormGroup;
-import javas.view.components.Input;
+import javas.view.components.*;
+import javas.view.components.Button;
 import javas.view.components.Label;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class PersonRegistrationView extends JFrame {
 
@@ -19,19 +17,33 @@ public class PersonRegistrationView extends JFrame {
     }
 
     private void init() {
+        JPanel jPanelNorth = new JPanel();
+
         setTitle(AppContants.PERSON_REGISTRATION_VIEW_TITLE);
         Container contentPane = getContentPane();
+        BoxLayout layout = new BoxLayout(jPanelNorth, BoxLayout.Y_AXIS);
 
-        JPanel jPanelNorth = new JPanel();
-        jPanelNorth.setLayout(new GridLayout(1, 1));
+        jPanelNorth.setLayout(layout);
 
-        FormGroup name = new FormGroup();
-        jPanelNorth.add(name.init("Name"));
+        Box firstName = new FormGroupInput().init("Primeiro nome:");
+        Box lastName = new FormGroupInput().init("Último nome");
+        Box CPF = new FormGroupInput().init("CPF");
+        Box age = new FormGroupInput().init("Idade");
+        Box bloodType = new FormGroupSelect().init("Grupo sanguíneo");
 
+        Button addButton = new Button("Adicionar paciente");
 
-        FormGroup idade = new FormGroup();
-        jPanelNorth.add(idade.init("Idade"));
-
+        jPanelNorth.add(firstName);
+        jPanelNorth.add(Box.createVerticalStrut(15));
+        jPanelNorth.add(lastName);
+        jPanelNorth.add(Box.createVerticalStrut(15));
+        jPanelNorth.add(CPF);
+        jPanelNorth.add(Box.createVerticalStrut(15));
+        jPanelNorth.add(age);
+        jPanelNorth.add(Box.createVerticalStrut(15));
+        jPanelNorth.add(bloodType);
+        jPanelNorth.add(Box.createVerticalStrut(15));
+        jPanelNorth.add(addButton);
 
 
         add(jPanelNorth);
