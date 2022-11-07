@@ -60,7 +60,7 @@ public class Person {
     }
 
     public String getFullName() {
-        return this.firstName + this.lastName;
+        return this.firstName + " " + this.lastName;
     }
 
     public static  String getQueryTable() {
