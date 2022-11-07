@@ -13,7 +13,7 @@ public class Person {
 
     private String cpf;
     private BloodType bloodType;
-    private Date birthDate;
+    private String birthDate;
 
     public Person(
             String _id,
@@ -21,7 +21,7 @@ public class Person {
             String lastName,
             String cpf,
             BloodType bloodType,
-            Date birthDate
+            String birthDate
     ) {
         this._id = _id;
         this.firstName = firstName;
@@ -36,27 +36,53 @@ public class Person {
     }
 
     public String getId(){
-
         return this._id;
     }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public String getFirstName() {
         return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return this.lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getCPF() {
         return this.cpf;
     }
 
-    public BloodType bloodType() {
+    public void setCPF(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public BloodType getBloodType() {
         return this.bloodType;
     }
 
-    public Date getBirthDate() {
+    public void setBloodType(BloodType bloodType) {
+
+        this.bloodType = bloodType;
+    }
+
+    public String getBirthDate() {
         return this.birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+
+        this.birthDate = birthDate;
     }
 
     public String getFullName() {

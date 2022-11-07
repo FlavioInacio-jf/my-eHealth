@@ -12,12 +12,14 @@ public class AppDataSource {
     public static Boolean connect() {
 
         String address = "jdbc:sqlite:src/database/database.db";
+
         try {
             Class.forName("org.sqlite.JDBC");
+
             connection = DriverManager.getConnection(address);
             return true;
         } catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi possível abrir a conexão com o banco!");
+            JOptionPane.showMessageDialog(null, error.getMessage());
             return false;
         }catch (ClassNotFoundException error) {
             JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao utilizar o driver de conexão!");
@@ -68,7 +70,9 @@ public class AppDataSource {
 
     public static Statement execute() {
         try {
-            connection = getConnection();
+            if (connection == null || connection.isClosed()) {
+                connect();
+            }
             Statement stm = connection.createStatement();
             return stm;
 
