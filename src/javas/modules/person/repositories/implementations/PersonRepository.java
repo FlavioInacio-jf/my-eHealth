@@ -27,7 +27,7 @@ public class PersonRepository implements IPersonRepository {
 
     private Person save(Person data) {
         try {
-            final String query = String.format("INSERT INTO people VALUES ('%s', '%s', '%s', '%s', '%s', %s)",
+            final String query = String.format("INSERT INTO people VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
                                                 data.getId(), data.getFirstName(),
                                                 data.getLastName(), data.getCPF(),
                                                 data.getBloodType().toString(), data.getBirthDate());

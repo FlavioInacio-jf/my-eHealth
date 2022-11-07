@@ -127,11 +127,12 @@ public class PersonTest {
     @Test
     public void testGetQueryTable() {
         assertEquals("CREATE TABLE people" +
-                "( _id TEXT NOT NULL PRIMARY KEY," +
+                "( _id TEXT NOT NULL," +
                 "firstName TEXT NOT NULL," +
                 "lastName TEXT NOT NULL," +
                 "cpf TEXT NOT NULL," +
                 "bloodType Text," +
-                "birthDate DATE )", Person.getQueryTable());
+                "birthDate text," +
+                "PRIMARY KEY (_id)", Person.getQueryTable());
     }
 }

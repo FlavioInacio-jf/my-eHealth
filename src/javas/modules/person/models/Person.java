@@ -28,7 +28,7 @@ public class Person {
         this.lastName = lastName;
         this.cpf = cpf;
         this.bloodType = bloodType;
-        this.birthDate =  birthDate;
+        this.birthDate = birthDate;
 
         if (this._id == null) {
             this._id = UUID.randomUUID().toString();
@@ -89,14 +89,33 @@ public class Person {
         return this.firstName + " " + this.lastName;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person objectPerson = (Person) object;
+        return  this._id.equals(objectPerson.getId()) &&
+                this.firstName.equals(objectPerson.getFirstName()) &&
+                this.lastName.equals(objectPerson.getLastName()) &&
+                this.cpf.equals(objectPerson.getCPF()) &&
+                this.bloodType.equals(objectPerson.getBloodType()) &&
+                this.birthDate.equals(objectPerson.getBirthDate());
+
+    }
+
     public static  String getQueryTable() {
         return "CREATE TABLE people" +
-                "( _id TEXT NOT NULL PRIMARY KEY," +
+                "( _id TEXT NOT NULL," +
                 "firstName TEXT NOT NULL," +
                 "lastName TEXT NOT NULL," +
                 "cpf TEXT NOT NULL," +
                 "bloodType Text," +
-                "birthDate DATE )";
+                "birthDate text," +
+                "PRIMARY KEY (_id))";
     }
 
 }
