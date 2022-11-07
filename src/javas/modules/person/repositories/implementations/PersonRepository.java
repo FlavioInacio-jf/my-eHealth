@@ -7,6 +7,7 @@ import javas.modules.person.models.Person;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PersonRepository implements IPersonRepository {
 
@@ -43,7 +44,7 @@ public class PersonRepository implements IPersonRepository {
     @Override
     public void delete(String _id) {
         try {
-            final String query = String.format("DELETE FROM people WHERE _id= '%'", _id);
+            final String query = String.format("DELETE FROM people WHERE _id='%s'", _id);
             this.repository.execute(query);
             this.repository.close();
         }catch (SQLException error) {
@@ -53,16 +54,34 @@ public class PersonRepository implements IPersonRepository {
 
     @Override
     public Person findById(String _id) {
-        return null;
+        try {
+            final String query = String.format("SELECT * FROM people WHERE _id='%s' LIMIT 1", _id);
+            return (Person) this.repository.executeQuery(query);
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar o usuário! ");
+            return null;
+        }
     }
 
     @Override
     public Person findByCPF(String cpf) {
-        return null;
+        try {
+            final String query = String.format("SELECT * FROM people WHERE cpf='%s' LIMIT 1", cpf);
+            return (Person) this.repository.executeQuery(query);
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar o usuário! ");
+            return null;
+        }
     }
 
     @Override
-    public Person[] findAll() {
-        return new Person[0];
+    public ArrayList<Person> findAll() {
+        try {
+            final String query = "SELECT * FROM people";
+            return (ArrayList<Person>) this.repository.executeQuery(query);
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar os usuários! ");
+            return null;
+        }
     }
 }
