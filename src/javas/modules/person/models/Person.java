@@ -1,8 +1,8 @@
 package javas.modules.person.models;
 
-import javas.modules.person.enums.BloodTypeEnum;
-import jdk.jfr.Name;
+import javas.modules.person.enums.BloodType;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class Person {
@@ -12,23 +12,23 @@ public class Person {
     private String lastName;
 
     private String cpf;
-    private BloodTypeEnum bloodType;
-    private byte age;
+    private BloodType bloodType;
+    private Date birthDate;
 
     public Person(
             String _id,
             String firstName,
             String lastName,
             String cpf,
-            BloodTypeEnum bloodType,
-            byte age
+            BloodType bloodType,
+            Date birthDate
     ) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
         this.bloodType = bloodType;
-        this.age =  age;
+        this.birthDate =  birthDate;
 
         if (this._id == null) {
             this._id = UUID.randomUUID().toString();
@@ -51,12 +51,12 @@ public class Person {
         return this.cpf;
     }
 
-    public BloodTypeEnum bloodType() {
+    public BloodType bloodType() {
         return this.bloodType;
     }
 
-    public byte getAge() {
-        return this.age;
+    public Date getBirthDate() {
+        return this.birthDate;
     }
 
     public String getFullName() {
@@ -70,7 +70,7 @@ public class Person {
                 "lastName TEXT NOT NULL," +
                 "cpf TEXT NOT NULL," +
                 "bloodType Text," +
-                "age INTEGER )";
+                "birthDate DATE )";
     }
 
 }

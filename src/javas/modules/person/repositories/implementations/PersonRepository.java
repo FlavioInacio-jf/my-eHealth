@@ -1,13 +1,17 @@
 package javas.modules.person.repositories.implementations;
 
 import javas.config.AppDataSource;
+import javas.modules.person.enums.BloodType;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.person.models.Person;
 
 import javax.swing.*;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class PersonRepository implements IPersonRepository {
 
@@ -26,7 +30,7 @@ public class PersonRepository implements IPersonRepository {
             final String query = String.format("INSERT INTO people VALUES (%s, '%s', '%s', '%s', '%s', %s)",
                                                 data.getId(), data.getFirstName(),
                                                 data.getLastName(), data.getCPF(),
-                                                data.bloodType(), data.getAge());
+                                                data.bloodType(), data.getBirthDate());
             this.repository.execute(query);
             this.repository.close();
             return data;
@@ -37,24 +41,29 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public void update(String _id, Person data) {
+    public boolean update(Person data) {
         try {
-            final String query = String.format("UPDATE people SET  WHERE _id='%s'", _id);
+            final String query = String.format("UPDATE people SET firstName='%s', lastName='%s', cpf='%s', bloodType='%s', birthDate=,  WHERE _id='%s'",
+                                                data.getFirstName(), data.getLastName(), data.getCPF(), data.bloodType(), data.getBirthDate(), data.getId());
             this.repository.executeUpdate(query);
             this.repository.close();
+            return true;
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi possível excluir o usuário! ");
+            JOptionPane.showMessageDialog(null, "Não foi possível atualizar o usuário! ");
+            return false;
         }
     }
 
     @Override
-    public void delete(String _id) {
+    public boolean delete(String _id) {
         try {
             final String query = String.format("DELETE FROM people WHERE _id='%s'", _id);
             this.repository.execute(query);
             this.repository.close();
+            return true;
         }catch (SQLException error) {
             JOptionPane.showMessageDialog(null, "Não foi possível excluir o usuário! ");
+            return false;
         }
     }
 
@@ -81,10 +90,22 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public ArrayList<Person> findAll() {
+    public List<Person> findAll() {
         try {
+            ArrayList<Person> listPeople = new ArrayList<Person>();
             final String query = "SELECT * FROM people";
-            return (ArrayList<Person>) this.repository.executeQuery(query);
+            ResultSet rs = this.repository.executeQuery(query);
+            while (rs.next()) {
+                String _id = rs.getString(1);
+                String firstName = rs.getString(2);
+                String lastName = rs.getString(3);
+                String cpf = rs.getString(4);
+                String bloodType = rs.getString(5);
+                Date birthDate = rs.getDate(6);
+                listPeople.add(new Person(_id, firstName, lastName, cpf, BloodType.valueOf(bloodType), birthDate));
+            }
+
+            return listPeople;
         }catch (SQLException error) {
             JOptionPane.showMessageDialog(null, "Não foi possível buscar os usuários! ");
             return null;
