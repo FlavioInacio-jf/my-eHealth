@@ -30,7 +30,7 @@ public class PersonRepository implements IPersonRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi criar o usuário no banco!");
+            JOptionPane.showMessageDialog(null, "Não foi possível criar o usuário no banco!");
             return null;
         }
     }
@@ -41,8 +41,14 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public Person delete(String _id) {
-        return null;
+    public void delete(String _id) {
+        try {
+            final String query = String.format("DELETE FROM people WHERE _id= '%'", _id);
+            this.repository.execute(query);
+            this.repository.close();
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir o usuário! ");
+        }
     }
 
     @Override
