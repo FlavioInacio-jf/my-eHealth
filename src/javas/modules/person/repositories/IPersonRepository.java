@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface IPersonRepository {
     public Person create(Person data);
-    public void update(String _id);
+    public void update(String _id, Person data);
     public void delete(String _id);
     public Person findById(String _id);
     public Person findByCPF(String cpf);

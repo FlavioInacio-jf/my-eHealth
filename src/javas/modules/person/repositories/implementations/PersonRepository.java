@@ -37,8 +37,14 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public void update(String _id) {
-
+    public void update(String _id, Person data) {
+        try {
+            final String query = String.format("UPDATE people SET  WHERE _id='%s'", _id);
+            this.repository.executeUpdate(query);
+            this.repository.close();
+        }catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir o usuário! ");
+        }
     }
 
     @Override
