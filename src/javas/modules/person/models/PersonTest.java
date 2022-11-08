@@ -1,5 +1,6 @@
 package javas.modules.person.models;
 
+import javas.constants.PersonEntityConstants;
 import javas.modules.person.enums.BloodType;
 
 import static org.junit.Assert.assertEquals;
@@ -126,13 +127,13 @@ public class PersonTest {
 
     @Test
     public void testGetQueryTable() {
-        assertEquals("CREATE TABLE people" +
-                "( _id TEXT NOT NULL," +
-                "firstName TEXT NOT NULL," +
-                "lastName TEXT NOT NULL," +
-                "cpf TEXT NOT NULL," +
-                "bloodType Text," +
-                "birthDate text," +
-                "PRIMARY KEY (_id)", Person.getQueryTable());
+        assertEquals(String.format("CREATE TABLE %s ", PersonEntityConstants.ENTITY_NAME) +
+                String.format("( %s TEXT NOT NULL,", PersonEntityConstants.ID_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", PersonEntityConstants.FIRST_NAME_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", PersonEntityConstants.LAST_NAME_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", PersonEntityConstants.CPF_COLUMN_NAME) +
+                String.format("%s Text,", PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME) +
+                String.format("%s text,", PersonEntityConstants.BIRTH_DATE_COLUMN_NAME) +
+                String.format("PRIMARY KEY (%s))", PersonEntityConstants.ID_COLUMN_NAME), Person.getQueryTable());
     }
 }
