@@ -1,6 +1,6 @@
 package javas.view.components;
 
-import javas.AppContants;
+import javas.constants.ViewConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class Button extends JButton {
         setText(title);
 
         setFont(new Font("Fira Sans", Font.PLAIN, 16));
-        setBackground(AppContants.PRIMARY_COLOR);
+        setBackground(ViewConstants.PRIMARY_COLOR);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setBorder(null);
         setMaximumSize(new Dimension(500, 45));

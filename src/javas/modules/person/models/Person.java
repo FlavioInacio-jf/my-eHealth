@@ -7,13 +7,17 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Person {
+
     private String _id;
+
     private String firstName;
 
     private String lastName;
 
     private String cpf;
+
     private BloodType bloodType;
+
     private String birthDate;
 
     public Person(

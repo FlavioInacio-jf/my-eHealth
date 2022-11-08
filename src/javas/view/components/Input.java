@@ -1,6 +1,6 @@
 package javas.view.components;
 
-import javas.AppContants;
+import javas.constants.ViewConstants;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +16,7 @@ public class Input extends JTextField {
     }
 
     private void init() {
-        this.border = BorderFactory.createLineBorder(AppContants.BORDER_COLOR, 0);
+        this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 0);
         setBorder(border);
         setFont(new Font("Fira Sans", Font.PLAIN, 16));
     }

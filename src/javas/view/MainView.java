@@ -1,12 +1,11 @@
 package javas.view;
 
-import javas.AppContants;
+import javas.constants.ViewConstants;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
-    Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     private JPanel jPanelNorth, jPanelSouth, jPanelCenter;
     private JButton jButtonFirst, jButtonLast, jButtonNext,
                     jButtonPre, jButtonAdd, jButtonDelete,
@@ -17,35 +16,29 @@ public class MainView extends JFrame {
 
 
     private void init() {
-        this.setTitle(AppContants.MAIN_VIEW_TITLE);
+        this.setTitle(ViewConstants.MAIN_VIEW_TITLE);
 
+        // Content panel layout
         Container contentPane = this.getContentPane();
+        contentPane.setLayout(new BorderLayout());
 
+        // MenuBar
         JMenuBar menuBar = new JMenuBar();
-        menuBar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        JMenu personBar = new JMenu("Paciente");
-        personBar.add(new JMenuItem("Cadastrar"));
-        personBar.add(new JMenuItem("Atualizar"));
-        personBar.add(new JMenuItem("Consultar"));
-        personBar.add(new JMenuItem("Excluir"));
+        JMenu about = new JMenu("Sobre");
+        menuBar.add(about);
 
-        JMenu healthUnitBar = new JMenu("Unidade de Saúde");
-        healthUnitBar.add(new JMenuItem("Cadastrar"));
-        healthUnitBar.add(new JMenuItem("Atualizar"));
-        healthUnitBar.add(new JMenuItem("Consultar"));
-        healthUnitBar.add(new JMenuItem("Excluir"));
-        JMenu reportBar = new JMenu("Relatório");
-
-        menuBar.add(personBar);
-        menuBar.add(healthUnitBar);
-        menuBar.add(reportBar);
+        // Tabbed Panel
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Paciente", null, new PersonView(), "Ações do paciente");
+        tabbedPane.addTab("Unidade de Saúde", null, new HealthUnitView(), "Ações da Unidade de Saúde");
 
 
         this.setJMenuBar(menuBar);
+        contentPane.add(tabbedPane);
 
-        this.setBounds(  AppContants.SCREEN_CENTER.x - AppContants.SCREEN_SIZE.x / 2,
-                    AppContants.SCREEN_CENTER.y - AppContants.SCREEN_SIZE.y  / 2,
-                    AppContants.SCREEN_SIZE.x, AppContants.SCREEN_SIZE.y);
+        this.setBounds(  ViewConstants.SCREEN_CENTER.x - ViewConstants.SCREEN_SIZE.x / 2,
+                ViewConstants.SCREEN_CENTER.y - ViewConstants.SCREEN_SIZE.y  / 2,
+                ViewConstants.SCREEN_SIZE.x, ViewConstants.SCREEN_SIZE.y);
 
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
