@@ -8,7 +8,6 @@ public class Vaccine extends ModelBase {
     private String date;
     private int dose;
     private String lot;
-    private String uf;
     private HeathUnit heathUnit;
 
     public Vaccine(
@@ -16,15 +15,13 @@ public class Vaccine extends ModelBase {
              String name,
              String date,
              int dose,
-             String lot,
-             String uf
+             String lot
     ){
          super(_id);
          this.name = name;
          this.date = date;
          this.dose = dose;
          this.lot = lot;
-         this.uf = uf;
     }
 
     public String getName(){
