@@ -2,51 +2,47 @@ package javas.modules.heathUnit.models;
 
 import org.junit.Test;
 
+
 public class HeathUnitTest {
 
     public HeathUnitTest() {}
 
     @Test
+    public void testGetType() {
+    }
+
+    @Test
+    public void testSetType() {
+    }
+
+    @Test
     public void testGetName() {
+
     }
 
     @Test
     public void testSetName() {
-    }
-
-    @Test
-    public void testGetDate(){
-    }
-
-    @Test
-    public void testSetDate(String date) {
-    }
-
-    @Test
-    public void testGetDose() {
-    }
-
-    @Test
-    public void testSetDose(){
 
     }
 
     @Test
-    public void testGetLot() {
+    public void testGetAddress() {
 
     }
 
     @Test
-    public void testSetLot() {
-    }
-
-    @Test
-    public void getHeathUnit() {
+    public void testSetAddress() {
 
     }
 
     @Test
-    public void setHeathUnit() {
+    public void testAddPerson() {
+
+    }
+
+    @Test
+    public void testRemovePerson() {
+
     }
 
 }
