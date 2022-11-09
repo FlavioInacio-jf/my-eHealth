@@ -1,6 +1,6 @@
 package javas.modules.person.repositories.implementations;
 
-import javas.modules.person.enums.BloodType;
+import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.models.Person;
 import javas.modules.person.repositories.IPersonRepository;
 import org.junit.Test;
@@ -60,7 +60,7 @@ public class PersonRepositoryTest {
     public void testDelete() {
         String _id = UUID.randomUUID().toString();
         Person person = new Person(_id, "Inácio",
-                "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(_id)));
         assertTrue(this.repository.delete(_id));
@@ -71,7 +71,7 @@ public class PersonRepositoryTest {
     public void testFindById() {
         String _id = UUID.randomUUID().toString();
         Person person = new Person(_id, "Inácio",
-                "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(_id)));
         this.repository.delete(_id);
@@ -83,7 +83,7 @@ public class PersonRepositoryTest {
 
         String _id = UUID.randomUUID().toString();
         Person person = new Person(_id, "Inácio",
-                "Santos", cpf, BloodType.A_LESS, "11/09/2001");
+                "Santos", cpf, BloodTypeEnum.A_LESS, "11/09/2001");
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findByCPF(cpf)));
         this.repository.delete(_id);

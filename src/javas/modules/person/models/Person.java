@@ -2,7 +2,8 @@ package javas.modules.person.models;
 
 import javas.modules.address.models.Address;
 import javas.modules.app.models.ModelBase;
-import javas.modules.person.enums.BloodType;
+import javas.modules.person.enums.BloodTypeEnum;
+import javas.modules.person.enums.SexEnum;
 import javas.modules.vaccine.models.Vaccine;
 
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class Person extends ModelBase {
 
     private String cpf;
 
-    private BloodType bloodType;
+    private BloodTypeEnum bloodTypeEnum;
+
+    private SexEnum sex;
 
     private String birthDate;
 
@@ -27,7 +30,8 @@ public class Person extends ModelBase {
             String firstName,
             String lastName,
             String cpf,
-            BloodType bloodType,
+            BloodTypeEnum bloodTypeEnum,
+            SexEnum sex,
             String birthDate,
             Address address
     ) {
@@ -35,10 +39,11 @@ public class Person extends ModelBase {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
-        this.bloodType = bloodType;
+        this.bloodTypeEnum = bloodTypeEnum;
         this.birthDate = birthDate;
         this.vaccines = new ArrayList<>();
         this.address = address;
+        this.sex = sex;
     }
 
     public String getFirstName() {
@@ -65,12 +70,12 @@ public class Person extends ModelBase {
         this.cpf = cpf;
     }
 
-    public BloodType getBloodType() {
-        return this.bloodType;
+    public BloodTypeEnum getBloodType() {
+        return this.bloodTypeEnum;
     }
 
-    public void setBloodType(BloodType bloodType) {
-        this.bloodType = bloodType;
+    public void setBloodType(BloodTypeEnum bloodTypeEnum) {
+        this.bloodTypeEnum = bloodTypeEnum;
     }
 
     public String getBirthDate() {
@@ -101,6 +106,14 @@ public class Person extends ModelBase {
         this.address = address;
     }
 
+    public SexEnum getSex() {
+        return this.sex;
+    }
+
+    public void setSex(SexEnum sex) {
+        this.sex = sex;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -114,7 +127,7 @@ public class Person extends ModelBase {
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&
                 this.cpf.equals(objectPerson.getCPF()) &&
-                this.bloodType.equals(objectPerson.getBloodType()) &&
+                this.bloodTypeEnum.equals(objectPerson.getBloodType()) &&
                 this.birthDate.equals(objectPerson.getBirthDate());
 
     }

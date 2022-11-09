@@ -1,8 +1,10 @@
 package javas.modules.person.models;
 
-import javas.modules.person.enums.BloodType;
+import javas.modules.person.enums.BloodTypeEnum;
 
 import static org.junit.Assert.assertEquals;
+
+import javas.modules.person.enums.SexEnum;
 import org.junit.Test;
 
 public class PersonTest {
@@ -11,7 +13,7 @@ public class PersonTest {
     @Test
     public void testGetFirstName() {
         Person person = new Person(null, "Jose",
-                "Santos", "111.111.111-11", BloodType.A_PLUS, "11/09/2001");
+                "Santos", "111.111.111-11", BloodTypeEnum.A_PLUS, "11/09/2001");
         assertEquals("Jose", person.getFirstName());
 
     }
@@ -19,7 +21,7 @@ public class PersonTest {
     @Test
     public void testSetFirstName() {
         Person person = new Person(null, "Inácio",
-                "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
         person.setFirstName("João");
         assertEquals("João", person.getFirstName());
     }
@@ -27,14 +29,14 @@ public class PersonTest {
     @Test
     public void testGetLastName() {
         Person person = new Person(null, "João",
-                "Oliveira", "222.222.222-22", BloodType.A, "11/09/2001");
+                "Oliveira", "222.222.222-22", BloodTypeEnum.A, "11/09/2001");
         assertEquals("Oliveira", person.getLastName());
     }
 
     @Test
     public void testSetLastName() {
         Person person = new Person(null, "Inácio",
-                "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
         person.setLastName("Silva");
         assertEquals("Silva", person.getLastName());
     }
@@ -42,14 +44,14 @@ public class PersonTest {
     @Test
     public void testGetCPF() {
         Person person = new Person(null, "Marcelo",
-                "Carvalho", "222.222.222-22", BloodType.A,"11/09/2001");
+                "Carvalho", "222.222.222-22", BloodTypeEnum.A,"11/09/2001");
         assertEquals("222.222.222-22", person.getCPF());
     }
 
     @Test
     public void testSetCPF() {
         Person person = new Person(null, "Marcelo",
-                "Carvalho", "222.222.222-22", BloodType.A,"11/09/2001");
+                "Carvalho", "222.222.222-22", BloodTypeEnum.A,"11/09/2001");
         person.setCPF("111.111.111-11");
         assertEquals("111.111.111-11", person.getCPF());
     }
@@ -57,29 +59,29 @@ public class PersonTest {
     @Test
     public void testBloodType() {
         Person person = new Person(null, "Felipe",
-                "Picon", "555.555.555-55", BloodType.A, "11/09/2001");
-        assertEquals(BloodType.A, person.getBloodType());
+                "Picon", "555.555.555-55", BloodTypeEnum.A, "11/09/2001");
+        assertEquals(BloodTypeEnum.A, person.getBloodType());
     }
 
     @Test
     public void setBloodType() {
         Person person = new Person(null, "Felipe",
-                "Picon", "555.555.555-55", BloodType.A, "11/09/2001");
-        person.setBloodType(BloodType.A_PLUS);
-        assertEquals(BloodType.A_PLUS, person.getBloodType());
+                "Picon", "555.555.555-55", BloodTypeEnum.A, "11/09/2001");
+        person.setBloodType(BloodTypeEnum.A_PLUS);
+        assertEquals(BloodTypeEnum.A_PLUS, person.getBloodType());
     }
 
     @Test
     public void testGetBirthDate() {
         Person person = new Person(null, "Bianca",
-                "Andrade", "888.888.888-88", BloodType.A, "11/09/2001");
+                "Andrade", "888.888.888-88", BloodTypeEnum.A, "11/09/2001");
         assertEquals("11/09/2001", person.getBirthDate());
     }
 
     @Test
     public void setGetBirthDate() {
         Person person = new Person(null, "Bianca",
-                "Andrade", "888.888.888-88", BloodType.A, "11/09/2001");
+                "Andrade", "888.888.888-88", BloodTypeEnum.A, "11/09/2001");
         person.setBirthDate("01/01/1997");
         assertEquals("01/01/1997", person.getBirthDate());
     }
@@ -87,7 +89,7 @@ public class PersonTest {
     @Test
     public void testGetFullName() {
         Person person = new Person(null, "Ana",
-                "Feitosa", "888.888.888-88", BloodType.A, "11/09/2001");
+                "Feitosa", "888.888.888-88", BloodTypeEnum.A, "11/09/2001");
         assertEquals("Ana Feitosa", person.getFullName());
     }
 
@@ -109,6 +111,15 @@ public class PersonTest {
     @Test
     public void testSetAddress() {
 
+    }
+
+    @Test
+    public void testGetSex() {
+
+    }
+
+    @Test
+    public void testSetSex() {
     }
 
     @Test

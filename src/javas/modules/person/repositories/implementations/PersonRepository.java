@@ -3,7 +3,7 @@ package javas.modules.person.repositories.implementations;
 import javas.config.AppDataSource;
 import javas.constants.PersonEntityConstants;
 import javas.exceptions.PersonErrorMessages;
-import javas.modules.person.enums.BloodType;
+import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.person.models.Person;
 
@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class PersonRepository implements IPersonRepository {
 
@@ -92,7 +90,7 @@ public class PersonRepository implements IPersonRepository {
                 String cpf = rs.getString(4);
                 String bloodType = rs.getString(5);
                 String birthDate = rs.getString(6);
-                return new Person(rs.getString(1), firstName, lastName, cpf, BloodType.valueOf(bloodType), birthDate);
+                return new Person(rs.getString(1), firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), birthDate);
             }
         }catch (SQLException error) {
             JOptionPane.showMessageDialog(null, PersonErrorMessages.UNABLE_SEARCH_PERSON);
@@ -112,7 +110,7 @@ public class PersonRepository implements IPersonRepository {
                 String lastName = rs.getString(3);
                 String bloodType = rs.getString(5);
                 String birthDate = rs.getString(6);
-                return new Person(_id, firstName, lastName, rs.getString(4), BloodType.valueOf(bloodType), birthDate);
+                return new Person(_id, firstName, lastName, rs.getString(4), BloodTypeEnum.valueOf(bloodType), birthDate);
             }
         }catch (SQLException error) {
             JOptionPane.showMessageDialog(null, PersonErrorMessages.UNABLE_SEARCH_PERSON);
@@ -134,7 +132,7 @@ public class PersonRepository implements IPersonRepository {
                 String cpf = rs.getString(4);
                 String bloodType = rs.getString(5);
                 String birthDate = rs.getString(6);
-                listPeople.add(new Person(_id, firstName, lastName, cpf, BloodType.valueOf(bloodType), birthDate));
+                listPeople.add(new Person(_id, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), birthDate));
             }
 
             return listPeople;
