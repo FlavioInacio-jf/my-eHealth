@@ -3,33 +3,49 @@ package javas.modules.vaccine.models;
 import javas.modules.heathUnit.models.HeathUnit;
 import javas.modules.heathUnit.enums.UnitTypeEnum;
 
+import java.util.UUID;
+
 public class Vaccine extends HeathUnit{
+    private String _id;
     private String name;
     private String date;
     private int dose;
-    private String lote;
+    private String lot;
     private String uf;
 
     public Vaccine(
-     String name, 
-     String date, 
-     int dose,
-     String lote,
-     String uf,
-     UnitTypeEnum type,  
-     String contactNumber,
-     String street,
-     String district, 
-     String city, 
-     String state, 
-     String postalCode
+             String _id,
+             String name,
+             String date,
+             int dose,
+             String lot,
+             String uf,
+             UnitTypeEnum type,
+             String contactNumber,
+             String street,
+             String district,
+             String city,
+             String state,
+             String postalCode
     ){
-     super(type, name, contactNumber, street, district, city, state, postalCode);
-     this.name = name;
-     this.date = date;
-     this.dose = dose;
-     this.lote = lote;
-     this.uf = uf;
+         super(type, name, contactNumber, street, district, city, state, postalCode);
+         this.name = name;
+         this.date = date;
+         this.dose = dose;
+         this.lot = lot;
+         this.uf = uf;
+         this._id = _id;
+         if (this._id == null) {
+             this._id = UUID.randomUUID().toString();
+         }
+    }
+
+    public String getId(){
+        return this._id;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getName(){
@@ -41,34 +57,34 @@ public class Vaccine extends HeathUnit{
     }
 
     public String getDate(){
-        return date;
-    };
+        return this.date;
+    }
 
-    public void setDate(String Date){
-        this.date = Date;
-    };
+    public void setDate(String date){
+        this.date = date;
+    }
 
     public int getDose(){
-        return dose;
+        return this.dose;
     }
 
-    public void setDose(int Dose){
-        this.dose = Dose;
+    public void setDose(int dose){
+        this.dose = dose;
     }
 
-    public String getLote(){
-        return lote;
+    public String getLot(){
+        return this.lot;
     }
 
-    public void setLote(String Lote){
-        this.lote = Lote;
+    public void setLot(String lot){
+        this.lot = lot;
     }
 
-    private String getUf(){
-        return uf;
-    };
+    public String getUf(){
+        return this.uf;
+    }
 
-    private void setUf(String uf){
+    public void setUf(String uf){
         this.uf = uf;
     }
 }
