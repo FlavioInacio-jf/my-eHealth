@@ -79,12 +79,4 @@ public class Vaccine extends HeathUnit{
     public void setLot(String lot){
         this.lot = lot;
     }
-
-    public String getUf(){
-        return this.uf;
-    }
-
-    public void setUf(String uf){
-        this.uf = uf;
-    }
 }
