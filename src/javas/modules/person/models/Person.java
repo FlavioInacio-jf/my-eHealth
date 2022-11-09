@@ -1,7 +1,7 @@
 package javas.modules.person.models;
 
+import javas.modules.address.models.Address;
 import javas.modules.app.models.ModelBase;
-import javas.modules.heathUnit.models.HeathUnit;
 import javas.modules.person.enums.BloodType;
 import javas.modules.vaccine.models.Vaccine;
 
@@ -20,7 +20,7 @@ public class Person extends ModelBase {
     private String birthDate;
 
     private ArrayList<Vaccine> vaccines;
-    private HeathUnit heathUnit;
+    private Address address;
 
     public Person(
             String _id,
@@ -28,7 +28,12 @@ public class Person extends ModelBase {
             String lastName,
             String cpf,
             BloodType bloodType,
-            String birthDate
+            String birthDate,
+            String street,
+            String district,
+            String city,
+            String state,
+            String postalCode
     ) {
         super(_id);
         this.firstName = firstName;
@@ -37,6 +42,7 @@ public class Person extends ModelBase {
         this.bloodType = bloodType;
         this.birthDate = birthDate;
         this.vaccines = new ArrayList<>();
+        this.address = new Address(street, district, city, state, postalCode);
     }
 
     public String getFirstName() {
@@ -89,6 +95,14 @@ public class Person extends ModelBase {
 
     public ArrayList<Vaccine> getVaccines() {
         return  this.vaccines;
+    }
+
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
