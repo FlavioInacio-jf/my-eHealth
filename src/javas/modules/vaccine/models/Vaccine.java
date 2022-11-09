@@ -1,4 +1,74 @@
 package javas.modules.vaccine.models;
 
-public class Vaccine {
+import javas.modules.heathUnit.models.HeathUnit;
+import javas.modules.heathUnit.enums.UnitTypeEnum;
+
+public class Vaccine extends HeathUnit{
+    private String name;
+    private String date;
+    private int dose;
+    private String lote;
+    private String uf;
+
+    public Vaccine(
+     String name, 
+     String date, 
+     int dose,
+     String lote,
+     String uf,
+     UnitTypeEnum type,  
+     String contactNumber,
+     String street,
+     String district, 
+     String city, 
+     String state, 
+     String postalCode
+    ){
+     super(type, name, contactNumber, street, district, city, state, postalCode);
+     this.name = name;
+     this.date = date;
+     this.dose = dose;
+     this.lote = lote;
+     this.uf = uf;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String Name){
+        this.name = Name;
+    }
+
+    public String getDate(){
+        return date;
+    };
+
+    public void setDate(String Date){
+        this.date = Date;
+    };
+
+    public int getDose(){
+        return dose;
+    }
+
+    public void setDose(int Dose){
+        this.dose = Dose;
+    }
+
+    public String getLote(){
+        return lote;
+    }
+
+    public void setLote(String Lote){
+        this.lote = Lote;
+    }
+
+    private String getUf(){
+        return uf;
+    };
+
+    private void setUf(String uf){
+        this.uf = uf;
+    }
 }
