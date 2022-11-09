@@ -6,12 +6,10 @@ import javas.modules.heathUnit.enums.UnitTypeEnum;
 public class HeathUnit extends Address{
     private UnitTypeEnum type;
     private String name;
-    private String contactNumber;
     
     public HeathUnit(
         UnitTypeEnum type, 
-        String name, 
-        String contactNumber,
+        String name,
         String street,
         String district, 
         String city, 
@@ -22,7 +20,6 @@ public class HeathUnit extends Address{
         super(street, district, city, state, postalCode);
         this.type = type;
         this.name = name;
-        this.contactNumber = contactNumber;
     }
 
     public UnitTypeEnum getType(){
@@ -41,11 +38,4 @@ public class HeathUnit extends Address{
         this.name = name;
     }
 
-    public String getContactNumber(){
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber){
-        this.contactNumber = contactNumber;
-    }
 }
