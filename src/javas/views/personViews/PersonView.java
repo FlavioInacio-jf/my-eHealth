@@ -1,11 +1,16 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
+import javas.modules.person.models.Person;
 import javas.views.components.*;
 import javas.views.components.Button;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 public class PersonView extends JPanel {
     public PersonView() {
@@ -15,6 +20,7 @@ public class PersonView extends JPanel {
     private void init() {
         this.setLayout(new BorderLayout());
         this.setBorder(null);
+        JScrollPane scrollPane = new JScrollPane();
 
         // Configure north area
         JPanel jPanelNorth = new JPanel();
@@ -44,37 +50,56 @@ public class PersonView extends JPanel {
         jPanelNorth.add(vaccinePersonButton);
         this.add(jPanelNorth, BorderLayout.NORTH);
 
-
         // Configure center area
         JPanel jPanelCenter = new JPanel();
         jPanelCenter.setBackground(Color.WHITE);
         jPanelCenter.setLayout(new GridLayout(1, 2));
 
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        String[] columnNames = { "Name", "Roll Number", "Department" };
 
-        Box firstName = new FormGroupInput().init("Primeiro nome:");
-        Box lastName = new FormGroupInput().init("Último nome");
-        Box CPF = new FormGroupInput().init("CPF");
-        Box age = new FormGroupInput().init("Idade");
-        Box bloodType = new FormGroupSelect().init("Grupo sanguíneo");
+        String[][] data = {
+                { "Kundan Kumar Jha", "4031", "CSE" },
+                { "Anand Jha", "6014", "IT" }
+        };
+        // Initializing the JTable
+        JTable table = new JTable(data, columnNames) {
+            @Override
+            public boolean editCellAt(int row, int column, java.util.EventObject e){
+                return false;
+            }
 
-        Button addButton = new Button("Adicionar paciente");
+            DefaultTableCellRenderer renderLeft = new DefaultTableCellRenderer();
 
-        formPanel.add(firstName);
-        formPanel.add(Box.createVerticalStrut(15));
-        formPanel.add(lastName);
-        formPanel.add(Box.createVerticalStrut(15));
-        formPanel.add(CPF);
-        formPanel.add(Box.createVerticalStrut(15));
-        formPanel.add(age);
-        formPanel.add(Box.createVerticalStrut(15));
-        formPanel.add(bloodType);
-        formPanel.add(Box.createVerticalStrut(15));
-        formPanel.add(addButton);
-        jPanelCenter.add(formPanel, BorderLayout.CENTER);
-        jPanelCenter.add(new Button("Teste"));
+            {
+                renderLeft.setHorizontalAlignment(SwingConstants.LEFT);
+            }
+
+            @Override
+            public TableCellRenderer getCellRenderer(int arg0, int arg1) {
+                return renderLeft;
+            }
+        };
+
+        //Table header styles
+        UIManager.put("TableHeader.cellBorder" , BorderFactory.createMatteBorder(0, 0, 0, 1, ViewConstants.BORDER_COLOR));
+        JTableHeader tableHeader = table.getTableHeader();
+        tableHeader.setFont(new Font("Fira Sans", Font.BOLD, 14));
+        tableHeader.setBackground(ViewConstants.PRIMARY_COLOR);
+        tableHeader.setForeground(Color.WHITE);
+        tableHeader.setOpaque(false);
+        tableHeader.setBorder(null);
+
+        table.setFont(new Font("Fira Sans", Font.PLAIN, 16));
+        table.setGridColor(ViewConstants.BORDER_COLOR);
+        table.setIntercellSpacing(new Dimension(20, 0));
+        table.setRowHeight(25);
+        table.removeEditor();
+        table.setRowSelectionAllowed(false);
+
+        jPanelCenter.add(table.getTableHeader());
+        jPanelCenter.add(new JScrollPane(table));
         this.add(jPanelCenter);
+
 
         this.setBackground(Color.WHITE);
     }
