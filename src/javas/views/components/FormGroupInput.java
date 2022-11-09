@@ -10,16 +10,18 @@ public class FormGroupInput {
     public FormGroupInput() {
     }
 
-    public Box init(String title) {
+    public JPanel init(String title) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
         this.input = new Input();
         this.label = new Label(title);
         this.label.setLabelFor(this.input);
 
-        Box box = new Box(BoxLayout.X_AXIS);
-        box.setBackground(Color.WHITE);
-        box.add(this.label);
-        box.add(this.input);
-        return box;
+        panel.add(this.label);
+        panel.add(Box.createVerticalStrut(5));
+        panel.add(this.input);
+        return panel;
     }
 
     public String getText() {
