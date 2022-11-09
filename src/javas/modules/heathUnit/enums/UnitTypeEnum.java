@@ -1,5 +1,20 @@
 package javas.modules.heathUnit.enums;
 
 public enum UnitTypeEnum {
-    Hospital, UBS, Post;
+    HOSPITAL{
+        @Override
+        public String toString() {
+            return "hospital";
+        }
+    }, UBS {
+        @Override
+        public String toString() {
+            return "ubs";
+        }
+    }, UPA {
+       @Override
+       public String toString() {
+           return "upa";
+       }
+    };
 }
