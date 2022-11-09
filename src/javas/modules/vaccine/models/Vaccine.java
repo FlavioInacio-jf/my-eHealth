@@ -1,6 +1,7 @@
 package javas.modules.vaccine.models;
 
 import javas.modules.heathUnit.models.HeathUnit;
+import javas.modules.heathUnit.enums.UnitTypeEnum;
 
 public class Vaccine extends HeathUnit{
     private String name;
@@ -15,7 +16,7 @@ public class Vaccine extends HeathUnit{
      int dose,
      String lote,
      String uf,
-     Enum type,  
+     UnitTypeEnum type,  
      String contactNumber,
      String street,
      String district, 
@@ -67,7 +68,7 @@ public class Vaccine extends HeathUnit{
         return uf;
     };
 
-    private void setUF(String uf){
+    private void setUf(String uf){
         this.uf = uf;
     }
 }

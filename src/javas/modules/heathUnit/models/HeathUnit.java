@@ -1,14 +1,15 @@
 package javas.modules.heathUnit.models;
 
 import javas.modules.address.models.Address;
+import javas.modules.heathUnit.enums.UnitTypeEnum;
 
 public class HeathUnit extends Address{
-    private Enum type;
+    private UnitTypeEnum type;
     private String name;
     private String contactNumber;
     
     public HeathUnit(
-        Enum type, 
+        UnitTypeEnum type, 
         String name, 
         String contactNumber,
         String street,
@@ -24,12 +25,12 @@ public class HeathUnit extends Address{
         this.contactNumber = contactNumber;
     }
 
-    public Enum getType(){
+    public UnitTypeEnum getType(){
         return type;
     }
 
-    public void setType(Enum Type){
-        type = Type;
+    public void setType(UnitTypeEnum type){
+        this.type = type;
     }
 
     public String getName(){
@@ -37,7 +38,7 @@ public class HeathUnit extends Address{
     }
 
     public void setName(String name){
-        name = name;
+        this.name = name;
     }
 
     public String getContactNumber(){
@@ -45,6 +46,6 @@ public class HeathUnit extends Address{
     }
 
     public void setContactNumber(String contactNumber){
-        contactNumber = contactNumber;
+        this.contactNumber = contactNumber;
     }
 }
