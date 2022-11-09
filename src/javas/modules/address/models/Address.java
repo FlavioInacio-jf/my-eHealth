@@ -8,11 +8,11 @@ public class Address {
     private String postalCode; // CEP
 
     public Address(
-    String street,
-    String district, 
-    String city, 
-    String state, 
-    String postalCode
+        String street,
+        String district,
+        String city,
+        String state,
+        String postalCode
     ){
         this.street = street;
         this.district = district;
@@ -22,7 +22,7 @@ public class Address {
     }
 
     public String getStreet(){
-        return street;
+        return this.street;
     }
 
     public void setStreet(String street){
@@ -30,7 +30,7 @@ public class Address {
     }
 
     public String getDistrict(){
-        return district;
+        return this.district;
     }
 
     public void setDistrict(String district){
@@ -38,23 +38,23 @@ public class Address {
     }
 
     public String getCity(){
-        return city;
+        return this.city;
     }
 
     public void setCity(String city){
         this.city = city;
     }
 
-    public String getEstado(){
-        return state;
+    public String getState(){
+        return this.state;
     }
 
-    public void setEstado(String state){
+    public void setState(String state){
         this.state = state;
     }
 
     public String getPostalCode(){
-        return postalCode;
+        return this.postalCode;
     }
 
     public void setPostalCode(String postalCode){
