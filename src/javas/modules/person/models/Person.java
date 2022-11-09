@@ -29,11 +29,7 @@ public class Person extends ModelBase {
             String cpf,
             BloodType bloodType,
             String birthDate,
-            String street,
-            String district,
-            String city,
-            String state,
-            String postalCode
+            Address address
     ) {
         super(_id);
         this.firstName = firstName;
@@ -42,7 +38,7 @@ public class Person extends ModelBase {
         this.bloodType = bloodType;
         this.birthDate = birthDate;
         this.vaccines = new ArrayList<>();
-        this.address = new Address(street, district, city, state, postalCode);
+        this.address = address;
     }
 
     public String getFirstName() {

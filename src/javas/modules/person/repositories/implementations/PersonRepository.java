@@ -122,7 +122,7 @@ public class PersonRepository implements IPersonRepository {
     }
 
     @Override
-    public List<Person> findAll() {
+    public ArrayList<Person> findAll() {
         try {
             ArrayList<Person> listPeople = new ArrayList<Person>();
             final String query = String.format("SELECT * FROM %s", PersonEntityConstants.ENTITY_NAME);

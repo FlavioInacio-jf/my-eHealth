@@ -3,6 +3,7 @@ package javas.modules.person.repositories;
 import javas.modules.person.models.Person;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IPersonRepository {
@@ -11,5 +12,5 @@ public interface IPersonRepository {
     public boolean delete(String _id);
     public Person findById(String _id);
     public Person findByCPF(String cpf);
-    public List<Person> findAll();
+    public ArrayList<Person> findAll();
 }

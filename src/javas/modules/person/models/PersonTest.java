@@ -1,6 +1,5 @@
 package javas.modules.person.models;
 
-import javas.modules.address.models.Address;
 import javas.modules.person.enums.BloodType;
 
 import static org.junit.Assert.assertEquals;
