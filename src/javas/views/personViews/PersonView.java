@@ -2,13 +2,16 @@ package javas.views.personViews;
 
 import javas.constants.ViewConstants;
 import javas.modules.person.models.Person;
+import javas.modules.person.useCases.getAllPeople.GetAllPeopleController;
 import javas.views.components.*;
 import javas.views.components.Button;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
@@ -55,14 +58,25 @@ public class PersonView extends JPanel {
         jPanelCenter.setBackground(Color.WHITE);
         jPanelCenter.setLayout(new GridLayout(1, 2));
 
-        String[] columnNames = { "Name", "Roll Number", "Department" };
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nome");
+        model.addColumn("CPF");
+        model.addColumn("Grupo sanguíneo");
+        model.addColumn("Data nascimento");
 
-        String[][] data = {
-                { "Kundan Kumar Jha", "4031", "CSE" },
-                { "Anand Jha", "6014", "IT" }
-        };
+        // PopulateTable
+        ArrayList<Person> people = new ArrayList<>();
+        Iterator<Person> it = people.iterator();
+        while (it.hasNext()){
+            Person person = it.next();
+            model.addRow(new Object[]{
+                            person.getFullName(),
+                            person.getCPF(),
+                            person.getBloodType().toString(),
+                            person.getBirthDate()});
+        }
         // Initializing the JTable
-        JTable table = new JTable(data, columnNames) {
+        JTable table = new JTable(model) {
             @Override
             public boolean editCellAt(int row, int column, java.util.EventObject e){
                 return false;
@@ -79,6 +93,8 @@ public class PersonView extends JPanel {
                 return renderLeft;
             }
         };
+
+
 
         //Table header styles
         UIManager.put("TableHeader.cellBorder" , BorderFactory.createMatteBorder(0, 0, 0, 1, ViewConstants.BORDER_COLOR));
