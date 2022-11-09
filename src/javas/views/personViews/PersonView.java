@@ -1,9 +1,8 @@
-package javas.view;
+package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.view.components.*;
-import javas.view.components.Button;
-import javas.view.components.Label;
+import javas.views.components.*;
+import javas.views.components.Button;
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,7 +16,6 @@ public class PersonView extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBorder(null);
 
-
         // Configure north area
         JPanel jPanelNorth = new JPanel();
         jPanelNorth.setBackground(Color.WHITE);
@@ -26,23 +24,23 @@ public class PersonView extends JPanel {
         jPanelNorth.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ViewConstants.BORDER_COLOR));
 
         ButtonWithIcon addPersonButton = new ButtonWithIcon("Adicionar");
-        addPersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/add-user-icon.png")));
+        addPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/add-user-icon.png")));
         jPanelNorth.add(addPersonButton);
 
         ButtonWithIcon updatePersonButton = new ButtonWithIcon("Atualizar");
-        updatePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/update-user-icon.png")));
+        updatePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/update-user-icon.png")));
         jPanelNorth.add(updatePersonButton);
 
         ButtonWithIcon deletePersonButton = new ButtonWithIcon("Excluir");
-        deletePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/remove-user-icon.png")));
+        deletePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/remove-user-icon.png")));
         jPanelNorth.add(deletePersonButton);
 
         ButtonWithIcon reportPersonButton = new ButtonWithIcon("Relatório");
-        reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/report-user-icon.png")));
+        reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-user-icon.png")));
         jPanelNorth.add(reportPersonButton);
 
         ButtonWithIcon vaccinePersonButton = new ButtonWithIcon("Vacinar");
-        vaccinePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/vaccine-icon.png")));
+        vaccinePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/vaccine-icon.png")));
         jPanelNorth.add(vaccinePersonButton);
         this.add(jPanelNorth, BorderLayout.NORTH);
 

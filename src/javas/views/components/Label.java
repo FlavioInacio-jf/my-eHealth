@@ -1,7 +1,6 @@
-package javas.view.components;
+package javas.views.components;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class Label extends JLabel {

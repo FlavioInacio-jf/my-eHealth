@@ -1,4 +1,4 @@
-package javas.view.components;
+package javas.views.components;
 
 import javas.constants.ViewConstants;
 
@@ -6,9 +6,9 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
-public class TabbedPane extends JTabbedPane {
+public class TabbedPanePerson extends JTabbedPane {
 
-    public TabbedPane() {
+    public TabbedPanePerson() {
         UIManager.put("TabbedPane.borderColor", null);
         UIManager.put("TabbedPane.darkShadow", ColorUIResource.TRANSLUCENT);
         UIManager.put("TabbedPane.light", ColorUIResource.WHITE);
