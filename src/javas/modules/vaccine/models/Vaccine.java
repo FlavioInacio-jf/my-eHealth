@@ -7,30 +7,28 @@ public class Vaccine extends HeathUnit{
     private String date;
     private int dose;
     private String lote;
-    private String UF;
+    private String uf;
 
     public Vaccine(
      String name, 
      String date, 
      int dose,
      String lote,
-     String UF,
-     String type, 
-     String Name, 
-     String ContactNumber,
-     String Street,
-     String District, 
-     String  Municipio,
-     String City, 
-     String Estado, 
-     int CEP
+     String uf,
+     Enum type,  
+     String contactNumber,
+     String street,
+     String district, 
+     String city, 
+     String state, 
+     String postalCode
     ){
-     super(type, Name, ContactNumber, Street, District, Municipio, City, Estado, CEP);
+     super(type, name, contactNumber, street, district, city, state, postalCode);
      this.name = name;
      this.date = date;
      this.dose = dose;
      this.lote = lote;
-     this.UF = UF;
+     this.uf = uf;
     }
 
     public String getName(){
@@ -65,11 +63,11 @@ public class Vaccine extends HeathUnit{
         this.lote = Lote;
     }
 
-    private String getUF(){
-        return UF;
+    private String getUf(){
+        return uf;
     };
 
-    private void setUF(String Uf){
-        this.UF = Uf;
+    private void setUF(String uf){
+        this.uf = uf;
     }
 }

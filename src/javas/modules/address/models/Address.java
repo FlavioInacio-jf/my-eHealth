@@ -1,85 +1,64 @@
 package javas.modules.address.models;
 
 public class Address {
-    private String Street;
-    private String District; // bairro
-    private String City;
-    private String Municipio;
-    private String Estado;
-    private int CEP;
+    private String street;
+    private String district; // bairro
+    private String city;
+    private String state;
+    private String postalCode; // CEP
 
     public Address(
-    String Street,
-    String District, 
-    String City, 
-    String Municipio, 
-    String Estado, 
-    int CEP
+    String street,
+    String district, 
+    String city, 
+    String state, 
+    String postalCode
     ){
-        this.Street = Street;
-        this.District = District;
-        this.City = City;
-        this.Municipio = Municipio;
-        this.Estado = Estado;
-        this.CEP = CEP;
+        this.street = street;
+        this.district = district;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
     }
 
     public String getStreet(){
-        return Street;
+        return street;
     }
 
     public void setStreet(String street){
-        this.Street = street;
+        this.street = street;
     }
 
     public String getDistrict(){
-        return District;
+        return district;
     }
 
     public void setDistrict(String district){
-        this.District = district;
+        this.district = district;
     }
 
     public String getCity(){
-        return City;
+        return city;
     }
 
     public void setCity(String city){
-        this.City = city;
-    }
-
-    public String getMunicipio(){
-        return Municipio;
-    }
-
-    public void setMunicipio(String municipio){
-        this.Municipio = municipio;
+        this.city = city;
     }
 
     public String getEstado(){
-        return Estado;
+        return state;
     }
 
-    public void setEstado(String estado){
-        this.Estado = estado;
+    public void setEstado(String state){
+        this.state = state;
     }
 
-    public int getCep(int cep){
-        return cep;
+    public String getPostalCode(){
+        return postalCode;
     }
 
-    public void setCep(int cep){
-        this.CEP = cep;
+    public void setPostalCode(String postalCode){
+        this.postalCode = postalCode;
     }
 
-    public void printAddress(){
-        System.out.println("------------------------");
-        System.out.println("Estado: " + Estado);
-        System.out.println("Municipio : " + Municipio);
-        System.out.println("Cidade: " + City);
-        System.out.println("Bairro: " + District);
-        System.out.println("Rua: " + Street);
-        System.out.println("CEP: " + CEP );
-        System.out.println("------------------------");
-    }
 }
