@@ -1,14 +1,10 @@
 package javas.modules.person.models;
 
 import javas.constants.PersonEntityConstants;
+import javas.modules.app.models.ModelBase;
 import javas.modules.person.enums.BloodType;
 
-import java.util.Date;
-import java.util.UUID;
-
-public class Person {
-
-    private String _id;
+public class Person extends ModelBase {
 
     private String firstName;
 
@@ -28,24 +24,12 @@ public class Person {
             BloodType bloodType,
             String birthDate
     ) {
-        this._id = _id;
+        super(_id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
         this.bloodType = bloodType;
         this.birthDate = birthDate;
-
-        if (this._id == null) {
-            this._id = UUID.randomUUID().toString();
-        }
-    }
-
-    public String getId(){
-        return this._id;
-    }
-
-    public void setId(String _id) {
-        this._id = _id;
     }
 
     public String getFirstName() {
@@ -103,7 +87,7 @@ public class Person {
             return false;
         }
         Person objectPerson = (Person) object;
-        return  this._id.equals(objectPerson.getId()) &&
+        return  getId().equals(objectPerson.getId()) &&
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&
                 this.cpf.equals(objectPerson.getCPF()) &&

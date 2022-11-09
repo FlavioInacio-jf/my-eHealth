@@ -12,23 +12,6 @@ public class PersonTest {
     public PersonTest() {}
 
     @Test
-    public void testGetId(){
-        String _id = UUID.randomUUID().toString();
-        Person person = new Person(_id, "Inácio",
-                        "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
-        assertEquals(_id, person.getId());
-    }
-
-    @Test
-    public void testSetId() {
-        String _id = UUID.randomUUID().toString();
-        Person person = new Person(null, "Inácio",
-                "Santos", "000.000.000-00", BloodType.A_LESS, "11/09/2001");
-        person.setId(_id);
-        assertEquals(_id, person.getId());
-    }
-
-    @Test
     public void testGetFirstName() {
         Person person = new Person(null, "Jose",
                 "Santos", "111.111.111-11", BloodType.A_PLUS, "11/09/2001");

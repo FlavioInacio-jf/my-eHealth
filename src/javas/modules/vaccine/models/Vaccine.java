@@ -1,17 +1,15 @@
 package javas.modules.vaccine.models;
 
+import javas.modules.app.models.ModelBase;
 import javas.modules.heathUnit.models.HeathUnit;
-import javas.modules.heathUnit.enums.UnitTypeEnum;
 
-import java.util.UUID;
-
-public class Vaccine extends HeathUnit{
-    private String _id;
+public class Vaccine extends ModelBase {
     private String name;
     private String date;
     private int dose;
     private String lot;
     private String uf;
+    private HeathUnit heathUnit;
 
     public Vaccine(
              String _id,
@@ -19,33 +17,14 @@ public class Vaccine extends HeathUnit{
              String date,
              int dose,
              String lot,
-             String uf,
-             UnitTypeEnum type,
-             String contactNumber,
-             String street,
-             String district,
-             String city,
-             String state,
-             String postalCode
+             String uf
     ){
-         super(type, name, contactNumber, street, district, city, state, postalCode);
+         super(_id);
          this.name = name;
          this.date = date;
          this.dose = dose;
          this.lot = lot;
          this.uf = uf;
-         this._id = _id;
-         if (this._id == null) {
-             this._id = UUID.randomUUID().toString();
-         }
-    }
-
-    public String getId(){
-        return this._id;
-    }
-
-    public void setId(String _id) {
-        this._id = _id;
     }
 
     public String getName(){
@@ -78,5 +57,12 @@ public class Vaccine extends HeathUnit{
 
     public void setLot(String lot){
         this.lot = lot;
+    }
+
+    public HeathUnit getHeathUnit() {
+        return this.heathUnit;
+    }
+    public void setHeathUnit(HeathUnit heathUnit) {
+        this.heathUnit = heathUnit;
     }
 }

@@ -23,7 +23,7 @@ public class HeathUnit extends Address{
     }
 
     public UnitTypeEnum getType(){
-        return type;
+        return this.type;
     }
 
     public void setType(UnitTypeEnum type){
@@ -31,7 +31,7 @@ public class HeathUnit extends Address{
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public void setName(String name){
