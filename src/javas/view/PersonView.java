@@ -17,35 +17,43 @@ public class PersonView extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBorder(null);
 
-        JPanel jPanelNorth = new JPanel();
-        jPanelNorth.setBackground(Color.WHITE);
-        JPanel jPanelSouth = new JPanel();
-        jPanelSouth.setBackground(Color.WHITE);
 
         // Configure north area
-
-        UIManager.put("Button.background", Color.WHITE);
-        UIManager.put("Button.setPreferredSize", new Dimension(200, 50));
+        JPanel jPanelNorth = new JPanel();
+        jPanelNorth.setBackground(Color.WHITE);
 
         jPanelNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
-        JButton addPersonButton = new JButton("Adicionar");
-        addPersonButton.setPreferredSize(new Dimension(200, 50));
+        jPanelNorth.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ViewConstants.BORDER_COLOR));
+
+        ButtonWithIcon addPersonButton = new ButtonWithIcon("Adicionar");
         addPersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/add-user-icon.png")));
-        addPersonButton.setHorizontalAlignment(SwingConstants.CENTER);
-        addPersonButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-        addPersonButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        addPersonButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        addPersonButton.setBorder(null);
-
         jPanelNorth.add(addPersonButton);
-        jPanelNorth.add(new JButton("Atualizar"));
-        jPanelNorth.add(new JButton("Excluir"));
-        jPanelNorth.add(new JButton("Relatório"));
+
+        ButtonWithIcon updatePersonButton = new ButtonWithIcon("Atualizar");
+        updatePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/update-user-icon.png")));
+        jPanelNorth.add(updatePersonButton);
+
+        ButtonWithIcon deletePersonButton = new ButtonWithIcon("Excluir");
+        deletePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/remove-user-icon.png")));
+        jPanelNorth.add(deletePersonButton);
+
+        ButtonWithIcon reportPersonButton = new ButtonWithIcon("Relatório");
+        reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/report-user-icon.png")));
+        jPanelNorth.add(reportPersonButton);
+
+        ButtonWithIcon vaccinePersonButton = new ButtonWithIcon("Vacinar");
+        vaccinePersonButton.setIcon(new ImageIcon(this.getClass().getResource("icons/vaccine-icon.png")));
+        jPanelNorth.add(vaccinePersonButton);
+        this.add(jPanelNorth, BorderLayout.NORTH);
 
 
-        // Configure south area
-        FlowLayout layoutPanelSouth = new FlowLayout();
-        jPanelSouth.setLayout(layoutPanelSouth);
+        // Configure center area
+        JPanel jPanelCenter = new JPanel();
+        jPanelCenter.setBackground(Color.WHITE);
+        jPanelCenter.setLayout(new GridLayout(1, 2));
+
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
 
         Box firstName = new FormGroupInput().init("Primeiro nome:");
         Box lastName = new FormGroupInput().init("Último nome");
@@ -55,21 +63,21 @@ public class PersonView extends JPanel {
 
         Button addButton = new Button("Adicionar paciente");
 
-        jPanelSouth.add(firstName);
-        jPanelSouth.add(Box.createVerticalStrut(15));
-        jPanelSouth.add(lastName);
-        jPanelSouth.add(Box.createVerticalStrut(15));
-        jPanelSouth.add(CPF);
-        jPanelSouth.add(Box.createVerticalStrut(15));
-        jPanelSouth.add(age);
-        jPanelSouth.add(Box.createVerticalStrut(15));
-        jPanelSouth.add(bloodType);
-        jPanelSouth.add(Box.createVerticalStrut(15));
-        jPanelSouth.add(addButton);
+        formPanel.add(firstName);
+        formPanel.add(Box.createVerticalStrut(15));
+        formPanel.add(lastName);
+        formPanel.add(Box.createVerticalStrut(15));
+        formPanel.add(CPF);
+        formPanel.add(Box.createVerticalStrut(15));
+        formPanel.add(age);
+        formPanel.add(Box.createVerticalStrut(15));
+        formPanel.add(bloodType);
+        formPanel.add(Box.createVerticalStrut(15));
+        formPanel.add(addButton);
+        jPanelCenter.add(formPanel, BorderLayout.CENTER);
+        jPanelCenter.add(new Button("Teste"));
+        this.add(jPanelCenter);
 
-
-        this.add(jPanelNorth, BorderLayout.NORTH);
-        this.add(jPanelSouth, BorderLayout.SOUTH);
         this.setBackground(Color.WHITE);
     }
 }

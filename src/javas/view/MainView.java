@@ -1,15 +1,12 @@
 package javas.view;
 
 import javas.constants.ViewConstants;
+import javas.view.components.TabbedPane;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
-    private JPanel jPanelNorth, jPanelSouth, jPanelCenter;
-    private JButton jButtonFirst, jButtonLast, jButtonNext,
-                    jButtonPre, jButtonAdd, jButtonDelete,
-                    jButtonUpdate, jButtonFind;
     public MainView() {
         this.init();
     }
@@ -28,7 +25,8 @@ public class MainView extends JFrame {
         menuBar.add(about);
 
         // Tabbed Panel
-        JTabbedPane tabbedPane = new JTabbedPane();
+        TabbedPane tabbedPane = new TabbedPane();
+
         tabbedPane.addTab("Paciente", null, new PersonView(), "Ações do paciente");
         tabbedPane.addTab("Unidade de Saúde", null, new HealthUnitView(), "Ações da Unidade de Saúde");
 
@@ -40,12 +38,12 @@ public class MainView extends JFrame {
                 ViewConstants.SCREEN_CENTER.y - ViewConstants.SCREEN_SIZE.y  / 2,
                 ViewConstants.SCREEN_SIZE.x, ViewConstants.SCREEN_SIZE.y);
 
-        this.setResizable(false);
+        this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new MainView();
     }
 }
