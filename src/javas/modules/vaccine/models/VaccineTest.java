@@ -55,4 +55,9 @@ public class VaccineTest {
     public void setHeathUnit() {
 
     }
+
+    @Test
+    public void testEquals() {
+
+    }
 }

@@ -61,4 +61,9 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        return true;
+    }
+
 }

@@ -45,4 +45,9 @@ public class HeathUnitTest {
 
     }
 
+    @Test
+    public void testEquals() {
+
+    }
+
 }

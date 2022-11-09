@@ -70,4 +70,9 @@ public class HeathUnit extends ModelBase {
 
         return false;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        return true;
+    }
 }

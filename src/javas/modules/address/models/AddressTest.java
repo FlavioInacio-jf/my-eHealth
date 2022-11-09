@@ -54,4 +54,9 @@ public class AddressTest {
     public void setPostalCode() {
 
     }
+
+    @Test
+    public void testEquals() {
+
+    }
 }
