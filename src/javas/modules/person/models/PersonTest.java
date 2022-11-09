@@ -1,12 +1,9 @@
 package javas.modules.person.models;
 
-import javas.constants.PersonEntityConstants;
 import javas.modules.person.enums.BloodType;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-import java.util.UUID;
 
 public class PersonTest {
     public PersonTest() {}
@@ -95,14 +92,16 @@ public class PersonTest {
     }
 
     @Test
-    public void testGetQueryTable() {
-        assertEquals(String.format("CREATE TABLE %s ", PersonEntityConstants.ENTITY_NAME) +
-                String.format("( %s TEXT NOT NULL,", PersonEntityConstants.ID_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.FIRST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.LAST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.CPF_COLUMN_NAME) +
-                String.format("%s Text,", PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME) +
-                String.format("%s text,", PersonEntityConstants.BIRTH_DATE_COLUMN_NAME) +
-                String.format("PRIMARY KEY (%s))", PersonEntityConstants.ID_COLUMN_NAME), Person.getQueryTable());
+    public void testApplyVaccine() {
+
+    }
+
+    @Test
+    public void testGetVaccines() {
+
+    }
+
+    @Test
+    public void equals() {
     }
 }

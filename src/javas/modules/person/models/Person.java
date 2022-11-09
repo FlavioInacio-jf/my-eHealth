@@ -1,8 +1,11 @@
 package javas.modules.person.models;
 
-import javas.constants.PersonEntityConstants;
 import javas.modules.app.models.ModelBase;
+import javas.modules.heathUnit.models.HeathUnit;
 import javas.modules.person.enums.BloodType;
+import javas.modules.vaccine.models.Vaccine;
+
+import java.util.ArrayList;
 
 public class Person extends ModelBase {
 
@@ -15,6 +18,9 @@ public class Person extends ModelBase {
     private BloodType bloodType;
 
     private String birthDate;
+
+    private ArrayList<Vaccine> vaccines;
+    private HeathUnit heathUnit;
 
     public Person(
             String _id,
@@ -30,6 +36,7 @@ public class Person extends ModelBase {
         this.cpf = cpf;
         this.bloodType = bloodType;
         this.birthDate = birthDate;
+        this.vaccines = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -61,7 +68,6 @@ public class Person extends ModelBase {
     }
 
     public void setBloodType(BloodType bloodType) {
-
         this.bloodType = bloodType;
     }
 
@@ -70,12 +76,19 @@ public class Person extends ModelBase {
     }
 
     public void setBirthDate(String birthDate) {
-
         this.birthDate = birthDate;
     }
 
     public String getFullName() {
         return this.firstName + " " + this.lastName;
+    }
+
+    public void applyVaccine(Vaccine vaccine) {
+        this.vaccines.add(vaccine);
+    }
+
+    public ArrayList<Vaccine> getVaccines() {
+        return  this.vaccines;
     }
 
     @Override
@@ -94,17 +107,6 @@ public class Person extends ModelBase {
                 this.bloodType.equals(objectPerson.getBloodType()) &&
                 this.birthDate.equals(objectPerson.getBirthDate());
 
-    }
-
-    public static  String getQueryTable() {
-        return String.format("CREATE TABLE %s ", PersonEntityConstants.ENTITY_NAME) +
-                String.format("( %s TEXT NOT NULL,", PersonEntityConstants.ID_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.FIRST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.LAST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", PersonEntityConstants.CPF_COLUMN_NAME) +
-                String.format("%s Text,", PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME) +
-                String.format("%s text,", PersonEntityConstants.BIRTH_DATE_COLUMN_NAME) +
-                String.format("PRIMARY KEY (%s))", PersonEntityConstants.ID_COLUMN_NAME);
     }
 
 }
