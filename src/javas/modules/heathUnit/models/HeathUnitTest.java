@@ -46,8 +46,20 @@ public class HeathUnitTest {
     }
 
     @Test
+    public void testGetCNPJ() {
+
+    }
+
+    @Test
+    public void testSetCNPJ() {
+
+    }
+
+    @Test
     public void testEquals() {
 
     }
+
+
 
 }

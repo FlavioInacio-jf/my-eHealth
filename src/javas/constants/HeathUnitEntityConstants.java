@@ -4,6 +4,7 @@ public class HeathUnitEntityConstants {
     public static final String ENTITY_NAME = "heathUnits";
     public static final String ID_COLUMN_NAME = "_id";
     public static final String NAME_COLUMN_NAME = "name";
+    public static final String CNPJ_COLUMN_NAME = "cnpj";
     public static final String TYPE_COLUMN_NAME = "type";
     public static final String STREET_COLUMN_NAME = "street";
     public static final String DISTRICT_COLUMN_NAME = "district";

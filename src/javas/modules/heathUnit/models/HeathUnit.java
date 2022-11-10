@@ -11,6 +11,7 @@ import java.util.Iterator;
 public class HeathUnit extends ModelBase {
     private UnitTypeEnum type;
     private String name;
+    private String cnpj;
     private Address address;
     private ArrayList<Person> people;
     
@@ -18,12 +19,14 @@ public class HeathUnit extends ModelBase {
             String _id,
             UnitTypeEnum type,
             String name,
+            String cnpj,
             Address address
         )
         {
         super(_id);
         this.people = new ArrayList<>();
         this.type = type;
+        this.cnpj = cnpj;
         this.address = address;
         this.name = name;
     }
@@ -54,6 +57,14 @@ public class HeathUnit extends ModelBase {
 
     public void addPerson(Person person) {
         this.people.add(person);
+    }
+
+    public String getCNPJ() {
+        return this.cnpj;
+    }
+
+    public void setCNPJ(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public boolean removePerson(String _id) {
