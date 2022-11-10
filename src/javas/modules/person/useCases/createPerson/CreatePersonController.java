@@ -32,6 +32,7 @@ public class CreatePersonController {
             Address address = new Address(street, district, city, state, postalCode);
             Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), sex, birthDate, address);
             this.createPersonUseCase.handle(person);
+            JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso!");
         }catch (Error error) {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }

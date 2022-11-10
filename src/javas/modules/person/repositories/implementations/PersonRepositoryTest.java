@@ -68,14 +68,7 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindAll() {
-        Person p1, p2, p3, p4;
         ArrayList<Person> listPeople;
-
-        p1 = new Person(null, "Inácio", "Santos");
-        p2 = new Person(null, "Arthur", "Correia");
-        p3 = new Person(null, "Saymon", "Anderson");
-        p4 = new Person(null, "Zeca", "Pagodinho");
-
         listPeople = this.repository.getAll();
         assertTrue(listPeople.size() >= 4);
     }
