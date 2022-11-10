@@ -21,17 +21,17 @@ public class VaccineRepository implements IVaccineRepository {
         this.repository = AppDataSource.execute();
     }
     @Override
-    public Vaccine crate(String _idUser, String _idHeathUnit, Vaccine data) {
-        return this.save(_idUser, _idHeathUnit, data);
+    public Vaccine crate(String _idUser, String _idHealthUnit, Vaccine data) {
+        return this.save(_idUser, _idHealthUnit, data);
     }
 
-    private Vaccine save(String _idUser, String _idHeathUnit, Vaccine data) {
+    private Vaccine save(String _idUser, String _idHealthUnit, Vaccine data) {
         try {
             final String query = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%s')",
                     VaccineEntityConstants.ENTITY_NAME,
                     data.getId(), data.getName(),
                     data.getDate(), data.getDose(),
-                    data.getLot(), _idHeathUnit,
+                    data.getLot(), _idHealthUnit,
                     _idUser);
             this.repository.execute(query);
             this.repository.close();
@@ -89,7 +89,7 @@ public class VaccineRepository implements IVaccineRepository {
     }
 
     @Override
-    public ArrayList<Vaccine> findByHeathUnitCNPJ(String heathUnitCNPJ) {
+    public ArrayList<Vaccine> findByHeathUnitCNPJ(String healthUnitCNPJ) {
         return null;
     }
 
