@@ -26,17 +26,11 @@ public class VaccineRepositoryTest {
     }
 
     @Test
-    public void testFindByUserCPF() {
+    public void testFindByUserId() {
 
     }
 
     @Test
-    public void testFindByHeathUnitCNPJ() {
-    }
-
-
-    @Test
-    public void testGetAll() {
-
+    public void testFindByHealthUnitId() {
     }
 }

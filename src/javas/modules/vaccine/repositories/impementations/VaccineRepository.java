@@ -77,41 +77,19 @@ public class VaccineRepository implements IVaccineRepository {
     }
 
     @Override
-    public Vaccine findById(String _id) {
-        // return this.findOne(VaccineEntityConstants.ID_COLUMN_NAME, _id);
-        return null;
+    public ArrayList<Vaccine> findByUserId(String userId) {
+        return this.getAll(VaccineEntityConstants.PERSON_COLUMN_NAME_FK, userId);
     }
 
     @Override
-    public ArrayList<Vaccine> findByUserCPF(String userCPF) {
-        // return this.findOne(VaccineEntityConstants.PERSON_COLUMN_NAME_FK, userCPF);
-        return null;
+    public ArrayList<Vaccine> findByHeathUnitId(String healthUnitId) {
+        return this.getAll(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK, healthUnitId);
     }
 
-    @Override
-    public ArrayList<Vaccine> findByHeathUnitCNPJ(String healthUnitCNPJ) {
-        return null;
-    }
-
-    private Vaccine findOne(String columnName, String valueColumn) {
-        try {
-            final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", VaccineEntityConstants.ENTITY_NAME, columnName, valueColumn);
-            ResultSet rs = this.repository.executeQuery(query);
-            while (rs.next()) {
-                return ResultSetToVaccine.convert(rs);
-            }
-            this.repository.close();
-        }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Vaccine> getAll(String _idUser) {
+    private ArrayList<Vaccine> getAll(String columnName, String valueColumn) {
         ArrayList<Vaccine> listVaccines = new ArrayList<>();
         try {
-            final String query = String.format("SELECT * FROM %s where %s='%s'", VaccineEntityConstants.ENTITY_NAME, VaccineEntityConstants.PERSON_COLUMN_NAME_FK, _idUser);
+            final String query = String.format("SELECT * FROM %s where %s='%s'", VaccineEntityConstants.ENTITY_NAME, columnName, valueColumn);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
                 listVaccines.add(ResultSetToVaccine.convert(rs));

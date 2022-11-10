@@ -7,9 +7,7 @@ public interface IVaccineRepository {
     Vaccine crate(String _idUser, String _idHealthUnit, Vaccine data);
     boolean update(Vaccine data);
     boolean delete(String _id);
-    Vaccine findById(String _id);
-    ArrayList<Vaccine> findByUserCPF(String userCPF);
+    ArrayList<Vaccine> findByUserId(String userId);
 
-    ArrayList<Vaccine>  findByHeathUnitCNPJ(String heathUnitCNPJ);
-    ArrayList<Vaccine> getAll(String personID);
+    ArrayList<Vaccine>  findByHeathUnitId(String healthUnitId);
 }
