@@ -1,5 +1,8 @@
 package javas.modules.heathUnit.useCases.deleteHeathUnit;
 
+import javas.errors.CustomError;
+import javas.exceptions.HealthUnitErrorMessages;
+import javas.modules.heathUnit.models.HealthUnit;
 import javas.modules.heathUnit.repositories.IHealthUnitRepository;
 
 public class DeleteHealthUnitUseCase {
@@ -9,7 +12,13 @@ public class DeleteHealthUnitUseCase {
         this.heathUnitRepository = heathUnitRepository;
     }
 
-    public void handle() {
+    public void handle(String cnpj) {
+        HealthUnit healthUnitAlreadyExists =  this.heathUnitRepository.findByCNPJ(cnpj);
+        if (healthUnitAlreadyExists == null) {
+            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE,
+                                    HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
+        }
 
+        this.heathUnitRepository.delete(healthUnitAlreadyExists.getId());
     }
 }
