@@ -1,6 +1,9 @@
 package javas.modules.healthUnit.useCases.getAllHeathUnits;
 
+import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
+
+import java.util.ArrayList;
 
 public class GetAllHealthUnitsUseCase {
     private IHealthUnitRepository heathUnitRepository;
@@ -9,7 +12,7 @@ public class GetAllHealthUnitsUseCase {
         this.heathUnitRepository = heathUnitRepository;
     }
 
-    public void handle() {
-
+    public ArrayList<HealthUnit> handle() {
+        return this.heathUnitRepository.getAll();
     }
 }
