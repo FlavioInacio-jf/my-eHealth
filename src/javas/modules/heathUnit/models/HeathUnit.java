@@ -22,7 +22,7 @@ public class HeathUnit extends ModelBase {
         )
         {
         super(_id);
-        this.people = new ArrayList<Person>();
+        this.people = new ArrayList<>();
         this.type = type;
         this.address = address;
         this.name = name;
@@ -62,7 +62,7 @@ public class HeathUnit extends ModelBase {
 
         while (it.hasNext()) {
             Person person = it.next();
-            if (person.getId() == _id) {
+            if (person.getId().equals(_id)) {
                 it.remove();
                 return true;
             }
