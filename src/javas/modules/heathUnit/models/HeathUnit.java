@@ -1,6 +1,6 @@
 package javas.modules.heathUnit.models;
 
-import javas.modules.address.models.Address;
+import javas.modules.app.models.Address;
 import javas.modules.app.models.ModelBase;
 import javas.modules.heathUnit.enums.UnitTypeEnum;
 import javas.modules.person.models.Person;

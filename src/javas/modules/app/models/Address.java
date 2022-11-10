@@ -1,4 +1,4 @@
-package javas.modules.address.models;
+package javas.modules.app.models;
 
 public class Address {
     private String street;

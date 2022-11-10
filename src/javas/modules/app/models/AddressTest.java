@@ -1,4 +1,4 @@
-package javas.modules.address.models;
+package javas.modules.app.models;
 
 import org.junit.Test;
 

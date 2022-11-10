@@ -1,6 +1,6 @@
 package javas.modules.person.models;
 
-import javas.modules.address.models.Address;
+import javas.modules.app.models.Address;
 import javas.modules.app.models.ModelBase;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
