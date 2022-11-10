@@ -96,23 +96,17 @@ public class PersonRepository implements IPersonRepository {
 
     @Override
     public Person findById(String _id) {
-        try {
-            final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", PersonEntityConstants.ENTITY_NAME, PersonEntityConstants.ID_COLUMN_NAME, _id);
-            ResultSet rs = this.repository.executeQuery(query);
-            while (rs.next()) {
-                return ResultSetToPerson.convert(rs);
-            }
-            this.repository.close();
-        }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
-        }
-        return null;
+        return this.findOne(PersonEntityConstants.ID_COLUMN_NAME, _id);
     }
 
     @Override
     public Person findByCPF(String cpf) {
+       return this.findOne(PersonEntityConstants.CPF_COLUMN_NAME, cpf);
+    }
+
+    private Person findOne(String columnName, String valueColumn) {
         try {
-            final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", PersonEntityConstants.ENTITY_NAME, PersonEntityConstants.CPF_COLUMN_NAME, cpf);
+            final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", PersonEntityConstants.ENTITY_NAME, columnName, valueColumn);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
                 return ResultSetToPerson.convert(rs);
