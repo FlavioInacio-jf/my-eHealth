@@ -3,8 +3,8 @@ package javas.util;
 import javas.errors.CustomError;
 import javas.exceptions.HealthUnitErrorMessages;
 import javas.modules.app.models.Address;
-import javas.modules.heathUnit.enums.UnitTypeEnum;
-import javas.modules.heathUnit.models.HealthUnit;
+import javas.modules.healthUnit.enums.UnitTypeEnum;
+import javas.modules.healthUnit.models.HealthUnit;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

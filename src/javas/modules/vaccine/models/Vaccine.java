@@ -1,7 +1,7 @@
 package javas.modules.vaccine.models;
 
 import javas.modules.app.models.ModelBase;
-import javas.modules.heathUnit.models.HealthUnit;
+import javas.modules.healthUnit.models.HealthUnit;
 
 public class Vaccine extends ModelBase {
     private String name;
