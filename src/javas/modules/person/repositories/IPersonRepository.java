@@ -10,7 +10,8 @@ public interface IPersonRepository {
     public Person create(Person data);
     public boolean update(Person data);
     public boolean delete(String _id);
+
     public Person findById(String _id);
     public Person findByCPF(String cpf);
-    public ArrayList<Person> findAll();
+    public ArrayList<Person> getAll();
 }

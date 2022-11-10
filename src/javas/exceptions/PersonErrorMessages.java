@@ -6,4 +6,5 @@ public class PersonErrorMessages {
     public static final String UNABLE_CREATE_PERSON = "Não foi possível criar o usuário!";
     public static final String UNABLE_DELETE_PERSON =  "Não foi possível excluir o usuário!";
     public static final String UNABLE_SEARCH_PERSON =  "Não foi possível buscar o usuário!";
+    public static final String FAILED_CONVERT_RESULT_SET_TO_PERSON = "Falha ao converter ResultSet para Person";
 }

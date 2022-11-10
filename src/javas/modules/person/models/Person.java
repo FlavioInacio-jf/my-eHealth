@@ -129,7 +129,6 @@ public class Person extends ModelBase {
                 this.cpf.equals(objectPerson.getCPF()) &&
                 this.bloodTypeEnum.equals(objectPerson.getBloodType()) &&
                 this.birthDate.equals(objectPerson.getBirthDate());
-
     }
 
 }
