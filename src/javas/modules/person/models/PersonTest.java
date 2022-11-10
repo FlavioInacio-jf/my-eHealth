@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 import javas.modules.person.enums.SexEnum;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class PersonTest {
     public PersonTest() {}
 
@@ -74,14 +76,14 @@ public class PersonTest {
     @Test
     public void testGetBirthDate() {
         Person person = new Person(null, "Bianca",
-                "Andrade", "888.888.888-88", BloodTypeEnum.A, SexEnum.MALE, "17/12/2005", null);
+                "Andrade", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
         assertEquals("17/12/2005", person.getBirthDate());
     }
 
     @Test
     public void setGetBirthDate() {
         Person person = new Person(null, "Bianca",
-                "Andrade", "888.888.888-88", BloodTypeEnum.A, "11/09/2001");
+                "Andrade", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
         person.setBirthDate("01/01/1997");
         assertEquals("01/01/1997", person.getBirthDate());
     }
@@ -89,18 +91,26 @@ public class PersonTest {
     @Test
     public void testGetFullName() {
         Person person = new Person(null, "Ana",
-                "Feitosa", "888.888.888-88", BloodTypeEnum.A, "11/09/2001");
+                "Feitosa", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
         assertEquals("Ana Feitosa", person.getFullName());
     }
 
     @Test
     public void testApplyVaccine() {
-
+        Person person = new Person(null, "Maria",
+                "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        person.applyVaccine(vaccine);
+        assertTrue(GetVaccines().contains(vaccine));
     }
 
     @Test
     public void testGetVaccines() {
-
+        Person person = new Person(null, "Maria",
+                "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        person.applyVaccine(vaccine);
+        assertTrue(GetVaccines().contains(vaccine));
     }
 
     @Test
@@ -115,11 +125,17 @@ public class PersonTest {
 
     @Test
     public void testGetSex() {
-
+        Person person = new Person(null, "Paula",
+                "Silva", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
+        assertEquals(SexEnum.FEMALE, person.getSex());
     }
 
     @Test
     public void testSetSex() {
+        Person person = new Person(null, "Paula",
+                "Silva", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
+        person.setSex(SexEnum.MALE);
+        assertEquals(SexEnum.MALE, person.getSex());
     }
 
     @Test
