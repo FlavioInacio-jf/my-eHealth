@@ -86,6 +86,15 @@ public class VaccineRepository implements IVaccineRepository {
         return this.getAll(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK, healthUnitId);
     }
 
+    @Override
+    public Vaccine findById(String _id) {
+       ArrayList<Vaccine> vaccines = this.getAll(VaccineEntityConstants.ID_COLUMN_NAME, _id);
+       if (vaccines.isEmpty()) {
+           return null;
+       }
+        return vaccines.get(0);
+    }
+
     private ArrayList<Vaccine> getAll(String columnName, String valueColumn) {
         ArrayList<Vaccine> listVaccines = new ArrayList<>();
         try {
@@ -100,4 +109,5 @@ public class VaccineRepository implements IVaccineRepository {
             throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
         }
     }
+
 }

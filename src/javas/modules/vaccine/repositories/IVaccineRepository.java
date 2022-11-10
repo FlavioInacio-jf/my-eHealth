@@ -10,4 +10,7 @@ public interface IVaccineRepository {
     ArrayList<Vaccine> findByUserId(String userId);
 
     ArrayList<Vaccine>  findByHeathUnitId(String healthUnitId);
+
+    Vaccine findById(String _id);
+
 }
