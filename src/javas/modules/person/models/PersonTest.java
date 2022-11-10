@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class PersonTest {
     public PersonTest() {}
 
-    @Test
+    @Test //
     public void testGetFirstName() {
         Person person = new Person(null, "Jose",
                 "Santos", "111.111.111-11", BloodTypeEnum.A_PLUS, SexEnum.MALE, "11/09/2001", null);
