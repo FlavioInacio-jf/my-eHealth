@@ -1,7 +1,5 @@
 package javas.modules.person.useCases.deletePerson;
 
-import javax.swing.*;
-
 public class DeletePersonController {
     private DeletePersonUseCase deletePersonUseCase;
 
@@ -11,9 +9,8 @@ public class DeletePersonController {
     public void execute(String cpf) {
         try {
             this.deletePersonUseCase.handle(cpf);
-            JOptionPane.showMessageDialog(null, "Paciente excluido com sucesso!");
         }catch (Error error) {
-            JOptionPane.showMessageDialog(null, error.getMessage());
+            throw new Error(error);
         }
     }
 }
