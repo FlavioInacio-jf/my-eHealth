@@ -1,6 +1,6 @@
 package javas.errors;
 
-public class CustomError extends Exception {
+public class CustomError extends Error {
     private String title;
     private String detail;
 

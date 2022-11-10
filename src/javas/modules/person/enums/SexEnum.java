@@ -1,5 +1,15 @@
 package javas.modules.person.enums;
 
 public enum SexEnum {
-    MALE, FEMALE
+    MALE{
+        @Override
+        public String toString() {
+            return "masculino";
+        }
+    }, FEMALE{
+        @Override
+        public String toString() {
+            return "feminino";
+        }
+    }
 }

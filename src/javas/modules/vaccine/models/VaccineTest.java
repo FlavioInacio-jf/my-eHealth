@@ -1,6 +1,5 @@
 package javas.modules.vaccine.models;
 
-import javas.modules.heathUnit.models.HeathUnit;
 import org.junit.Test;
 
 public class VaccineTest {
