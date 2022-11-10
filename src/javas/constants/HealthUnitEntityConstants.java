@@ -1,6 +1,6 @@
 package javas.constants;
 
-public class HeathUnitEntityConstants {
+public class HealthUnitEntityConstants {
     public static final String ENTITY_NAME = "heathUnits";
     public static final String ID_COLUMN_NAME = "_id";
     public static final String NAME_COLUMN_NAME = "name";

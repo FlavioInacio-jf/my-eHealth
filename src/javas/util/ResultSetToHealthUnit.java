@@ -1,18 +1,18 @@
 package javas.util;
 
 import javas.errors.CustomError;
-import javas.exceptions.HeathUnitErrorMessages;
+import javas.exceptions.HealthUnitErrorMessages;
 import javas.modules.app.models.Address;
 import javas.modules.heathUnit.enums.UnitTypeEnum;
-import javas.modules.heathUnit.models.HeathUnit;
+import javas.modules.heathUnit.models.HealthUnit;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ResultSetToHeathUnit {
-    public ResultSetToHeathUnit() {}
+public class ResultSetToHealthUnit {
+    public ResultSetToHealthUnit() {}
 
-    public static HeathUnit convert(ResultSet rs) {
+    public static HealthUnit convert(ResultSet rs) {
         try {
 
             // Heath Unit Columns
@@ -29,9 +29,9 @@ public class ResultSetToHeathUnit {
             String state = rs.getString(9);
 
             Address address = new Address(street, district, city, postalCode, state);
-            return new HeathUnit(_id, type, name, cnpj, address);
+            return new HealthUnit(_id, type, name, cnpj, address);
         }catch (SQLException error) {
-            throw new CustomError(HeathUnitErrorMessages.FAILED_CONVERT_RESULT_SET_TO_HEATH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.FAILED_CONVERT_RESULT_SET_TO_HEALTH_UNIT, error.getMessage());
         }
     }
 }

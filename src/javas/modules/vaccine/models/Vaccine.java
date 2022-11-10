@@ -1,14 +1,14 @@
 package javas.modules.vaccine.models;
 
 import javas.modules.app.models.ModelBase;
-import javas.modules.heathUnit.models.HeathUnit;
+import javas.modules.heathUnit.models.HealthUnit;
 
 public class Vaccine extends ModelBase {
     private String name;
     private String date;
     private int dose;
     private String lot;
-    private HeathUnit heathUnit;
+    private HealthUnit healthUnit;
 
     public Vaccine(
              String _id,
@@ -56,11 +56,11 @@ public class Vaccine extends ModelBase {
         this.lot = lot;
     }
 
-    public HeathUnit getHeathUnit() {
-        return this.heathUnit;
+    public HealthUnit getHeathUnit() {
+        return this.healthUnit;
     }
-    public void setHeathUnit(HeathUnit heathUnit) {
-        this.heathUnit = heathUnit;
+    public void setHeathUnit(HealthUnit healthUnit) {
+        this.healthUnit = healthUnit;
     }
 
     @Override

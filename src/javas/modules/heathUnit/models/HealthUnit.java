@@ -8,14 +8,14 @@ import javas.modules.person.models.Person;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class HeathUnit extends ModelBase {
+public class HealthUnit extends ModelBase {
     private UnitTypeEnum type;
     private String name;
     private String cnpj;
     private Address address;
     private ArrayList<Person> people;
     
-    public HeathUnit(
+    public HealthUnit(
             String _id,
             UnitTypeEnum type,
             String name,

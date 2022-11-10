@@ -23,8 +23,8 @@ public class VaccineEntityConstants {
                 String.format("PRIMARY KEY (%s))", ID_COLUMN_NAME) +
                 String.format("FOREIGN KEY (%s) REFERENCES %s(%s)",
                         HEATH_UNIT_COLUMN_NAME_FK,
-                        HeathUnitEntityConstants.ENTITY_NAME,
-                        HeathUnitEntityConstants.ID_COLUMN_NAME) +
+                        HealthUnitEntityConstants.ENTITY_NAME,
+                        HealthUnitEntityConstants.ID_COLUMN_NAME) +
                 String.format("FOREIGN KEY (%s) REFERENCES %s(%s)",
                         PERSON_COLUMN_NAME_FK,
                         PersonEntityConstants.ENTITY_NAME,

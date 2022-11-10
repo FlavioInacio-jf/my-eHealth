@@ -3,9 +3,9 @@ package javas.modules.heathUnit.models;
 import org.junit.Test;
 
 
-public class HeathUnitTest {
+public class HealthUnitTest {
 
-    public HeathUnitTest() {}
+    public HealthUnitTest() {}
 
     @Test
     public void testGetType() {
