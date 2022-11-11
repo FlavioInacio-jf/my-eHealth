@@ -149,5 +149,13 @@ public class PersonTest {
 
     @Test
     public void equals() {
+        Person person = new Person(null, "Inácio",
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", null);
+        Person person2 = new Person(null, "Inácio",
+                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", null);
+        Person person3 = new Person(null, "Paula",
+                "Silva", "888.888.888-88", BloodTypeEnum.B_PLUS, SexEnum.FEMALE, "17/12/2005", null);
+        assertTrue(person2, person);
+        assertFalse(person3, person);
     }
 }
