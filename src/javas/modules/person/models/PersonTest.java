@@ -115,12 +115,21 @@ public class PersonTest {
 
     @Test
     public void testGetAddress() {
+        Address address = new Address("a", "b", "c", "d", "e");
+        Person person = new Person(null, "Amanda",
+                "Azevedo", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", address);
+        AssertEquals(address, person.getAddress());
 
     }
 
     @Test
     public void testSetAddress() {
-
+        Person person = new Person(null, "Amanda",
+                "Azevedo", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
+        AssertEquals(null, person.getAddress());
+        Address address = new Address("a", "b", "c", "d", "e");
+        person.setAddress(address);
+        AssertEquals(address, person.getAddress());
     }
 
     @Test
