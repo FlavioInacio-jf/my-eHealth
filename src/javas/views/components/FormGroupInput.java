@@ -20,6 +20,7 @@ public class FormGroupInput extends JPanel {
         this.label = new Label(title);
         this.label.setLabelFor(this.input);
 
+        this.setBackground(Color.WHITE);
         this.add(this.label);
         this.add(Box.createVerticalStrut(5));
         this.add(this.input);

@@ -1,10 +1,8 @@
 package javas.views.components;
 
-import javas.constants.ViewConstants;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 
 
@@ -17,8 +15,7 @@ public class Input extends JFormattedTextField {
     }
 
     private void init() {
-        this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 0);
-        setBorder(border);
+        this.setBorder(BorderFactory.createEmptyBorder());
         this.setPreferredSize(new Dimension(500, 45));
         setFont(new Font("Fira Sans", Font.PLAIN, 16));
     }

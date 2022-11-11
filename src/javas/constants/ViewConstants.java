@@ -1,6 +1,5 @@
 package javas.constants;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ViewConstants {
@@ -16,8 +15,9 @@ public class ViewConstants {
     // Person views constants
     public static final String ADD_PERSON_VIEW_TITLE = "Cadastrar Paciente";
     public static final String DELETE_PERSON_VIEW_TITLE = "Excluir paciente";
-
     public static final String GENERATE_MEDICAL_RECORD_VIEW_TITLE = "Gerar relatório médico";
+    public static final String APPLY_VACCINE_VIEW_TITLE =  "Cadastrar vacina";
+
 
 
     // Health unit views constants
