@@ -5,25 +5,24 @@ import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.text.ParseException;
 
-public class FormGroupInput {
+public class FormGroupInput extends JPanel {
     Input input;
     Label label;
 
-    public FormGroupInput() {
+    public FormGroupInput(String title) {
+        this.init(title);
     }
 
-    public JPanel init(String title) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+    private void init(String title) {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setAlignmentY(Component.TOP_ALIGNMENT);
         this.input = new Input();
         this.label = new Label(title);
         this.label.setLabelFor(this.input);
 
-        panel.add(this.label);
-        panel.add(Box.createVerticalStrut(5));
-        panel.add(this.input);
-        return panel;
+        this.add(this.label);
+        this.add(Box.createVerticalStrut(5));
+        this.add(this.input);
     }
 
     public void setMaskFormatter(String mask) {

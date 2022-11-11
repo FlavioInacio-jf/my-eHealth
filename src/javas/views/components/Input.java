@@ -19,6 +19,7 @@ public class Input extends JFormattedTextField {
     private void init() {
         this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 0);
         setBorder(border);
+        this.setPreferredSize(new Dimension(500, 45));
         setFont(new Font("Fira Sans", Font.PLAIN, 16));
     }
 }

@@ -1,10 +1,8 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.views.components.BaseFrame;
+import javas.views.components.*;
 import javas.views.components.Button;
-import javas.views.components.FormGroupInput;
-import javas.views.components.FormGroupSelect;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -20,21 +18,18 @@ public class AddPersonView extends BaseFrame {
         Container contentPanel = this.getContentPane();
         contentPanel.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Registrar um novo paciente", SwingConstants.CENTER);
-        title.setFont(new Font("Fira Sans", Font.BOLD, 24));
-
         // Form layout setup
         JPanel panelNorth = new JPanel();
         panelNorth.setBorder(new EmptyBorder(15, 15, 0, 0));
         GridLayout formLayout = new GridLayout(7, 1);
         formLayout.setVgap(15);
         panelNorth.setLayout(formLayout);
-        panelNorth.add(title);
+        panelNorth.add(new Title("Registrar um novo paciente", SwingConstants.CENTER));
 
-        JPanel firstName = new FormGroupInput().init("Primeiro nome:");
-        JPanel lastName = new FormGroupInput().init("Último nome");
-        JPanel CPF = new FormGroupInput().init("CPF");
-        JPanel age = new FormGroupInput().init("Nascimento");
+        JPanel firstName = new FormGroupInput("Primeiro nome:");
+        JPanel lastName = new FormGroupInput("Último nome");
+        JPanel CPF = new FormGroupInput("CPF");
+        JPanel age = new FormGroupInput("Nascimento");
         Box bloodType = new FormGroupSelect().init("Grupo sanguíneo");
 
         Button addButton = new Button("Adicionar paciente");
