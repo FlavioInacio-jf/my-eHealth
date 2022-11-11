@@ -18,4 +18,9 @@ public class ViewConstants {
     public static final String DELETE_PERSON_VIEW_TITLE = "Excluir paciente";
 
     public static final String GENERATE_MEDICAL_RECORD_VIEW_TITLE = "Gerar relatório médico";
+
+
+    // Health unit views constants
+    public static final String DELETE_HEALTH_UNIT_TITLE = "Excluir unidade de saúde";
+    public static final String GENERATE_RECORD_HEATH_UNIT = "Gerar relatório unidade de saúdes";
 }
