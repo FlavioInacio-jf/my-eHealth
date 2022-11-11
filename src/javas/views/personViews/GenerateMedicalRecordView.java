@@ -1,15 +1,10 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.app.models.Address;
-import javas.modules.person.enums.BloodTypeEnum;
-import javas.modules.person.enums.SexEnum;
-import javas.modules.person.models.Person;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.person.repositories.implementations.PersonRepository;
 import javas.modules.person.useCases.getSinglePerson.GetSinglePersonController;
 import javas.modules.person.useCases.getSinglePerson.GetSinglePersonUseCase;
-import javas.modules.vaccine.models.Vaccine;
 import javas.views.components.BaseFrame;
 import javas.views.components.Button;
 import javas.views.components.FormGroupInput;
@@ -75,15 +70,5 @@ public class GenerateMedicalRecordView extends BaseFrame {
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
-
-        Person person = new Person(null,
-                            "Flávio Inácio",
-                            "Silva", "855.888.888-88",
-                            BloodTypeEnum.AB, SexEnum.FEMALE, "20/03/11",
-                            new Address("d", "d", "d", "d", "d"));
-        person.applyVaccine(new Vaccine(null, "Vacina 1", "11/10/2020", 1, "ooo"));
-        person.applyVaccine(new Vaccine(null, "Vacina 1", "11/10/2020", 1, "ooo"));
-        new MedialRecordView(person).setVisible(true);
-
     }
 }

@@ -108,7 +108,7 @@ public class PersonView extends JPanel {
                             person.getBirthDate()});
         }
         // Initializing the JTable
-        JTable table = new JTable(model) {
+        Table table = new Table(model) {
             @Override
             public boolean editCellAt(int row, int column, java.util.EventObject e){
                 return false;
@@ -127,28 +127,8 @@ public class PersonView extends JPanel {
         };
 
 
-
-        //Table header styles
-        UIManager.put("TableHeader.cellBorder" , BorderFactory.createMatteBorder(0, 0, 0, 1, ViewConstants.BORDER_COLOR));
-        JTableHeader tableHeader = table.getTableHeader();
-        tableHeader.setFont(new Font("Fira Sans", Font.BOLD, 14));
-        tableHeader.setBackground(ViewConstants.PRIMARY_COLOR);
-        tableHeader.setForeground(Color.WHITE);
-        tableHeader.setOpaque(false);
-        tableHeader.setBorder(null);
-
-        table.setFont(new Font("Fira Sans", Font.PLAIN, 16));
-        table.setGridColor(ViewConstants.BORDER_COLOR);
-        table.setIntercellSpacing(new Dimension(20, 0));
-        table.setRowHeight(25);
-        table.removeEditor();
-        table.setRowSelectionAllowed(false);
-
         jPanelCenter.add(table.getTableHeader());
         jPanelCenter.add(new JScrollPane(table));
         this.add(jPanelCenter);
-
-
-        this.setBackground(Color.WHITE);
     }
 }
