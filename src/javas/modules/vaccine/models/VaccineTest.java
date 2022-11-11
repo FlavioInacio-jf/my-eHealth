@@ -62,13 +62,21 @@ public class VaccineTest {
     }
 
     @Test
-    public void getHeathUnit() {
-
+    public void getHealthUnit() {
+        Address address = new Address("a", "b", "c", "d", "e");
+        HealthUnit hUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address);
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        vaccine.setHeathUnit(hUnit);
+        assertEquals(hUnit, vaccine.getHeathUnit());
     }
 
     @Test
-    public void setHeathUnit() {
-
+    public void setHealthUnit() {
+        Address address = new Address("a", "b", "c", "d", "e");
+        HealthUnit hUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address);
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        vaccine.setHeathUnit(hUnit);
+        assertEquals(hUnit, vaccine.getHeathUnit());
     }
 
     @Test
