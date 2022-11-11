@@ -14,7 +14,12 @@ public class MainView extends BaseFrame {
         this.init();
     }
 
+    // AppDataSource.connect();
+    //ArrayList<String> tables = new ArrayList<String>();
+    //tables.add(Person.getQueryTable());
+    //AppDataSource.init(tables);
 
+    // PersonRegistrationView view = new PersonRegistrationView();
     private void init() {
         this.setTitle(ViewConstants.MAIN_VIEW_TITLE);
 
@@ -38,11 +43,5 @@ public class MainView extends BaseFrame {
         this.setJMenuBar(menuBar);
         contentPane.add(tabbedPane);
 
-
-        this.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new MainView();
     }
 }
