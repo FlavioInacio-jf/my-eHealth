@@ -81,6 +81,22 @@ public class VaccineTest {
 
     @Test
     public void testEquals() {
+        Address address = new Address("a", "b", "c", "d", "e");
+        HealthUnit hUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address);
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        vaccine.setHeathUnit(hUnit);
 
+        Address address2 = new Address("a", "b", "c", "d", "e");
+        HealthUnit hUnit2 = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address2);
+        Vaccine vaccine2 = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        vaccine2.setHeathUnit(hUnit2);
+
+        Address address3 = new Address("a1", "b2", "c3", "d4", "e5");
+        HealthUnit hUnit3 = new HealthUnit(null,UnitTypeEnum.UBS, "Nestor Piva", "12312512", address3);
+        Vaccine vaccine3 = new Vaccine(null, "Influenza", "11/08/2013", 5, "62191");
+        vaccine3.setHeathUnit(hUnit3);
+
+        assertTrue(vaccine2, vaccine);
+        assertFalse(vaccine3, vaccine);
     }
 }

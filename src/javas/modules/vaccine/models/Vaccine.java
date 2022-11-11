@@ -65,6 +65,13 @@ public class Vaccine extends ModelBase {
 
     @Override
     public boolean equals(Object object) {
-       return true;
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Vaccine)) {
+            return false;
+        }
+        Vaccine objectVaccine = (Vaccine) object;
+        return getId().equals(objectVaccine.getId()) && this.name.equals(objectVaccine.getName()) && this.date.equals(objectVaccine.getDate()) && this.dose.equals(objectVaccine.getDose()) && this.lot.equals(objectVaccine.getLot()) && this.healthUnit.equals(objectVaccine.getHeathUnit());
     }
 }
