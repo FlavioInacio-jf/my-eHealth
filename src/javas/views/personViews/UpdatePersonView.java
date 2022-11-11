@@ -1,8 +1,8 @@
 package javas.views.personViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class UpdatePersonView extends JFrame {
+public class UpdatePersonView extends BaseFrame {
     public UpdatePersonView() {}
 
     private void init() {

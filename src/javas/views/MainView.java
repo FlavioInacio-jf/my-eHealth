@@ -1,6 +1,7 @@
 package javas.views;
 
 import javas.constants.ViewConstants;
+import javas.views.components.BaseFrame;
 import javas.views.components.TabbedPane;
 import javas.views.healthUnitViews.HealthUnitView;
 import javas.views.personViews.PersonView;
@@ -8,7 +9,7 @@ import javas.views.personViews.PersonView;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JFrame {
+public class MainView extends BaseFrame {
     public MainView() {
         this.init();
     }
@@ -37,12 +38,7 @@ public class MainView extends JFrame {
         this.setJMenuBar(menuBar);
         contentPane.add(tabbedPane);
 
-        this.setBounds(  ViewConstants.SCREEN_CENTER.x - ViewConstants.SCREEN_SIZE.x / 2,
-                ViewConstants.SCREEN_CENTER.y - ViewConstants.SCREEN_SIZE.y  / 2,
-                ViewConstants.SCREEN_SIZE.x, ViewConstants.SCREEN_SIZE.y);
 
-        this.setResizable(true);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
 

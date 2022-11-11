@@ -1,8 +1,8 @@
 package javas.views.personViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class ApplyVaccineView extends JFrame {
+public class ApplyVaccineView extends BaseFrame {
     public ApplyVaccineView() {
         this.init();
     }

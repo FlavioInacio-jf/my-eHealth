@@ -1,8 +1,8 @@
 package javas.views.healthUnitViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class UpdateHealthUnitView extends JFrame {
+public class UpdateHealthUnitView extends BaseFrame {
     public UpdateHealthUnitView() {
         this.init();
     }

@@ -1,8 +1,9 @@
 package javas.views.personViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class DeletePersonView extends JFrame {
+
+public class DeletePersonView extends BaseFrame {
     public DeletePersonView() {}
 
     private void init() {

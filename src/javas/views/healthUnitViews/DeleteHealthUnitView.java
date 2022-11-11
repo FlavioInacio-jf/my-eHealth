@@ -1,8 +1,8 @@
 package javas.views.healthUnitViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class DeleteHealthUnitView extends JFrame {
+public class DeleteHealthUnitView extends BaseFrame {
     public DeleteHealthUnitView() {
         this.init();
     }

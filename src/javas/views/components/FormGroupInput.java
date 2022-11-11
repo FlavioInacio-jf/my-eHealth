@@ -1,7 +1,9 @@
 package javas.views.components;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.text.ParseException;
 
 public class FormGroupInput {
     Input input;
@@ -22,6 +24,15 @@ public class FormGroupInput {
         panel.add(Box.createVerticalStrut(5));
         panel.add(this.input);
         return panel;
+    }
+
+    public void setMaskFormatter(String mask) {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter(mask);
+            maskFormatter.install(this.input);
+        }catch (ParseException error) {
+        }
+
     }
 
     public String getText() {

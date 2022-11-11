@@ -1,6 +1,7 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
+import javas.views.components.BaseFrame;
 import javas.views.components.Button;
 import javas.views.components.FormGroupInput;
 import javas.views.components.FormGroupSelect;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddPersonView extends JFrame {
+public class AddPersonView extends BaseFrame {
     public AddPersonView() {
         init();
     }
@@ -55,12 +56,5 @@ public class AddPersonView extends JFrame {
         panelNorth.add(addButton);
 
         contentPanel.add(panelNorth, BorderLayout.NORTH);
-
-        this.setBounds(  ViewConstants.SCREEN_CENTER.x - ViewConstants.SCREEN_SIZE.x / 2,
-                ViewConstants.SCREEN_CENTER.y - ViewConstants.SCREEN_SIZE.y  / 2,
-                ViewConstants.SCREEN_SIZE.x, ViewConstants.SCREEN_SIZE.y);
-        this.setBackground(Color.WHITE);
-        this.setResizable(true);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 }

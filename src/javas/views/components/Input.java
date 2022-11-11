@@ -4,11 +4,12 @@ import javas.constants.ViewConstants;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 
 
 
-public class Input extends JTextField {
+public class Input extends JFormattedTextField {
     private Border border;
 
     public Input() {

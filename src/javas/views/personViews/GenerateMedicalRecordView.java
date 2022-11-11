@@ -1,8 +1,8 @@
 package javas.views.personViews;
 
-import javax.swing.*;
+import javas.views.components.BaseFrame;
 
-public class GenerateMedicalRecordView extends JFrame {
+public class GenerateMedicalRecordView extends BaseFrame {
     public GenerateMedicalRecordView() {
         this.init();
     }
