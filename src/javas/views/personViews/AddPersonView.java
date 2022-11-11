@@ -62,10 +62,5 @@ public class AddPersonView extends JFrame {
         this.setBackground(Color.WHITE);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setVisible(true);
-    }
-
-    public static void main (String [] args) {
-        new AddPersonView();
     }
 }

@@ -1,7 +1,7 @@
 package javas.views;
 
 import javas.constants.ViewConstants;
-import javas.views.components.TabbedPanePerson;
+import javas.views.components.TabbedPane;
 import javas.views.healthUnitViews.HealthUnitView;
 import javas.views.personViews.PersonView;
 
@@ -27,14 +27,15 @@ public class MainView extends JFrame {
         menuBar.add(about);
 
         // Tabbed Panel
-        TabbedPanePerson tabbedPanePerson = new TabbedPanePerson();
+        TabbedPane tabbedPane = new TabbedPane();
 
-        tabbedPanePerson.addTab("Paciente", null, new PersonView(), "Ações do paciente");
-        tabbedPanePerson.addTab("Unidade de Saúde", null, new HealthUnitView(), "Ações da Unidade de Saúde");
+        tabbedPane.addTab("Paciente",null, new PersonView(), "Ações do paciente");
+        tabbedPane.addTab("Unidade de Saúde", null, new HealthUnitView(), "Ações da Unidade de Saúde");
+        tabbedPane.addTab("Configurações", null, new GeneralSettings(), "Configurações do banco de dados");
 
 
         this.setJMenuBar(menuBar);
-        contentPane.add(tabbedPanePerson);
+        contentPane.add(tabbedPane);
 
         this.setBounds(  ViewConstants.SCREEN_CENTER.x - ViewConstants.SCREEN_SIZE.x / 2,
                 ViewConstants.SCREEN_CENTER.y - ViewConstants.SCREEN_SIZE.y  / 2,

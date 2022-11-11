@@ -2,9 +2,7 @@ package javas.views.personViews;
 
 import javas.constants.ViewConstants;
 import javas.modules.person.models.Person;
-import javas.modules.person.useCases.getAllPeople.GetAllPeopleController;
 import javas.views.components.*;
-import javas.views.components.Button;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +14,18 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
 public class PersonView extends JPanel {
+    private GenerateMedicalRecordView generateMedicalRecordView;
+    private ApplyVaccineView applyVaccineView;
+    private DeletePersonView deletePersonView;
+    private UpdatePersonView updatePersonView;
+    private AddPersonView addPersonView;
+
     public PersonView() {
+        this.generateMedicalRecordView = new GenerateMedicalRecordView();
+        this.applyVaccineView = new ApplyVaccineView();
+        this.deletePersonView = new DeletePersonView();
+        this.updatePersonView = new UpdatePersonView();
+        this.addPersonView = new AddPersonView();
         this.init();
     }
 
@@ -34,22 +43,45 @@ public class PersonView extends JPanel {
 
         ButtonWithIcon addPersonButton = new ButtonWithIcon("Adicionar");
         addPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/add-user-icon.png")));
+        addPersonButton.addActionListener(e -> {
+            if (!this.addPersonView.isVisible()) {
+                addPersonView.setVisible(true);
+            }
+        });
         jPanelNorth.add(addPersonButton);
 
         ButtonWithIcon updatePersonButton = new ButtonWithIcon("Atualizar");
         updatePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/update-user-icon.png")));
+        updatePersonButton.addActionListener(e -> {
+            if (!this.updatePersonView.isVisible()){
+                this.updatePersonView.setVisible(true);
+            }
+        });
         jPanelNorth.add(updatePersonButton);
 
         ButtonWithIcon deletePersonButton = new ButtonWithIcon("Excluir");
         deletePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/remove-user-icon.png")));
+        deletePersonButton.addActionListener(e -> {
+            if (!this.deletePersonView.isVisible()){
+                this.deletePersonView.setVisible(true);
+            }
+        });
         jPanelNorth.add(deletePersonButton);
 
         ButtonWithIcon reportPersonButton = new ButtonWithIcon("Relatório");
         reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-user-icon.png")));
+        reportPersonButton.addActionListener(e -> {
+            this.generateMedicalRecordView.setVisible(true);
+        });
         jPanelNorth.add(reportPersonButton);
 
         ButtonWithIcon vaccinePersonButton = new ButtonWithIcon("Vacinar");
         vaccinePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/vaccine-icon.png")));
+        vaccinePersonButton.addActionListener(e -> {
+            if (!this.applyVaccineView.isVisible()) {
+                this.applyVaccineView.setVisible(true);
+            }
+        });
         jPanelNorth.add(vaccinePersonButton);
         this.add(jPanelNorth, BorderLayout.NORTH);
 
