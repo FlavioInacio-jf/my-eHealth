@@ -61,19 +61,23 @@ public class DeletePersonView extends BaseFrame {
     }
 
     private void handleDeletePerson(String cpf) {
+
         if (cpf.length() < 14) {
             JOptionPane.showMessageDialog(this, "CPF inválido");
         }
+
+        int diaologConfirm = JOptionPane.showConfirmDialog(this, JOptionPane.ERROR_MESSAGE, "Excluir esse usuário?", JOptionPane.YES_NO_CANCEL_OPTION);
         PersonRepository personRepository = new PersonRepository();
         DeletePersonUseCase deletePersonUseCase = new DeletePersonUseCase(personRepository);
         DeletePersonController deletePersonController = new DeletePersonController(deletePersonUseCase);
 
-        try {
-            deletePersonController.execute(cpf);
-            JOptionPane.showMessageDialog(this, "Paciente removido com sucesso!");
-        }catch (Error error) {
-            JOptionPane.showMessageDialog(this, error.getMessage());
+        if (diaologConfirm == 0) {
+            try {
+                deletePersonController.execute(cpf);
+                JOptionPane.showMessageDialog(this, "Paciente removido com sucesso!");
+            }catch (Error error) {
+                JOptionPane.showMessageDialog(this, error.getMessage());
+            }
         }
-
     }
 }
