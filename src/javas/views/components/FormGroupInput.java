@@ -15,7 +15,6 @@ public class FormGroupInput extends JPanel {
 
     private void init(String title) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setAlignmentY(Component.TOP_ALIGNMENT);
         this.input = new Input();
         this.label = new Label(title);
         this.label.setLabelFor(this.input);

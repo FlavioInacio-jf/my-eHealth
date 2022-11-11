@@ -1,6 +1,12 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
+import javas.modules.person.enums.BloodTypeEnum;
+import javas.modules.person.enums.SexEnum;
+import javas.modules.person.repositories.IPersonRepository;
+import javas.modules.person.repositories.implementations.PersonRepository;
+import javas.modules.person.useCases.createPerson.CreatePersonController;
+import javas.modules.person.useCases.createPerson.CreatePersonUseCase;
 import javas.views.components.*;
 import javas.views.components.Button;
 
@@ -9,47 +15,123 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class AddPersonView extends BaseFrame {
+    FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, state, postalCode;
+    FormGroupSelect bloodType, sex;
+    Button addPersonButton;
     public AddPersonView() {
-        init();
+        this.firstName = new FormGroupInput("Primeiro nome:");
+        this.lastName = new FormGroupInput("Último nome");
+        this.cpf = new FormGroupInput("CPF");
+        this.cpf.setMaskFormatter("###.###.###-##");
+        this.birthDate = new FormGroupInput("Nascimento");
+        this.birthDate.setMaskFormatter("##/##/####");
+        this.bloodType = new FormGroupSelect("Grupo sanguíneo", BloodTypeEnum.getNames());
+        this.sex = new FormGroupSelect("Sexo", SexEnum.getNames());
+        this.street = new FormGroupInput("Rua");
+        this.district = new FormGroupInput("Bairro");
+        this.city = new FormGroupInput("Cidade");
+        this.state = new FormGroupInput("Estado");
+        this.birthDate.setMaskFormatter("##");
+        this.postalCode = new FormGroupInput("CEP");
+        this.birthDate.setMaskFormatter("####-###");
+
+
+        this.addPersonButton = new Button("Adicionar paciente");
+
+        this.init();
     }
 
     private void init(){
         this.setTitle(ViewConstants.ADD_PERSON_VIEW_TITLE);
-        Container contentPanel = this.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-        // Form layout setup
-        JPanel panelNorth = new JPanel();
-        panelNorth.setBorder(new EmptyBorder(15, 15, 0, 0));
-        GridLayout formLayout = new GridLayout(7, 1);
-        formLayout.setVgap(15);
-        panelNorth.setLayout(formLayout);
-        panelNorth.add(new Title("Registrar um novo paciente", SwingConstants.CENTER));
+        // Header
+        JPanel header = new JPanel();
+        header.setBackground(Color.WHITE);
+        header.setLayout(new FlowLayout());
+        Title title = new Title("Registrar um novo paciente", SwingConstants.CENTER);
+        Icon vaccineIcon = new ImageIcon(this.getClass().getResource("../icons/add-user-icon.png"));
 
-        JPanel firstName = new FormGroupInput("Primeiro nome:");
-        JPanel lastName = new FormGroupInput("Último nome");
-        JPanel CPF = new FormGroupInput("CPF");
-        JPanel age = new FormGroupInput("Nascimento");
-        Box bloodType = new FormGroupSelect().init("Grupo sanguíneo");
+        header.add(new JLabel(vaccineIcon));
+        header.add(title);
 
-        Button addButton = new Button("Adicionar paciente");
+        // Form
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        mainPanel.setBackground(Color.WHITE);
 
-        // First row
-        JPanel firstRow = new JPanel();
-        firstRow.setLayout(new BoxLayout(firstRow, BoxLayout.X_AXIS));
-        firstRow.add(firstName);
-        firstName.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
-        firstRow.add(lastName);
+        JPanel formPanel = new JPanel();
+        formPanel.setBackground(Color.WHITE);
+        GridLayout formPanelLayout = new GridLayout(7, 1);
+        formPanelLayout.setVgap(20);
+        formPanel.setLayout(formPanelLayout);
 
-        // Second row
-        JPanel secondRow = new JPanel();
+        JPanel firstRow = new Column(2, 0);
+        firstRow.add(this.firstName);
+        firstRow.add(this.lastName);
+        formPanel.add(firstRow);
 
-        panelNorth.add(firstRow);
-        panelNorth.add(CPF);
-        panelNorth.add(age);
-        panelNorth.add(bloodType);
-        panelNorth.add(addButton);
+        JPanel secondRow = new Column(2, 0);
+        secondRow.add(this.cpf);
+        secondRow.add(this.birthDate);
+        formPanel.add(secondRow);
 
-        contentPanel.add(panelNorth, BorderLayout.NORTH);
+        JPanel thirdRow = new Column(2, 0);
+        thirdRow.add(this.sex);
+        thirdRow.add(this.bloodType);
+        formPanel.add(thirdRow);
+
+        JPanel fourthRow = new Column(2, 0);
+        fourthRow.add(this.street);
+        fourthRow.add(this.district);
+        formPanel.add(fourthRow);
+
+        JPanel thursdayRow = new Column(2, 0);
+        thursdayRow.add(this.city);
+        thursdayRow.add(this.state);
+        formPanel.add(thursdayRow);
+
+        JPanel sixthRow = new Column(1, 0);
+        sixthRow.add(this.postalCode);
+        formPanel.add(sixthRow);
+
+        this.addPersonButton.addActionListener(e -> {
+            this.handleAddPerson();
+        });
+        formPanel.add(this.addPersonButton);
+
+        mainPanel.add(formPanel);
+
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.setBorder(null);
+
+        contentPane.add(header);
+        contentPane.add(scrollPane);
+    }
+
+    private void handleAddPerson() {
+        IPersonRepository personRepository = new PersonRepository();
+        CreatePersonUseCase createPersonUseCase = new CreatePersonUseCase(personRepository);
+        CreatePersonController createPersonController = new CreatePersonController(createPersonUseCase);
+        String firstName = this.firstName.getText();
+        String lastName = this.lastName.getText();
+        String bloodType = this.bloodType.getSelectedItem().toString();
+        String sex = this.sex.getSelectedItem().toString();
+        String cpf = this.cpf.getText();
+        String birthDate = this.birthDate.getText();
+        String street = this.street.getText();
+        String district = this.district.getText();
+        String city = this.city.getText();
+        String state = this.state.getText();
+        String postalCode = this.postalCode.getText();
+
+        try {
+           createPersonController.execute(firstName, lastName, cpf,bloodType, sex, birthDate, street, district, city, state, postalCode);
+            JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
+        }catch (Error error) {
+            JOptionPane.showMessageDialog(this, error.getMessage());
+        }
     }
 }
