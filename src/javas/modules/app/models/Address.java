@@ -8,7 +8,7 @@ public class Address {
     private String postalCode; // CEP
 
     public Address(
-        String street,
+        String street, 
         String district,
         String city,
         String state,
@@ -63,7 +63,18 @@ public class Address {
 
     @Override
     public boolean equals(Object object) {
-        return true;
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Address)) {
+            return false;
+        }
+        Address objectAddress = (Address) object;
+        return  this.street.equals(objectAddress.getStreet()) &&
+                this.district.equals(objectAddress.getCity()) &&
+                this.city.equals(objectAddress.getCity()) &&
+                this.state.equals(objectAddress.getState()) &&
+                this.postalCode.equals(objectAddress.getPostalCode());
     }
 
 }

@@ -47,6 +47,10 @@ public class HealthUnit extends ModelBase {
         this.name = name;
     }
 
+    public ArrayList<Person> getPeople(){
+        return this.people;
+    }
+
     public Address getAddress() {
         return this.address;
     }
@@ -84,6 +88,19 @@ public class HealthUnit extends ModelBase {
 
     @Override
     public boolean equals(Object object) {
-        return true;
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof HealthUnit)) {
+            return false;
+        }
+        HealthUnit objectHealthUnit = (HealthUnit) object;
+        
+        return  this.type.equals(objectHealthUnit.getType()) &&
+                this.people.equals(objectHealthUnit.getPeople()) &&
+                this._id.equals.equals(objectHealthUnit.getId()) &&        
+                this.name.equals(objectHealthUnit.getName()) &&
+                this.cnpj.equals(objectHealthUnit.getCNPJ()) &&
+                this.address.equals(objectHealthUnit.getAddress()); 
     }
 }
