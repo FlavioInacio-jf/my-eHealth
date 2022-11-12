@@ -1,4 +1,4 @@
-package javas.modules.healthUnit.useCases.deleteHeathUnit;
+package javas.modules.healthUnit.useCases.deleteHealthUnit;
 
 public class DeleteHealthUnitController {
     DeleteHealthUnitUseCase deleteHealthUnitUseCase;

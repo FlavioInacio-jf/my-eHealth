@@ -1,4 +1,4 @@
-package javas.modules.healthUnit.useCases.deleteHeathUnit;
+package javas.modules.healthUnit.useCases.deleteHealthUnit;
 
 import javas.errors.CustomError;
 import javas.exceptions.HealthUnitErrorMessages;

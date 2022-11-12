@@ -1,9 +1,5 @@
 package javas.views.healthUnitViews;
 
-import javas.modules.healthUnit.repositories.IHealthUnitRepository;
-import javas.modules.healthUnit.repositories.implementations.HealthUnitRepository;
-import javas.modules.healthUnit.useCases.deleteHeathUnit.DeleteHealthUnitController;
-import javas.modules.healthUnit.useCases.deleteHeathUnit.DeleteHealthUnitUseCase;
 import javas.views.components.BaseFrame;
 import javas.constants.ViewConstants;
 import javas.views.components.Button;
@@ -13,6 +9,8 @@ import javas.views.components.Title;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.healthUnit.useCases.deleteHealthUnit.DeleteHealthUnit.deleteHealthUnitController;
 
 public class DeleteHealthUnitView extends BaseFrame {
     public DeleteHealthUnitView() {
@@ -66,10 +64,6 @@ public class DeleteHealthUnitView extends BaseFrame {
         }
 
         int diaologConfirm = JOptionPane.showConfirmDialog(this, JOptionPane.ERROR_MESSAGE, "Excluir unidade de saúde?", JOptionPane.YES_NO_CANCEL_OPTION);
-
-        IHealthUnitRepository healthUnitRepository =  new HealthUnitRepository();
-        DeleteHealthUnitUseCase deleteHealthUnitUseCase = new DeleteHealthUnitUseCase(healthUnitRepository);
-        DeleteHealthUnitController deleteHealthUnitController = new DeleteHealthUnitController(deleteHealthUnitUseCase);
 
         if (diaologConfirm == 0) {
             try {

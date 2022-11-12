@@ -1,4 +1,4 @@
-package javas.modules.healthUnit.useCases.getSingleHeathUnit;
+package javas.modules.healthUnit.useCases.getSingleHealthUnit;
 
 import javas.modules.healthUnit.models.HealthUnit;
 
