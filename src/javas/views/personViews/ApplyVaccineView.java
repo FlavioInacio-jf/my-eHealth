@@ -1,14 +1,6 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.healthUnit.repositories.IHealthUnitRepository;
-import javas.modules.healthUnit.repositories.implementations.HealthUnitRepository;
-import javas.modules.person.repositories.IPersonRepository;
-import javas.modules.person.repositories.implementations.PersonRepository;
-import javas.modules.vaccine.repositories.IVaccineRepository;
-import javas.modules.vaccine.repositories.impementations.VaccineRepository;
-import javas.modules.vaccine.useCases.applyVaccine.ApplyVaccineController;
-import javas.modules.vaccine.useCases.applyVaccine.ApplyVaccineUseCase;
 import javas.views.components.BaseFrame;
 import javas.views.components.Button;
 import javas.views.components.FormGroupInput;
@@ -17,6 +9,8 @@ import javas.views.components.Title;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.vaccine.useCases.applyVaccine.ApplyVaccine.applyVaccineController;
 
 public class ApplyVaccineView extends BaseFrame {
     FormGroupInput personCPF;
@@ -93,15 +87,6 @@ public class ApplyVaccineView extends BaseFrame {
         String vaccineDate = this.date.getText();
         int vaccineDose =  Integer.parseInt(this.dose.getText());
         String vaccineLot = this.lot.getText();
-
-        IVaccineRepository vaccineRepository = new VaccineRepository();
-        IPersonRepository personRepository = new PersonRepository();
-        IHealthUnitRepository healthUnitRepository =  new HealthUnitRepository();
-        ApplyVaccineUseCase applyVaccineUseCase = new ApplyVaccineUseCase(  vaccineRepository,
-                                                                            personRepository,
-                                                                            healthUnitRepository
-                                                                         );
-        ApplyVaccineController applyVaccineController = new ApplyVaccineController(applyVaccineUseCase);
 
         try {
             applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDate, vaccineDose, vaccineLot);
