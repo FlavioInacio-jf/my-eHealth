@@ -71,7 +71,7 @@ public class AppDataSource {
             }
             return connection.createStatement();
         }catch (SQLException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_EXECUTE_QUERY, error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_EXECUTE_QUERY + "\n", error.getMessage());
         }
     }
 }
