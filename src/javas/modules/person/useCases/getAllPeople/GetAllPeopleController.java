@@ -12,10 +12,6 @@ public class GetAllPeopleController {
     }
 
     public ArrayList<Person> execute() {
-        try {
-           return this.getAllPeopleUseCase.handle();
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        return this.getAllPeopleUseCase.handle();
     }
 }

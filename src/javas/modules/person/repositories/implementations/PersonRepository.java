@@ -40,7 +40,7 @@ public class PersonRepository implements IPersonRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_CREATE_PERSON, error.getMessage());
+            throw new CustomError(PersonErrorMessages.UNABLE_CREATE_PERSON + "\n", error.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class PersonRepository implements IPersonRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_UPDATE_PERSON, error.getMessage());
+            throw new CustomError(PersonErrorMessages.UNABLE_UPDATE_PERSON + "\n", error.getMessage());
         }
     }
 
@@ -88,7 +88,7 @@ public class PersonRepository implements IPersonRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_DELETE_PERSON, error.getMessage());
+            throw new CustomError(PersonErrorMessages.UNABLE_DELETE_PERSON + "\n", error.getMessage());
         }
     }
 
@@ -111,7 +111,7 @@ public class PersonRepository implements IPersonRepository {
             }
             this.repository.close();
         }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
+            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON + "\n", error.getMessage());
         }
         return null;
     }
@@ -128,7 +128,7 @@ public class PersonRepository implements IPersonRepository {
             this.repository.close();
             return listPeople;
         }catch (SQLException error) {
-            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
+            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON + "\n", error.getMessage());
         }
     }
 }
