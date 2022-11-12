@@ -37,7 +37,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_CREATE_VACCINE, error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_CREATE_VACCINE + "\n", error.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_UPDATE_VACCINE, error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_UPDATE_VACCINE + "\n", error.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_DELETE_VACCINE, error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_DELETE_VACCINE + "\n", error.getMessage());
         }
     }
 
@@ -106,7 +106,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return listVaccines;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE + "\n", error.getMessage());
         }
     }
 

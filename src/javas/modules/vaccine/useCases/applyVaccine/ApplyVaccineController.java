@@ -15,11 +15,8 @@ public class ApplyVaccineController {
                         String date,
                         int dose,
                         String lot ) {
-        try {
-            Vaccine vaccine = new Vaccine(null, name, date, dose, lot);
-            this.applyVaccineUseCase.handle(userCPF, healthUnitCNPJ, vaccine);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+
+        Vaccine vaccine = new Vaccine(null, name, date, dose, lot);
+        this.applyVaccineUseCase.handle(userCPF, healthUnitCNPJ, vaccine);
     }
 }

@@ -10,10 +10,6 @@ public class GetAllPersonVaccinesController {
     }
 
     public Person execute(String userCPF) {
-        try {
-            return this.getAllPersonVaccinesUseCase.handle(userCPF);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        return this.getAllPersonVaccinesUseCase.handle(userCPF);
     }
 }

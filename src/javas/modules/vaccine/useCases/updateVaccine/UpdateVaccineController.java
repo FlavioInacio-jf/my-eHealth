@@ -15,11 +15,8 @@ public class UpdateVaccineController {
             int dose,
             String lot
     ) {
-        try {
-            Vaccine vaccine = new Vaccine(_id, name, date, dose, lot);
-            this.updateVaccineUseCase.handle(vaccine);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+
+        Vaccine vaccine = new Vaccine(_id, name, date, dose, lot);
+        this.updateVaccineUseCase.handle(vaccine);
     }
 }
