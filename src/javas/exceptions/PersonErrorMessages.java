@@ -13,4 +13,6 @@ public class PersonErrorMessages {
 
     public static final String PERSON_NOT_FOUND_TITLE = "Paciente não foi encontrado!";
     public static final String PERSON_NOT_FOUND_DETAIL = "Paciente não existe no banco de dados!";
+    public static final String BLOOD_TYPE_INVALID = "Tipo sanguíneo inválido";
+    public static final String SEX_INVALID = "Tipo sanguíneo inválido";
 }
