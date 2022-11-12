@@ -16,7 +16,7 @@ public class CreateHealthUnitUseCase {
         HealthUnit healthUnitAlreadyExists = this.healthUnitRepository.findByCNPJ(healthUnit.getCNPJ());
 
         if (healthUnitAlreadyExists != null) {
-            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_ALREADY_EXIST_TITLE,
+            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_ALREADY_EXIST_TITLE + "\n",
                                     HealthUnitErrorMessages.HEALTH_UNIT_ALREADY_EXIST_DETAIL);
         }
 

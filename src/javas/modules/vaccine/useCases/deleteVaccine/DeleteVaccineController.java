@@ -8,10 +8,6 @@ public class DeleteVaccineController {
     }
 
     public void execute(String _id) {
-        try {
-            this.deleteVaccineUseCase.handle(_id);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        this.deleteVaccineUseCase.handle(_id);
     }
 }

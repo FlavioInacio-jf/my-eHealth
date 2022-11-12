@@ -4,9 +4,11 @@ import javas.config.AppDataSource;
 import javas.constants.PersonEntityConstants;
 import javas.errors.CustomError;
 import javas.exceptions.PersonErrorMessages;
+import javas.modules.app.models.Address;
+import javas.modules.person.enums.BloodTypeEnum;
+import javas.modules.person.enums.SexEnum;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.person.models.Person;
-import javas.util.ResultSetToPerson;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 
 public class PersonRepository implements IPersonRepository {
 
-    private Statement repository;
+    private final Statement repository;
 
     public PersonRepository() {
         this.repository = AppDataSource.execute();
@@ -107,7 +109,7 @@ public class PersonRepository implements IPersonRepository {
             final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", PersonEntityConstants.ENTITY_NAME, columnName, valueColumn);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
-                return ResultSetToPerson.convert(rs);
+                return this.resultSetToPerson(rs);
             }
             this.repository.close();
         }catch (SQLException error) {
@@ -123,12 +125,38 @@ public class PersonRepository implements IPersonRepository {
             final String query = String.format("SELECT * FROM %s", PersonEntityConstants.ENTITY_NAME);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
-                listPeople.add(ResultSetToPerson.convert(rs));
+                listPeople.add(this.resultSetToPerson(rs));
             }
             this.repository.close();
             return listPeople;
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
+        }
+    }
+
+    private Person resultSetToPerson(ResultSet rs) {
+        try {
+
+            // Person Columns
+            String _id = rs.getString(1);
+            String firstName = rs.getString(2);
+            String lastName = rs.getString(3);
+            String cpf = rs.getString(4);
+            BloodTypeEnum bloodType = BloodTypeEnum.valueOf(rs.getString(5));
+            String birthDate = rs.getString(6);
+            SexEnum sex = SexEnum.valueOf(rs.getString(7));
+
+            // Address Columns
+            String street = rs.getNString(8);
+            String district = rs.getString(9);
+            String city = rs.getString(10);
+            String postalCode = rs.getString(11);
+            String state = rs.getString(12);
+
+            Address address = new Address(street, district, city, postalCode, state);
+            return new Person(_id, firstName, lastName, cpf, bloodType, sex, birthDate, address);
+        }catch (SQLException error) {
+            throw new CustomError(PersonErrorMessages.FAILED_CONVERT_RESULT_SET_TO_PERSON, error.getMessage());
         }
     }
 }

@@ -4,9 +4,10 @@ import javas.config.AppDataSource;
 import javas.constants.HealthUnitEntityConstants;
 import javas.errors.CustomError;
 import javas.exceptions.HealthUnitErrorMessages;
+import javas.modules.app.models.Address;
+import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
-import javas.util.ResultSetToHealthUnit;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class HealthUnitRepository implements IHealthUnitRepository {
-    private Statement repository;
+    private final Statement repository;
 
     public HealthUnitRepository() {
         this.repository = AppDataSource.execute();
@@ -41,7 +42,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -73,7 +74,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -85,7 +86,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -109,11 +110,11 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", HealthUnitEntityConstants.ENTITY_NAME, columnName, valueColumn);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
-                return ResultSetToHealthUnit.convert(rs);
+                return this.resultSetToHealthUnit(rs);
             }
             this.repository.close();
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
         }
         return null;
     }
@@ -125,12 +126,35 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             final String query = String.format("SELECT * FROM %s", HealthUnitEntityConstants.ENTITY_NAME);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
-                listHealthUnit.add(ResultSetToHealthUnit.convert(rs));
+                listHealthUnit.add(this.resultSetToHealthUnit(rs));
             }
             this.repository.close();
             return listHealthUnit;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
+        }
+    }
+
+    private  HealthUnit resultSetToHealthUnit(ResultSet rs) {
+        try {
+
+            // Heath Unit Columns
+            String _id = rs.getString(1);
+            UnitTypeEnum type = UnitTypeEnum.valueOf(rs.getString(2));
+            String name = rs.getString(3);
+            String cnpj = rs.getString(4);
+
+            // Address Columns
+            String street = rs.getNString(5);
+            String district = rs.getString(6);
+            String city = rs.getString(7);
+            String postalCode = rs.getString(8);
+            String state = rs.getString(9);
+
+            Address address = new Address(street, district, city, postalCode, state);
+            return new HealthUnit(_id, type, name, cnpj, address);
+        }catch (SQLException error) {
+            throw new CustomError(HealthUnitErrorMessages.FAILED_CONVERT_RESULT_SET_TO_HEALTH_UNIT, error.getMessage());
         }
     }
 }

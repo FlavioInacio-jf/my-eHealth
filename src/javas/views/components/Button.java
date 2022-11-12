@@ -11,13 +11,13 @@ public class Button extends JButton {
     }
 
     private void init(String title) {
-        setText(title);
+        this.setText(title);
 
-        setFont(new Font("Fira Sans", Font.PLAIN, 16));
-        setBackground(ViewConstants.PRIMARY_COLOR);
-        setCursor(new Cursor(Cursor.HAND_CURSOR));
-        setBorder(null);
-        setMaximumSize(new Dimension(500, 45));
-        setForeground(Color.WHITE);
+        this.setFont(new Font("Fira Sans", Font.PLAIN, 16));
+        this.setBackground(ViewConstants.PRIMARY_COLOR);
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.setBorder(null);
+        this.setPreferredSize(new Dimension(500, 45));
+        this.setForeground(Color.WHITE);
     }
 }

@@ -2,12 +2,23 @@ package javas.views.healthUnitViews;
 
 import javas.constants.ViewConstants;
 import javas.views.components.ButtonWithIcon;
+import javas.views.personViews.GenerateMedicalRecordView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class HealthUnitView extends JPanel {
+    private GenerateRecordHealthUnitView generateRecordHealthUnitView;
+    private DeleteHealthUnitView deleteHealthUnitView;
+    private UpdateHealthUnitView updateHealthUnitView;
+    private AddHealthUnitView addHealthUnitView;
+
+
     public HealthUnitView() {
+        this.generateRecordHealthUnitView = new GenerateRecordHealthUnitView();
+        this.deleteHealthUnitView = new DeleteHealthUnitView();
+        this.updateHealthUnitView = new UpdateHealthUnitView();
+        this.addHealthUnitView = new AddHealthUnitView();
         this.init();
     }
 
@@ -22,21 +33,39 @@ public class HealthUnitView extends JPanel {
         jPanelNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanelNorth.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ViewConstants.BORDER_COLOR));
 
-        ButtonWithIcon addPersonButton = new ButtonWithIcon("Adicionar");
-        addPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/add-hospital-icon.png")));
-        jPanelNorth.add(addPersonButton);
+        ButtonWithIcon addHealthUnitButton = new ButtonWithIcon("Adicionar");
+        addHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/add-hospital-icon.png")));
+        addHealthUnitButton.addActionListener(e -> {
+            if (!this.addHealthUnitView.isVisible()) {
+                this.addHealthUnitView.setVisible(true);
+            }
+        });
+        jPanelNorth.add(addHealthUnitButton);
 
-        ButtonWithIcon updatePersonButton = new ButtonWithIcon("Atualizar");
-        updatePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/update-hospital-icon.png")));
-        jPanelNorth.add(updatePersonButton);
+        ButtonWithIcon updateHealthUnitButton = new ButtonWithIcon("Atualizar");
+        updateHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/update-hospital-icon.png")));
+        updateHealthUnitButton.addActionListener(e -> {
+            if (!this.updateHealthUnitView.isVisible()) {
+                this.updateHealthUnitView.setVisible(true);
+            }
+        });
+        jPanelNorth.add(updateHealthUnitButton);
 
-        ButtonWithIcon deletePersonButton = new ButtonWithIcon("Excluir");
-        deletePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/remove-hospital-icon.png")));
-        jPanelNorth.add(deletePersonButton);
+        ButtonWithIcon deleteHealthUnitButton = new ButtonWithIcon("Excluir");
+        deleteHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/remove-hospital-icon.png")));
+        deleteHealthUnitButton.addActionListener(e -> {
+            if (!this.deleteHealthUnitView.isVisible()) {
+                this.deleteHealthUnitView.setVisible(true);
+            }
+        });
+        jPanelNorth.add(deleteHealthUnitButton);
 
-        ButtonWithIcon reportPersonButton = new ButtonWithIcon("Relatório");
-        reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-hospital-icon.png")));
-        jPanelNorth.add(reportPersonButton);
+        ButtonWithIcon reportHealthUnitButton = new ButtonWithIcon("Relatório");
+        reportHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-hospital-icon.png")));
+        reportHealthUnitButton.addActionListener(e -> {
+            this.generateRecordHealthUnitView.setVisible(true);
+        });
+        jPanelNorth.add(reportHealthUnitButton);
 
         this.add(jPanelNorth, BorderLayout.NORTH);
 

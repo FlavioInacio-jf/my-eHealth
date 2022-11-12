@@ -27,12 +27,12 @@ public class ApplyVaccineUseCase {
         Person personExists = this.personRepository.findByCPF(userCPF);
 
         if (personExists == null) {
-            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE, PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
+            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE + "\n", PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
         }
 
         HealthUnit healthUnitExists =  this.healthUnitRepository.findByCNPJ(healthUnitCNPJ);
         if (healthUnitExists == null) {
-            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE,
+            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE + "\n",
                     HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
         }
 

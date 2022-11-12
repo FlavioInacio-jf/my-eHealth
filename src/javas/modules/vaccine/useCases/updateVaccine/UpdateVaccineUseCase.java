@@ -14,12 +14,11 @@ public class UpdateVaccineUseCase {
     public void handle(Vaccine vaccine) {
        Vaccine vaccineExists = this.vaccineRepository.findById(vaccine.getId());
        if (vaccineExists == null) {
-           throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE,
+           throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE + "\n",
                                  VaccineErrorMessages.VACCINE_NOT_FOUND_DETAIL);
        }
 
        vaccineExists.setName(vaccine.getName());
-       vaccineExists.setDate(vaccine.getDate());
        vaccineExists.setDose(vaccine.getDose());
        vaccineExists.setLot(vaccine.getLot());
 

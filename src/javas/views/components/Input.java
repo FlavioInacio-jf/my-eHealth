@@ -1,23 +1,22 @@
 package javas.views.components;
 
+
 import javas.constants.ViewConstants;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 
 
-public class Input extends JTextField {
-    private Border border;
+public class Input extends JFormattedTextField {
 
     public Input() {
         init();
     }
 
     private void init() {
-        this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 0);
-        setBorder(border);
+        this.setBorder(BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR));
+        this.setPreferredSize(new Dimension(500, 45));
         setFont(new Font("Fira Sans", Font.PLAIN, 16));
     }
 }

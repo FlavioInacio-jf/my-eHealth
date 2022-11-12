@@ -8,10 +8,6 @@ public class GetSinglePersonController {
         this.getSinglePersonUseCase = getSinglePersonUseCase;
     }
     public Person execute(String cpf) {
-        try {
-            return this.getSinglePersonUseCase.handle(cpf);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        return this.getSinglePersonUseCase.handle(cpf);
     }
 }

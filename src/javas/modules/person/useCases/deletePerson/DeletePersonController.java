@@ -7,10 +7,6 @@ public class DeletePersonController {
         this.deletePersonUseCase = deletePersonUseCase;
     }
     public void execute(String cpf) {
-        try {
-            this.deletePersonUseCase.handle(cpf);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        this.deletePersonUseCase.handle(cpf);
     }
 }

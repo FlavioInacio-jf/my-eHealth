@@ -20,7 +20,7 @@ public class PersonRepositoryTest {
 
     @Test
     public void testCreate() {
-        Person person = new Person(null, "Inácio", "Santos");
+        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(person.getId())));
         this.repository.delete(person.getId());
@@ -28,30 +28,28 @@ public class PersonRepositoryTest {
 
     @Test
     public void testUpdate() {
-        Person person = new Person(null, "Inácio", "Santos");
+        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
         person.setFirstName("Arthur");
         person.setFirstName("Correia");
 
         this.repository.update(person);
-        assertTrue(person.equals(this.repository.findById(_id)));
-        this.repository.delete(_id);
+        assertTrue(person.equals(this.repository.findById(person.getId())));
+        this.repository.delete(person.getId());
     }
 
     @Test
     public void testDelete() {
-        Person person = new Person(null, "Inácio",
-                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
+        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
-        assertTrue(person.equals(this.repository.findById(_id)));
-        assertTrue(this.repository.delete(_id));
-        assertEquals(null, this.repository.findById(_id));
+        assertTrue(person.equals(this.repository.findById(person.getId())));
+        assertTrue(this.repository.delete(person.getId()));
+        assertEquals(null, this.repository.findById(person.getId()));
     }
 
     @Test
     public void testFindById() {
-        Person person = new Person(null, "Inácio",
-                "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, "11/09/2001");
+        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(person.getId())));
         this.repository.delete(person.getId());
@@ -59,10 +57,9 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindByCPF() {
-        Person person = new Person(null, "Inácio",
-                "Santos", cpf, BloodTypeEnum.A_LESS, "11/09/2001");
+        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
-        assertTrue(person.equals(this.repository.findByCPF(cpf)));
+        assertTrue(person.equals(this.repository.findByCPF(person.getCPF())));
         this.repository.delete(person.getId());
     }
 

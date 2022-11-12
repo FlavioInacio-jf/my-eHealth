@@ -17,7 +17,7 @@ public class CreatePersonController {
             String lastName,
             String cpf,
             String bloodType,
-            SexEnum sex,
+            String sex,
             String birthDate,
             String street,
             String district,
@@ -26,12 +26,10 @@ public class CreatePersonController {
             String postalCode // CEP
     ) {
 
-        try {
-            Address address = new Address(street, district, city, state, postalCode);
-            Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), sex, birthDate, address);
-            this.createPersonUseCase.handle(person);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+
+        Address address = new Address(street, district, city, state, postalCode);
+        Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), SexEnum.valueOf(sex), birthDate, address);
+        this.createPersonUseCase.handle(person);
+
     }
 }

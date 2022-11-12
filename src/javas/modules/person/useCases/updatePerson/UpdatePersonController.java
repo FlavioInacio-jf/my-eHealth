@@ -25,12 +25,9 @@ public class UpdatePersonController {
             String state,
             String postalCode // CEP
     ) {
-        try {
-            Address address = new Address(street, district, city, state, postalCode);
-            Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), sex, birthDate, address);
-            this.updatePersonUseCase.handle(cpf, person);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+
+        Address address = new Address(street, district, city, state, postalCode);
+        Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), sex, birthDate, address);
+        this.updatePersonUseCase.handle(cpf, person);
     }
 }
