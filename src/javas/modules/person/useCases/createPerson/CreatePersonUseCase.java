@@ -16,7 +16,7 @@ public class CreatePersonUseCase {
         Person personAlreadyExists = this.personRepository.findByCPF(person.getCPF());
 
         if (personAlreadyExists != null) {
-            throw new CustomError(PersonErrorMessages.PERSON_ALREADY_EXIST_TITLE,
+            throw new CustomError(PersonErrorMessages.PERSON_ALREADY_EXIST_TITLE + "\n",
                                   PersonErrorMessages.PERSON_ALREADY_EXIST_DETAIL);
         }
     }
