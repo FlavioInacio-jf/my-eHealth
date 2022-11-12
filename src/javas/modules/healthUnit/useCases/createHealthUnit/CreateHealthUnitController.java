@@ -20,12 +20,9 @@ public class CreateHealthUnitController {
             String state,
             String postalCode // CEP
     ){
-        try {
-            Address address = new Address(street, district, city, state, postalCode);
-            HealthUnit healthUnit = new HealthUnit(null, UnitTypeEnum.valueOf(type), name, cnpj, address);
-            this.createHealthUnitUseCase.handle(healthUnit);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+
+        Address address = new Address(street, district, city, state, postalCode);
+        HealthUnit healthUnit = new HealthUnit(null, UnitTypeEnum.valueOf(type), name, cnpj, address);
+        this.createHealthUnitUseCase.handle(healthUnit);
     }
 }

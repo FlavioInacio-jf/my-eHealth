@@ -7,10 +7,6 @@ public class DeleteHealthUnitController {
         this.deleteHealthUnitUseCase = deleteHealthUnitUseCase;
     }
     public void execute (String cnpj){
-        try {
-            this.deleteHealthUnitUseCase.handle(cnpj);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        this.deleteHealthUnitUseCase.handle(cnpj);
     }
 }

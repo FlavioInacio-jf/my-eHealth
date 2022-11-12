@@ -9,10 +9,6 @@ public class GetSingleHealthUnitController {
         this.getSingleHealthUnitUseCase = getSingleHealthUnitUseCase;
     }
     public HealthUnit execute (String cnpj){
-        try {
-            return this.getSingleHealthUnitUseCase.handle(cnpj);
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        return this.getSingleHealthUnitUseCase.handle(cnpj);
     }
 }

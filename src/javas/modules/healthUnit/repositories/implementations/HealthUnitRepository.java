@@ -41,7 +41,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             }
             this.repository.close();
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
         }
         return null;
     }
@@ -130,7 +130,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             this.repository.close();
             return listHealthUnit;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
         }
     }
 }

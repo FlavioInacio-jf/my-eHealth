@@ -12,10 +12,6 @@ public class GetAllHealthUnitsController {
     }
 
     public ArrayList<HealthUnit> execute() {
-        try {
-            return this.getAllHealthUnitsUseCase.handle();
-        }catch (Error error) {
-            throw new Error(error);
-        }
+        return this.getAllHealthUnitsUseCase.handle();
     }
 }
