@@ -7,6 +7,7 @@ import javas.exceptions.VaccineErrorMessages;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,10 +27,10 @@ public class VaccineRepository implements IVaccineRepository {
 
     private Vaccine save(String _idUser, String _idHealthUnit, Vaccine data) {
         try {
-            final String query = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%s')",
+            final String query = String.format("INSERT INTO %s VALUES ('%s', '%s', %s, '%s', '%s', '%s')",
                     VaccineEntityConstants.ENTITY_NAME,
                     data.getId(), data.getName(),
-                    data.getDate(), data.getDose(),
+                    data.getDose(),
                     data.getLot(), _idHealthUnit,
                     _idUser);
             this.repository.execute(query);
@@ -43,12 +44,10 @@ public class VaccineRepository implements IVaccineRepository {
     @Override
     public boolean update(Vaccine data) {
         try {
-            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s, WHERE %s='%s'",
+            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s, WHERE %s='%s'",
                     VaccineEntityConstants.ENTITY_NAME,
                     VaccineEntityConstants.NAME_COLUMN_NAME,
                     data.getName(),
-                    VaccineEntityConstants.DATE_COLUMN_NAME,
-                    data.getDate(),
                     VaccineEntityConstants.DOSE_COLUMN_NAME,
                     data.getDose(),
                     VaccineEntityConstants.LOT_COLUMN_NAME,
@@ -115,11 +114,13 @@ public class VaccineRepository implements IVaccineRepository {
             // Vaccine Columns
             String _id = rs.getString(1);
             String name = rs.getString(2);
-            String date = rs.getString(3);
-            int dose = rs.getInt(4);
-            String lot = rs.getString(5);
+            int dose = rs.getInt(3);
+            String lot = rs.getString(4);
+            Date createdAt = rs.getDate(7);
 
-            return new Vaccine(_id, name, date, dose, lot);
+            Vaccine vaccine = new Vaccine(_id, name, dose, lot);
+            vaccine.setCreatedAt(createdAt);
+            return vaccine;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.FAILED_CONVERT_RESULT_SET_TO_VACCINE, error.getMessage());
         }

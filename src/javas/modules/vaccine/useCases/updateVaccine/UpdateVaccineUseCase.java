@@ -19,7 +19,6 @@ public class UpdateVaccineUseCase {
        }
 
        vaccineExists.setName(vaccine.getName());
-       vaccineExists.setDate(vaccine.getDate());
        vaccineExists.setDose(vaccine.getDose());
        vaccineExists.setLot(vaccine.getLot());
 

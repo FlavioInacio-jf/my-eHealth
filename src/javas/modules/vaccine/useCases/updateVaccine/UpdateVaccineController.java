@@ -11,12 +11,11 @@ public class UpdateVaccineController {
     public void execute(
             String _id,
             String name,
-            String date,
             int dose,
             String lot
     ) {
 
-        Vaccine vaccine = new Vaccine(_id, name, date, dose, lot);
+        Vaccine vaccine = new Vaccine(_id, name, dose, lot);
         this.updateVaccineUseCase.handle(vaccine);
     }
 }

@@ -98,7 +98,7 @@ public class HealthUnit extends ModelBase {
         
         return  this.type.equals(objectHealthUnit.getType()) &&
                 this.people.equals(objectHealthUnit.getPeople()) &&
-                this._id.equals.equals(objectHealthUnit.getId()) &&        
+                this.getId().equals(objectHealthUnit.getId()) &&
                 this.name.equals(objectHealthUnit.getName()) &&
                 this.cnpj.equals(objectHealthUnit.getCNPJ()) &&
                 this.address.equals(objectHealthUnit.getAddress()); 

@@ -84,12 +84,11 @@ public class ApplyVaccineView extends BaseFrame {
         String cpf = this.personCPF.getText();
         String cnpj = this.healthUnitCNPJ.getText();
         String vaccineName = this.name.getText();
-        String vaccineDate = this.date.getText();
         int vaccineDose =  Integer.parseInt(this.dose.getText());
         String vaccineLot = this.lot.getText();
 
         try {
-            applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDate, vaccineDose, vaccineLot);
+            applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
             JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());

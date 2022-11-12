@@ -96,7 +96,6 @@ public class MedialRecordView extends BaseFrame {
             Vaccine vaccine = (Vaccine) it.next();
             model.addRow(new Object[]{
                     vaccine.getId(),
-                    vaccine.getDate(),
                     vaccine.getName(),
                     vaccine.getDose(),
                     vaccine.getLot(),
