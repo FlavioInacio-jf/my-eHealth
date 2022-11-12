@@ -1,9 +1,6 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.person.repositories.implementations.PersonRepository;
-import javas.modules.person.useCases.deletePerson.DeletePersonController;
-import javas.modules.person.useCases.deletePerson.DeletePersonUseCase;
 import javas.views.components.BaseFrame;
 import javas.views.components.Button;
 import javas.views.components.FormGroupInput;
@@ -12,6 +9,8 @@ import javas.views.components.Title;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.person.useCases.deletePerson.DeletePerson.deletePersonController;
 
 
 public class DeletePersonView extends BaseFrame {
@@ -67,9 +66,6 @@ public class DeletePersonView extends BaseFrame {
         }
 
         int diaologConfirm = JOptionPane.showConfirmDialog(this, JOptionPane.ERROR_MESSAGE, "Excluir esse usuário?", JOptionPane.YES_NO_CANCEL_OPTION);
-        PersonRepository personRepository = new PersonRepository();
-        DeletePersonUseCase deletePersonUseCase = new DeletePersonUseCase(personRepository);
-        DeletePersonController deletePersonController = new DeletePersonController(deletePersonUseCase);
 
         if (diaologConfirm == 0) {
             try {

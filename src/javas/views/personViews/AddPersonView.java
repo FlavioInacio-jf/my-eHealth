@@ -3,16 +3,14 @@ package javas.views.personViews;
 import javas.constants.ViewConstants;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
-import javas.modules.person.repositories.IPersonRepository;
-import javas.modules.person.repositories.implementations.PersonRepository;
-import javas.modules.person.useCases.createPerson.CreatePersonController;
-import javas.modules.person.useCases.createPerson.CreatePersonUseCase;
 import javas.views.components.*;
 import javas.views.components.Button;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.person.useCases.createPerson.CreatePerson.createPersonController;
 
 public class AddPersonView extends BaseFrame {
     FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, state, postalCode;
@@ -97,9 +95,7 @@ public class AddPersonView extends BaseFrame {
         sixthRow.add(this.postalCode);
         formPanel.add(sixthRow);
 
-        this.addPersonButton.addActionListener(e -> {
-            this.handleAddPerson();
-        });
+        this.addPersonButton.addActionListener(e -> this.handleAddPerson());
         formPanel.add(this.addPersonButton);
 
         mainPanel.add(formPanel);
@@ -112,9 +108,7 @@ public class AddPersonView extends BaseFrame {
     }
 
     private void handleAddPerson() {
-        IPersonRepository personRepository = new PersonRepository();
-        CreatePersonUseCase createPersonUseCase = new CreatePersonUseCase(personRepository);
-        CreatePersonController createPersonController = new CreatePersonController(createPersonUseCase);
+
         String firstName = this.firstName.getText();
         String lastName = this.lastName.getText();
         String bloodType = this.bloodType.getSelectedItem().toString();
