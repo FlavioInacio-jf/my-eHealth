@@ -6,7 +6,6 @@ import javas.errors.CustomError;
 import javas.exceptions.VaccineErrorMessages;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
-import javas.util.ResultSetToVaccine;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 public class VaccineRepository implements IVaccineRepository {
 
-    private Statement repository;
+    private final Statement repository;
 
     public VaccineRepository() {
         this.repository = AppDataSource.execute();
@@ -37,7 +36,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_CREATE_VACCINE + "\n", error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_CREATE_VACCINE, error.getMessage());
         }
     }
 
@@ -60,7 +59,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_UPDATE_VACCINE + "\n", error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_UPDATE_VACCINE, error.getMessage());
         }
     }
 
@@ -72,7 +71,7 @@ public class VaccineRepository implements IVaccineRepository {
             this.repository.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_DELETE_VACCINE + "\n", error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_DELETE_VACCINE, error.getMessage());
         }
     }
 
@@ -101,13 +100,28 @@ public class VaccineRepository implements IVaccineRepository {
             final String query = String.format("SELECT * FROM %s where %s='%s'", VaccineEntityConstants.ENTITY_NAME, columnName, valueColumn);
             ResultSet rs = this.repository.executeQuery(query);
             while (rs.next()) {
-                listVaccines.add(ResultSetToVaccine.convert(rs));
+                listVaccines.add(this.resultSetToVaccine(rs));
             }
             this.repository.close();
             return listVaccines;
         }catch (SQLException error) {
-            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE + "\n", error.getMessage());
+            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
         }
     }
 
+
+    private Vaccine resultSetToVaccine(ResultSet rs) {
+        try {
+            // Vaccine Columns
+            String _id = rs.getString(1);
+            String name = rs.getString(2);
+            String date = rs.getString(3);
+            int dose = rs.getInt(4);
+            String lot = rs.getString(5);
+
+            return new Vaccine(_id, name, date, dose, lot);
+        }catch (SQLException error) {
+            throw new CustomError(VaccineErrorMessages.FAILED_CONVERT_RESULT_SET_TO_VACCINE, error.getMessage());
+        }
+    }
 }
