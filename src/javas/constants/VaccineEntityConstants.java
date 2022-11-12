@@ -12,7 +12,7 @@ public class VaccineEntityConstants {
     public static final String PERSON_COLUMN_NAME_FK = "personID";
 
     public static  String getQueryTable() {
-        return String.format("CREATE TABLE %s ", ENTITY_NAME) +
+        return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
                 String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", NAME_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", DATE_COLUMN_NAME) +

@@ -13,7 +13,7 @@ public class HealthUnitEntityConstants {
     public static final String POSTAL_CODE_COLUMN_NAME = "postalCode";
 
     public static  String getQueryTable() {
-        return String.format("CREATE TABLE %s ", ENTITY_NAME) +
+        return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
                 String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", NAME_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", TYPE_COLUMN_NAME) +

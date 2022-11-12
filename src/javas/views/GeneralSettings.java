@@ -10,7 +10,10 @@ import javas.views.components.ButtonWithIcon;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GeneralSettings extends JPanel {
     public GeneralSettings(){
@@ -61,12 +64,18 @@ public class GeneralSettings extends JPanel {
 
     private void resetDatabase() {
         try {
-            //ArrayList<String> tables = new ArrayList<String>();
-            //tables.add(Person.getQueryTable());
-            //AppDataSource.init(tables);
+            ArrayList<String> tables = new ArrayList<>();
+            tables.add(PersonEntityConstants.ENTITY_NAME);
+            tables.add(HealthUnitEntityConstants.ENTITY_NAME);
+            tables.add(VaccineEntityConstants.ENTITY_NAME);
+            Iterator it = tables.iterator();
 
-            // PersonRegistrationView view = new PersonRegistrationView();
-        }catch (Error error) {
+            Statement stm = AppDataSource.execute();
+            while (it.hasNext()) {
+                stm.execute(String.format("DELETE FROM %s", it.next()));
+            }
+            JOptionPane.showMessageDialog(this, "O banco de dados foi resetado com sucesso!");
+        }catch (SQLException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }
@@ -78,6 +87,7 @@ public class GeneralSettings extends JPanel {
             tables.add(PersonEntityConstants.getQueryTable());
             tables.add(VaccineEntityConstants.getQueryTable());
             AppDataSource.createTables(tables);
+            JOptionPane.showMessageDialog(this, "As tabelas foram criadas com sucesso!");
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
@@ -87,6 +97,7 @@ public class GeneralSettings extends JPanel {
     private void connectDatabase() {
         try {
             AppDataSource.connect();
+            JOptionPane.showMessageDialog(this, "Conexão realizada com sucesso!");
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
@@ -95,6 +106,7 @@ public class GeneralSettings extends JPanel {
     private void disconnectDatabase() {
         try {
             AppDataSource.disconnect();
+            JOptionPane.showMessageDialog(this, "O banco de dados foi desconectado com sucesso!");
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }

@@ -18,7 +18,7 @@ public class PersonEntityConstants {
 
 
     public static  String getQueryTable() {
-        return String.format("CREATE TABLE %s ", ENTITY_NAME) +
+        return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
                 String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", FIRST_NAME_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", LAST_NAME_COLUMN_NAME) +
