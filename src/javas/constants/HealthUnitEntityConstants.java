@@ -1,7 +1,7 @@
 package javas.constants;
 
 public class HealthUnitEntityConstants {
-    public static final String ENTITY_NAME = "heathUnits";
+    public static final String ENTITY_NAME = "healthUnits";
     public static final String ID_COLUMN_NAME = "_id";
     public static final String NAME_COLUMN_NAME = "name";
     public static final String CNPJ_COLUMN_NAME = "cnpj";
@@ -17,11 +17,11 @@ public class HealthUnitEntityConstants {
                 String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", NAME_COLUMN_NAME) +
                 String.format("%s TEXT NOT NULL,", TYPE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL", STREET_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL", DISTRICT_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL", CITY_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL", POSTAL_CODE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL", STATE_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", STREET_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", DISTRICT_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", CITY_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", POSTAL_CODE_COLUMN_NAME) +
+                String.format("%s TEXT NOT NULL,", STATE_COLUMN_NAME) +
                 String.format("PRIMARY KEY (%s))", ID_COLUMN_NAME);
     }
 }

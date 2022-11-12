@@ -1,6 +1,8 @@
 package javas.config;
 
-import javax.swing.*;
+import javas.errors.CustomError;
+import javas.exceptions.AppDataSourceMessages;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,15 +17,12 @@ public class AppDataSource {
 
         try {
             Class.forName("org.sqlite.JDBC");
-
             connection = DriverManager.getConnection(address);
             return true;
         } catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, error.getMessage());
-            return false;
+            throw new CustomError(AppDataSourceMessages.FAILED_USE_CONNECTION + "\n", error.getMessage());
         }catch (ClassNotFoundException error) {
-            JOptionPane.showMessageDialog(null, "Ocorreu uma falha ao utilizar o driver de conexão!");
-            return false;
+            throw new CustomError(AppDataSourceMessages.FAILED_CONNECT_DATABASE + "\n", error.getMessage());
         }
     }
 
@@ -37,8 +36,7 @@ public class AppDataSource {
                 return true;
             }
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi possível fechar a conexão com o banco!");
-            return false;
+            throw new CustomError(AppDataSourceMessages.FAILED_DISCONNECT_DATABASE + "\n", error.getMessage());
         }
         return false;
     }
@@ -49,22 +47,20 @@ public class AppDataSource {
                 connect();
             }
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi possível abrir a conexão com o banco!");
+            throw new CustomError(AppDataSourceMessages.FAILED_OPEN_DATABASE_CONNECTION + "\n", error.getMessage());
         }
         return connection;
     }
 
-    public static void init(ArrayList<String> tables) {
+    public static void createTables(ArrayList<String> tables) {
         try {
             Statement stm = execute();
             for (String table : tables) {
                 stm.execute(table);
             }
-
             stm.close();
-
         }catch(Exception error) {
-            JOptionPane.showMessageDialog(null, "Não foi possível criar as tabelas no banco!");
+            throw new CustomError(AppDataSourceMessages.FAILED_CREATE_TABLES_DATABASE + "\n", error.getMessage());
         }
     }
 
@@ -73,12 +69,9 @@ public class AppDataSource {
             if (connection == null || connection.isClosed()) {
                 connect();
             }
-            Statement stm = connection.createStatement();
-            return stm;
-
+            return connection.createStatement();
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel executar a query");
-            return null;
+            throw new CustomError(AppDataSourceMessages.FAILED_EXECUTE_QUERY, error.getMessage());
         }
     }
 }
