@@ -1,10 +1,7 @@
 package javas.errors;
 
-public class CustomError extends Exception {
-    private String title;
-    private String detail;
-
+public class CustomError extends Error {
     public CustomError(String title, String detail) {
-        super(title + ": " + detail);
+        super(title + "\n" + detail);
     }
 }

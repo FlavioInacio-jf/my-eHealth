@@ -3,15 +3,17 @@ package javas.views.components;
 import javax.swing.*;
 import java.awt.*;
 
-public class FormGroupSelect {
+public class FormGroupSelect extends JPanel{
     Select select;
     Label label;
 
-    public FormGroupSelect() {
+    public FormGroupSelect(String title, String[] values) {
+        this.init(title, values);
     }
 
-    public Box init(String title) {
-        this.select = new Select();
+    private void init(String title, String[] values) {
+        this.select = new Select(values);
+        this.select.setBorder(null);
         this.label = new Label(title);
         this.label.setLabelFor(this.select);
 
@@ -20,8 +22,9 @@ public class FormGroupSelect {
         box.add(this.label);
         box.add(Box.createVerticalStrut(5));
         box.add(this.select);
-        box.setMaximumSize(new Dimension(500, 45));
-        return box;
+        this.setMaximumSize(new Dimension(500, 45));
+        this.add(box);
+        this.setBackground(Color.WHITE);
     }
 
     public Object getSelectedItem() {

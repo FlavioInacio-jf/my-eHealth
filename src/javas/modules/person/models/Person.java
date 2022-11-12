@@ -1,6 +1,6 @@
 package javas.modules.person.models;
 
-import javas.modules.address.models.Address;
+import javas.modules.app.models.Address;
 import javas.modules.app.models.ModelBase;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
@@ -126,10 +126,10 @@ public class Person extends ModelBase {
         return  getId().equals(objectPerson.getId()) &&
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&
-                this.cpf.equals(objectPerson.getCPF()) &&
-                this.bloodTypeEnum.equals(objectPerson.getBloodType()) &&
-                this.birthDate.equals(objectPerson.getBirthDate());
-
+                this.getCreatedAt().equals(objectPerson.getCreatedAt()) &&
+                this.cpf.equals(objectPerson.getCPF()) && this.vaccines.equals(objectPerson.getVaccines()) &&
+                this.bloodTypeEnum.equals(objectPerson.getBloodType()) && this.sex.equals(objectPerson.getSex()) &&
+                this.birthDate.equals(objectPerson.getBirthDate()) && this.address.equals(objectPerson.getAddress());
     }
 
 }

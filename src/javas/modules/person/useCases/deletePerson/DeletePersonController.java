@@ -6,8 +6,7 @@ public class DeletePersonController {
     public DeletePersonController(DeletePersonUseCase deletePersonUseCase) {
         this.deletePersonUseCase = deletePersonUseCase;
     }
-
-    public void execute() {
-
+    public void execute(String cpf) {
+        this.deletePersonUseCase.handle(cpf);
     }
 }

@@ -1,25 +1,22 @@
 package javas.modules.vaccine.models;
 
 import javas.modules.app.models.ModelBase;
-import javas.modules.heathUnit.models.HeathUnit;
+import javas.modules.healthUnit.models.HealthUnit;
 
 public class Vaccine extends ModelBase {
     private String name;
-    private String date;
     private int dose;
     private String lot;
-    private HeathUnit heathUnit;
+    private HealthUnit healthUnit;
 
     public Vaccine(
              String _id,
              String name,
-             String date,
              int dose,
              String lot
     ){
          super(_id);
          this.name = name;
-         this.date = date;
          this.dose = dose;
          this.lot = lot;
     }
@@ -30,14 +27,6 @@ public class Vaccine extends ModelBase {
 
     public void setName(String Name){
         this.name = Name;
-    }
-
-    public String getDate(){
-        return this.date;
-    }
-
-    public void setDate(String date){
-        this.date = date;
     }
 
     public int getDose(){
@@ -56,15 +45,21 @@ public class Vaccine extends ModelBase {
         this.lot = lot;
     }
 
-    public HeathUnit getHeathUnit() {
-        return this.heathUnit;
+    public HealthUnit getHeathUnit() {
+        return this.healthUnit;
     }
-    public void setHeathUnit(HeathUnit heathUnit) {
-        this.heathUnit = heathUnit;
+    public void setHeathUnit(HealthUnit healthUnit) {
+        this.healthUnit = healthUnit;
     }
 
     @Override
     public boolean equals(Object object) {
-       return true;
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Vaccine objectVaccine)) {
+            return false;
+        }
+        return getId().equals(objectVaccine.getId()) && this.name.equals(objectVaccine.getName()) && this.getCreatedAt().equals(objectVaccine.getCreatedAt()) && this.getDose() == objectVaccine.getDose() && this.lot.equals(objectVaccine.getLot()) && this.healthUnit.equals(objectVaccine.getHeathUnit());
     }
 }

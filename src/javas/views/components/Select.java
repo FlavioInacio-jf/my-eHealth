@@ -9,15 +9,17 @@ import java.awt.*;
 public class Select extends JComboBox {
     private Border border;
 
-    public Select() {
+    public Select(String[] values) {
+        super(values);
         init();
     }
 
     private void init() {
-        this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 0);
-        setBorder(border);
-        setBackground(Color.white);
-        setAlignmentX(Component.LEFT_ALIGNMENT);
-        setFont(new Font("Fira Sans", Font.PLAIN, 16));
+        this.border = BorderFactory.createLineBorder(ViewConstants.BORDER_COLOR, 1);
+        this.setBorder(null);
+        this.setOpaque(true);
+        this.setBackground(Color.white);
+        this.setAlignmentX(Component.LEFT_ALIGNMENT);
+        this.setFont(new Font("Fira Sans", Font.PLAIN, 16));
     }
 }
