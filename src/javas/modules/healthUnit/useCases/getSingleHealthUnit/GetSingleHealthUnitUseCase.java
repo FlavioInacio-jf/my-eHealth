@@ -11,7 +11,6 @@ public class GetSingleHealthUnitUseCase {
     public GetSingleHealthUnitUseCase(IHealthUnitRepository heathUnitRepository) {
         this.heathUnitRepository = heathUnitRepository;
     }
-
     public HealthUnit handle(String cnpj) {
         HealthUnit healthUnitExists =  this.heathUnitRepository.findByCNPJ(cnpj);
         if (healthUnitExists == null) {

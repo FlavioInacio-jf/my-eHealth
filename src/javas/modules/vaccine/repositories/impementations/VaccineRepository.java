@@ -4,6 +4,7 @@ import javas.config.AppDataSource;
 import javas.constants.VaccineEntityConstants;
 import javas.errors.CustomError;
 import javas.exceptions.VaccineErrorMessages;
+import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 
 public class VaccineRepository implements IVaccineRepository {
 
-    private final Statement repository;
+    private final Statement statement;
 
     public VaccineRepository() {
-        this.repository = AppDataSource.execute();
+        this.statement = AppDataSource.execute();
     }
     @Override
     public Vaccine crate(String _idUser, String _idHealthUnit, Vaccine data) {
@@ -33,8 +34,8 @@ public class VaccineRepository implements IVaccineRepository {
                     data.getDose(),
                     data.getLot(), _idHealthUnit,
                     _idUser);
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return data;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.UNABLE_CREATE_VACCINE, error.getMessage());
@@ -54,8 +55,8 @@ public class VaccineRepository implements IVaccineRepository {
                     data.getLot(),
                     VaccineEntityConstants.ID_COLUMN_NAME,
                     data.getId());
-            this.repository.executeUpdate(query);
-            this.repository.close();
+            this.statement.executeUpdate(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.UNABLE_UPDATE_VACCINE, error.getMessage());
@@ -66,8 +67,8 @@ public class VaccineRepository implements IVaccineRepository {
     public boolean delete(String _id) {
         try {
             final String query = String.format("DELETE FROM %s WHERE %s='%s'", VaccineEntityConstants.ENTITY_NAME, VaccineEntityConstants.ID_COLUMN_NAME, _id);
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.UNABLE_DELETE_VACCINE, error.getMessage());
@@ -97,11 +98,11 @@ public class VaccineRepository implements IVaccineRepository {
         ArrayList<Vaccine> listVaccines = new ArrayList<>();
         try {
             final String query = String.format("SELECT * FROM %s where %s='%s'", VaccineEntityConstants.ENTITY_NAME, columnName, valueColumn);
-            ResultSet rs = this.repository.executeQuery(query);
+            ResultSet rs = this.statement.executeQuery(query);
             while (rs.next()) {
                 listVaccines.add(this.resultSetToVaccine(rs));
             }
-            this.repository.close();
+            this.statement.close();
             return listVaccines;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
@@ -116,10 +117,13 @@ public class VaccineRepository implements IVaccineRepository {
             String name = rs.getString(2);
             int dose = rs.getInt(3);
             String lot = rs.getString(4);
+            String healthUnitID = rs.getString(5);
+            String personID = rs.getString(6);
             Date createdAt = rs.getDate(7);
 
             Vaccine vaccine = new Vaccine(_id, name, dose, lot);
             vaccine.setCreatedAt(createdAt);
+            vaccine.setHeathUnit(new HealthUnit(healthUnitID, null, null, null, null));
             return vaccine;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.FAILED_CONVERT_RESULT_SET_TO_VACCINE, error.getMessage());
