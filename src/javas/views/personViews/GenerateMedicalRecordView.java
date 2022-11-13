@@ -25,6 +25,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         JPanel header = new JPanel();
+        header.setBackground(Color.WHITE);
         header.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
         Title title = new Title("Gerar prontuário médico", SwingConstants.CENTER);
@@ -40,6 +41,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         buttonGenerate.addActionListener(e -> this.handleGenerateMedicalRecord(personCPF.getText()));
 
         JPanel formPanel = new JPanel();
+        formPanel.setBackground(Color.WHITE);
         formPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         formPanel.setAlignmentY(Component.TOP_ALIGNMENT);
         GridLayout formLayout = new GridLayout(2, 1);
@@ -49,6 +51,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         formPanel.add(buttonGenerate);
 
         JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.WHITE);
         mainPanel.setLayout(new FlowLayout());
 
         mainPanel.add(formPanel);
