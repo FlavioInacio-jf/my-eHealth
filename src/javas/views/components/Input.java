@@ -6,10 +6,7 @@ import javas.constants.ViewConstants;
 import javax.swing.*;
 import java.awt.*;
 
-
-
 public class Input extends JFormattedTextField {
-
     public Input() {
         init();
     }

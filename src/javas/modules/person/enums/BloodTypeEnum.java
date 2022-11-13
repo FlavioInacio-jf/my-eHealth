@@ -5,6 +5,7 @@ import javas.exceptions.PersonErrorMessages;
 import java.util.Arrays;
 
 public enum BloodTypeEnum {
+
     A("A"), A_PLUS("A+"), A_LESS("A-"),
     B("B"), B_PLUS("B+"), B_LESS("B-"),
     AB("AB"), AB_PLUS("AB+"), AB_LESS("AB-"),

@@ -37,4 +37,5 @@ public class FormGroupInput extends JPanel {
     public String getText() {
         return this.input.getText();
     }
+
 }

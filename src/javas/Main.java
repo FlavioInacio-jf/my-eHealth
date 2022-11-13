@@ -20,10 +20,9 @@ public class Main {
             AppDataSource.createTables(tables);
 
             MainView mainView = new MainView();
-            mainView.setVisible(true);
+           mainView.setVisible(true);
         }catch (Error error) {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
-        
     }
 }

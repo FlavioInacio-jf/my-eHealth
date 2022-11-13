@@ -5,24 +5,49 @@ import javas.modules.app.models.ModelBase;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
 import javas.modules.vaccine.models.Vaccine;
+import javas.validations.*;
 
 import java.util.ArrayList;
 
 public class Person extends ModelBase {
 
+    @Validate(fieldName = "Primeiro nome")
+    @NotNull()
+    @NotEmpty()
     private String firstName;
 
+    @Validate(fieldName = "Último nome")
+    @NotNull()
+    @NotEmpty()
     private String lastName;
 
+    @Validate(fieldName = "CPF")
+    @NotNull()
+    @NotEmpty()
     private String cpf;
 
+    @Validate(fieldName = "Tipo Sanguíneo")
+    @NotNull()
+    @IsEnum(enumClass = BloodTypeEnum.class,
+            values = {"A", "A_PLUS", "A_LESS", "B", "B_LESS", "B_PLUS", "AB",
+                        "AB_PLUS", "AB_LESS", "O", "O_LESS", "O_PLUS"}
+    )
     private BloodTypeEnum bloodTypeEnum;
 
+    @Validate(fieldName = "Sexo")
+    @NotNull()
+    @IsEnum(enumClass = SexEnum.class, values = {"MALE", "FEMALE"})
     private SexEnum sex;
 
+    @Validate(fieldName = "Data de nascimento")
+    @NotNull()
+    @NotEmpty()
     private String birthDate;
 
     private ArrayList<Vaccine> vaccines;
+
+    @Validate(fieldName = "Endereço")
+    @NotNull()
     private Address address;
 
     public Person(
@@ -34,7 +59,7 @@ public class Person extends ModelBase {
             SexEnum sex,
             String birthDate,
             Address address
-    ) {
+    ) throws IllegalAccessException {
         super(_id);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,6 +69,7 @@ public class Person extends ModelBase {
         this.vaccines = new ArrayList<>();
         this.address = address;
         this.sex = sex;
+        new Validation(this).validate();
     }
 
     public String getFirstName() {
