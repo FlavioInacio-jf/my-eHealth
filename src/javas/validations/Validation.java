@@ -31,7 +31,7 @@ public class Validation {
     private void validateNotEmpty(Field field, String name) throws IllegalAccessException {
         if (field.isAnnotationPresent(NotEmpty.class)) {
             String message = field.getAnnotation(NotEmpty.class).message();
-            if (field.get(this.object).toString().trim().equals("")) {
+            if (field.get(this.object) == null || field.get(this.object).toString().trim().equals("")) {
                 throw new CustomError(name.isEmpty() ? getFieldName(field) : name, message);
             }
         }

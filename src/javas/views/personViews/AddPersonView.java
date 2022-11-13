@@ -122,7 +122,7 @@ public class AddPersonView extends BaseFrame {
             String postalCode = this.postalCode.getText();
             createPersonController.execute(firstName, lastName, cpf,bloodType, sex, birthDate, street, district, city, state, postalCode);
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
-        }catch (Error error) {
+        }catch (Error | IllegalAccessException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }

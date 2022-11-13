@@ -4,6 +4,7 @@ import javas.modules.app.models.Address;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
 import javas.modules.person.models.Person;
+import javas.validations.Validation;
 
 public class CreatePersonController {
     private CreatePersonUseCase createPersonUseCase;
@@ -24,12 +25,11 @@ public class CreatePersonController {
             String city,
             String state,
             String postalCode // CEP
-    ) {
-
+    ) throws IllegalAccessException {
 
         Address address = new Address(street, district, city, state, postalCode);
         Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), SexEnum.valueOf(sex), birthDate, address);
+        new Validation(person).validate();
         this.createPersonUseCase.handle(person);
-
     }
 }

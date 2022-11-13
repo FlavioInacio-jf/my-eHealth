@@ -2,10 +2,25 @@ package javas.modules.vaccine.models;
 
 import javas.modules.app.models.ModelBase;
 import javas.modules.healthUnit.models.HealthUnit;
+import javas.validations.NotEmpty;
+import javas.validations.NotNull;
+import javas.validations.NumericOnly;
+import javas.validations.Validate;
 
 public class Vaccine extends ModelBase {
+
+    @Validate(fieldName = "Nome")
+    @NotNull()
+    @NotEmpty()
     private String name;
+
+    @Validate(fieldName = "Dose")
+    @NotNull()
+    @NumericOnly()
     private int dose;
+
+    @Validate(fieldName = "Lote")
+    @NotEmpty()
     private String lot;
     private HealthUnit healthUnit;
 

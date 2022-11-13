@@ -12,17 +12,14 @@ import java.util.ArrayList;
 public class Person extends ModelBase {
 
     @Validate(fieldName = "Primeiro nome")
-    @NotNull()
     @NotEmpty()
     private String firstName;
 
     @Validate(fieldName = "Último nome")
-    @NotNull()
     @NotEmpty()
     private String lastName;
 
     @Validate(fieldName = "CPF")
-    @NotNull()
     @NotEmpty()
     private String cpf;
 
@@ -35,12 +32,10 @@ public class Person extends ModelBase {
     private BloodTypeEnum bloodTypeEnum;
 
     @Validate(fieldName = "Sexo")
-    @NotNull()
     @IsEnum(enumClass = SexEnum.class, values = {"MALE", "FEMALE"})
     private SexEnum sex;
 
     @Validate(fieldName = "Data de nascimento")
-    @NotNull()
     @NotEmpty()
     private String birthDate;
 
@@ -59,7 +54,7 @@ public class Person extends ModelBase {
             SexEnum sex,
             String birthDate,
             Address address
-    ) throws IllegalAccessException {
+    ) {
         super(_id);
         this.firstName = firstName;
         this.lastName = lastName;
