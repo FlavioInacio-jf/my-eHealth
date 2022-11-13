@@ -8,6 +8,7 @@ import javas.modules.vaccine.models.Vaccine;
 import javas.validations.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Person extends ModelBase {
 
@@ -113,6 +114,13 @@ public class Person extends ModelBase {
 
     public void applyVaccine(Vaccine vaccine) {
         this.vaccines.add(vaccine);
+    }
+
+    public void applyVaccines(ArrayList<Vaccine> vaccines) {
+        Iterator<Vaccine> it = vaccines.iterator();
+        while (it.hasNext()) {
+            this.applyVaccine(it.next());
+        }
     }
 
     public ArrayList<Vaccine> getVaccines() {

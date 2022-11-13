@@ -4,11 +4,14 @@ import javas.errors.CustomError;
 import javas.exceptions.PersonErrorMessages;
 import javas.modules.person.models.Person;
 import javas.modules.person.repositories.IPersonRepository;
+import javas.modules.vaccine.repositories.IVaccineRepository;
 
 public class GetSinglePersonUseCase {
     private IPersonRepository personRepository;
-    public GetSinglePersonUseCase(IPersonRepository personRepository) {
+    private IVaccineRepository vaccineRepository;
+    public GetSinglePersonUseCase(IPersonRepository personRepository, IVaccineRepository vaccineRepository) {
         this.personRepository = personRepository;
+        this.vaccineRepository = vaccineRepository;
     }
 
     public Person handle(String cpf) {
@@ -17,6 +20,7 @@ public class GetSinglePersonUseCase {
         if (person == null) {
             throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE, PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
         }
+        person.applyVaccines(this.vaccineRepository.findByUserId(person.getId()));
         return person;
     }
 }

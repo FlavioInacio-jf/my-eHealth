@@ -8,6 +8,8 @@ import javas.modules.app.models.Address;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
+import javas.modules.person.repositories.IPersonRepository;
+import javas.modules.person.repositories.implementations.PersonRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +17,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class HealthUnitRepository implements IHealthUnitRepository {
-    private final Statement repository;
+    private final Statement statement;
+    private final IPersonRepository personRepository;
 
     public HealthUnitRepository() {
-        this.repository = AppDataSource.execute();
+        this.statement = AppDataSource.execute();
+        this.personRepository = new PersonRepository();
     }
 
     @Override
@@ -38,11 +42,11 @@ public class HealthUnitRepository implements IHealthUnitRepository {
                     data.getAddress().getCity(),
                     data.getAddress().getState(),
                     data.getAddress().getPostalCode());
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return data;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT + "\n", error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_CREATE_HEALTH_UNIT, error.getMessage());
         }
     }
 
@@ -70,11 +74,11 @@ public class HealthUnitRepository implements IHealthUnitRepository {
                     HealthUnitEntityConstants.STATE_COLUMN_NAME,
                     data.getAddress().getState(),
                     data.getId());
-            this.repository.executeUpdate(query);
-            this.repository.close();
+            this.statement.executeUpdate(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT + "\n", error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_UPDATE_HEALTH_UNIT, error.getMessage());
         }
     }
 
@@ -82,11 +86,11 @@ public class HealthUnitRepository implements IHealthUnitRepository {
     public boolean delete(String _id) {
         try {
             final String query = String.format("DELETE FROM %s WHERE %s='%s'", HealthUnitEntityConstants.ENTITY_NAME, HealthUnitEntityConstants.ID_COLUMN_NAME, _id);
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT + "\n", error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT, error.getMessage());
         }
     }
 
@@ -108,13 +112,14 @@ public class HealthUnitRepository implements IHealthUnitRepository {
     private HealthUnit findOne(String columnName, String valueColumn) {
         try {
             final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", HealthUnitEntityConstants.ENTITY_NAME, columnName, valueColumn);
-            ResultSet rs = this.repository.executeQuery(query);
+            ResultSet rs = this.statement.executeQuery(query);
             while (rs.next()) {
                 return this.resultSetToHealthUnit(rs);
             }
-            this.repository.close();
+
+            this.statement.close();
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
         }
         return null;
     }
@@ -124,14 +129,14 @@ public class HealthUnitRepository implements IHealthUnitRepository {
         ArrayList<HealthUnit> listHealthUnit = new ArrayList<>();
         try {
             final String query = String.format("SELECT * FROM %s", HealthUnitEntityConstants.ENTITY_NAME);
-            ResultSet rs = this.repository.executeQuery(query);
+            ResultSet rs = this.statement.executeQuery(query);
             while (rs.next()) {
                 listHealthUnit.add(this.resultSetToHealthUnit(rs));
             }
-            this.repository.close();
+            this.statement.close();
             return listHealthUnit;
         }catch (SQLException error) {
-            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT + "\n", error.getMessage());
+            throw new CustomError(HealthUnitErrorMessages.UNABLE_SEARCH_HEALTH_UNIT, error.getMessage());
         }
     }
 

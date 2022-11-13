@@ -1,10 +1,6 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.person.repositories.IPersonRepository;
-import javas.modules.person.repositories.implementations.PersonRepository;
-import javas.modules.person.useCases.getSinglePerson.GetSinglePersonController;
-import javas.modules.person.useCases.getSinglePerson.GetSinglePersonUseCase;
 import javas.views.components.BaseFrame;
 import javas.views.components.Button;
 import javas.views.components.FormGroupInput;
@@ -13,6 +9,8 @@ import javas.views.components.Title;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.person.useCases.getSinglePerson.GetSinglePerson.getSinglePersonController;
 
 public class GenerateMedicalRecordView extends BaseFrame {
     public GenerateMedicalRecordView() {
@@ -61,12 +59,8 @@ public class GenerateMedicalRecordView extends BaseFrame {
 
 
     private void handleGenerateMedicalRecord(String cpf){
-        IPersonRepository personRepository = new PersonRepository();
-        GetSinglePersonUseCase getSinglePersonUseCase = new GetSinglePersonUseCase(personRepository);
-        GetSinglePersonController getSinglePersonController = new GetSinglePersonController(getSinglePersonUseCase);
         try {
             new MedialRecordView(getSinglePersonController.execute(cpf)).setVisible(true);
-
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
