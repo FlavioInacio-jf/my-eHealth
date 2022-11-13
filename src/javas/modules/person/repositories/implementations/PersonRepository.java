@@ -29,9 +29,22 @@ public class PersonRepository implements IPersonRepository {
 
     private Person save(Person data) {
         try {
-            final String query = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', " +
+            final String query = String.format("INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) " +
+                                                                "VALUES ('%s', '%s', '%s', '%s', '%s', " +
                                                                 "'%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                                                 PersonEntityConstants.ENTITY_NAME,
+                                                PersonEntityConstants.ID_COLUMN_NAME,
+                                                PersonEntityConstants.FIRST_NAME_COLUMN_NAME,
+                                                PersonEntityConstants.LAST_NAME_COLUMN_NAME,
+                                                PersonEntityConstants.CPF_COLUMN_NAME,
+                                                PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME,
+                                                PersonEntityConstants.BIRTH_DATE_COLUMN_NAME,
+                                                PersonEntityConstants.SEX_COLUMN_NAME,
+                                                PersonEntityConstants.STREET_COLUMN_NAME,
+                                                PersonEntityConstants.DISTRICT_COLUMN_NAME,
+                                                PersonEntityConstants.CITY_COLUMN_NAME,
+                                                PersonEntityConstants.POSTAL_CODE_COLUMN_NAME,
+                                                PersonEntityConstants.STATE_COLUMN_NAME,
                                                 data.getId(), data.getFirstName(),
                                                 data.getLastName(), data.getCPF(),
                                                 data.getBloodType().getValue(), data.getBirthDate(),
@@ -51,7 +64,7 @@ public class PersonRepository implements IPersonRepository {
         try {
             final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s', " +
                             "                                 %s='%s', %s='%s', %s='%s', %s='%s', %s='%s'," +
-                            "                                 %s='%s',  WHERE _id='%s'",
+                            "                                 %s='%s',  WHERE %s='%s'",
                                                 PersonEntityConstants.ENTITY_NAME,
                                                 PersonEntityConstants.FIRST_NAME_COLUMN_NAME,
                                                 data.getFirstName(),
@@ -73,6 +86,7 @@ public class PersonRepository implements IPersonRepository {
                                                 data.getAddress().getPostalCode(),
                                                 PersonEntityConstants.STATE_COLUMN_NAME,
                                                 data.getAddress().getState(),
+                                                PersonEntityConstants.ID_COLUMN_NAME,
                                                 data.getId());
             this.repository.executeUpdate(query);
             this.repository.close();

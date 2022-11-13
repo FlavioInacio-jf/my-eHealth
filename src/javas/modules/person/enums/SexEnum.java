@@ -5,8 +5,8 @@ import javas.exceptions.PersonErrorMessages;
 import java.util.Arrays;
 
 public enum SexEnum {
-    MALE("masculino"),
-    FEMALE("feminino");
+    MALE("MASCULINO"),
+    FEMALE("FEMININO");
 
     private String name;
     SexEnum(String name) {

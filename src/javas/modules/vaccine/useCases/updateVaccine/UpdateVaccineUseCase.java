@@ -14,7 +14,7 @@ public class UpdateVaccineUseCase {
     public void handle(Vaccine vaccine) {
        Vaccine vaccineExists = this.vaccineRepository.findById(vaccine.getId());
        if (vaccineExists == null) {
-           throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE + "\n",
+           throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE,
                                  VaccineErrorMessages.VACCINE_NOT_FOUND_DETAIL);
        }
 

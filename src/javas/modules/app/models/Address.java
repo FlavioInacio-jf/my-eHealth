@@ -1,10 +1,28 @@
 package javas.modules.app.models;
 
+import javas.validations.NotEmpty;
+import javas.validations.Validate;
+
 public class Address {
+
+    @Validate(fieldName = "Rua")
+    @NotEmpty()
     private String street;
+
+    @Validate(fieldName = "Bairro")
+    @NotEmpty()
     private String district; // bairro
+
+    @Validate(fieldName = "Cidade")
+    @NotEmpty()
     private String city;
+
+    @Validate(fieldName = "Estado")
+    @NotEmpty()
     private String state;
+
+    @Validate(fieldName = "CEP")
+    @NotEmpty()
     private String postalCode; // CEP
 
     public Address(

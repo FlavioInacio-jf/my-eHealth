@@ -5,69 +5,70 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class AddressTest {
-    public AddressTest() {}
-
-    Address endereco = new Address("Abbey Road","Farolandia" , "Paris", 
-    "Florida", "586939291");
+    private final Address address;
+    public AddressTest() {
+        this.address = new Address("Abbey Road","Farolandia" , "Paris",
+                "Florida", "586939291");
+    }
 
     @Test
     public void getStreet() {
-        assertEquals("Abbey Road", endereco.getStreet());
+        assertEquals("Abbey Road", address.getStreet());
     }
 
     @Test
     public void setStreet() {
-        endereco.setStreet("Oliveira");
+        address.setStreet("Oliveira");
 
-        assertEquals("Oliveira", endereco.getStreet());
+        assertEquals("Oliveira", address.getStreet());
     }
 
     @Test
     public void getDistrict() {
-        assertEquals("Farolandia", endereco.getDistrict());
+        assertEquals("Farolandia", address.getDistrict());
     }
 
     @Test
     public void setDistrict() {
-        endereco.setDistrict("Coroa do Meio");
+        address.setDistrict("Coroa do Meio");
 
-        assertEquals("Coroa do Meio", endereco.getDistrict());
+        assertEquals("Coroa do Meio", address.getDistrict());
     }
 
     @Test
     public void getCity() {
-        assertEquals("Paris", endereco.getCity());
+        assertEquals("Paris", address.getCity());
     }
 
     @Test
     public void setCity() {
-        endereco.setCity("BH");
+        address.setCity("BH");
         
-        assertEquals("BH", endereco.getCity());
+        assertEquals("BH", address.getCity());
     }
 
     @Test
     public void getState() {
-        assertEquals("Florida", endereco.getState());
+        assertEquals("Florida", address.getState());
     }
 
     @Test
     public void setState() {
-        endereco.setState("Cidade do Mexico");
+        address.setState("Cidade do Mexico");
 
-        assertEquals("Cidade do Mexico", endereco.getState());
+        assertEquals("Cidade do Mexico", address.getState());
     }
 
     @Test
     public void getPostalCode() {
-        assertEquals("586939291", endereco.getPostalCode());
+        assertEquals("586939291", address.getPostalCode());
     }
 
     @Test
     public void setPostalCode() {
-        endereco.setPostalCode("5869399999");
+        address.setPostalCode("5869399999");
 
-        assertEquals("5869399999", endereco.getPostalCode());
+        assertEquals("5869399999", address.getPostalCode());
     }
 
     @Test
@@ -75,6 +76,6 @@ public class AddressTest {
         Address endereco2 = new Address("Abbey Road","Farolandia" , "Paris", 
      "Florida", "586939291");
 
-     endereco.equals(endereco2);
+        address.equals(endereco2);
     }
 }

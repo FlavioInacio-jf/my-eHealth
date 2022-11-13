@@ -1,13 +1,15 @@
 package javas.modules.person.models;
 
+import javas.modules.app.models.Address;
 import javas.modules.person.enums.BloodTypeEnum;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import javas.modules.person.enums.SexEnum;
+import javas.modules.vaccine.models.Vaccine;
 import org.junit.Test;
 
-import java.util.ArrayList;
 
 public class PersonTest {
     public PersonTest() {}
@@ -99,18 +101,18 @@ public class PersonTest {
     public void testApplyVaccine() {
         Person person = new Person(null, "Maria",
                 "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
         person.applyVaccine(vaccine);
-        assertTrue(GetVaccines().contains(vaccine));
+        assertTrue(person.getVaccines().contains(vaccine));
     }
 
     @Test
     public void testGetVaccines() {
         Person person = new Person(null, "Maria",
                 "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", "14/02/2020", 1, "157");
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
         person.applyVaccine(vaccine);
-        assertTrue(GetVaccines().contains(vaccine));
+        assertTrue(person.getVaccines().contains(vaccine));
     }
 
     @Test
@@ -118,7 +120,7 @@ public class PersonTest {
         Address address = new Address("a", "b", "c", "d", "e");
         Person person = new Person(null, "Amanda",
                 "Azevedo", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", address);
-        AssertEquals(address, person.getAddress());
+        assertEquals(address, person.getAddress());
 
     }
 
@@ -126,10 +128,10 @@ public class PersonTest {
     public void testSetAddress() {
         Person person = new Person(null, "Amanda",
                 "Azevedo", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
-        AssertEquals(null, person.getAddress());
+        assertNull(null, person.getAddress());
         Address address = new Address("a", "b", "c", "d", "e");
         person.setAddress(address);
-        AssertEquals(address, person.getAddress());
+        assertEquals(address, person.getAddress());
     }
 
     @Test
@@ -155,7 +157,7 @@ public class PersonTest {
                 "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", null);
         Person person3 = new Person(null, "Paula",
                 "Silva", "888.888.888-88", BloodTypeEnum.B_PLUS, SexEnum.FEMALE, "17/12/2005", null);
-        assertTrue(person2, person);
-        assertFalse(person3, person);
+        assertTrue(person2.equals(person));
+        assertTrue(person3.equals(person));
     }
 }

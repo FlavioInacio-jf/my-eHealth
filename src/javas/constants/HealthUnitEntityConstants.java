@@ -15,14 +15,14 @@ public class HealthUnitEntityConstants {
 
     public static  String getQueryTable() {
         return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
-                String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", TYPE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", STREET_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", DISTRICT_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", CITY_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", POSTAL_CODE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", STATE_COLUMN_NAME) +
+                String.format("( %s VARCHAR NOT NULL,", ID_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", NAME_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", TYPE_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", STREET_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", DISTRICT_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", CITY_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", POSTAL_CODE_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", STATE_COLUMN_NAME) +
                 String.format("%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,", CREATED_AT_COLUMN_NAME) +
                 String.format("PRIMARY KEY (%s))", ID_COLUMN_NAME);
     }

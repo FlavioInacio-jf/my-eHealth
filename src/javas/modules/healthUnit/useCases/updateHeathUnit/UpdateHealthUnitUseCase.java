@@ -15,7 +15,7 @@ public class UpdateHealthUnitUseCase {
     public void handle(HealthUnit healthUnit) {
         HealthUnit healthUnitExists =  this.heathUnitRepository.findByCNPJ(healthUnit.getCNPJ());
         if (healthUnitExists == null) {
-            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE + "\n",
+            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE,
                     HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
         }
         healthUnitExists.setId(healthUnitExists.getId());

@@ -16,7 +16,7 @@ public class DeleteVaccineUseCase {
         Vaccine vaccineExists = this.vaccineRepository.findById(_id);
 
         if (vaccineExists == null) {
-            throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE + "\n",
+            throw new CustomError(VaccineErrorMessages.VACCINE_NOT_FOUND_TITLE,
                                     VaccineErrorMessages.VACCINE_NOT_FOUND_DETAIL);
         }
 

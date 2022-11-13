@@ -26,13 +26,14 @@ public class Person extends ModelBase {
     @Validate(fieldName = "Tipo Sanguíneo")
     @NotNull()
     @IsEnum(enumClass = BloodTypeEnum.class,
-            values = {"A", "A_PLUS", "A_LESS", "B", "B_LESS", "B_PLUS", "AB",
-                        "AB_PLUS", "AB_LESS", "O", "O_LESS", "O_PLUS"}
+            values = {"A", "A+", "A-", "B", "B-", "B+", "AB",
+                        "AB+", "AB-", "O", "O-", "O+"}
     )
-    private BloodTypeEnum bloodTypeEnum;
+    private BloodTypeEnum bloodType;
 
     @Validate(fieldName = "Sexo")
-    @IsEnum(enumClass = SexEnum.class, values = {"MALE", "FEMALE"})
+    @NotNull()
+    @IsEnum(enumClass = SexEnum.class, values = {"MASCULINO", "FEMININO"})
     private SexEnum sex;
 
     @Validate(fieldName = "Data de nascimento")
@@ -59,7 +60,7 @@ public class Person extends ModelBase {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
-        this.bloodTypeEnum = bloodTypeEnum;
+        this.bloodType = bloodTypeEnum;
         this.birthDate = birthDate;
         this.vaccines = new ArrayList<>();
         this.address = address;
@@ -91,11 +92,11 @@ public class Person extends ModelBase {
     }
 
     public BloodTypeEnum getBloodType() {
-        return this.bloodTypeEnum;
+        return this.bloodType;
     }
 
     public void setBloodType(BloodTypeEnum bloodTypeEnum) {
-        this.bloodTypeEnum = bloodTypeEnum;
+        this.bloodType = bloodTypeEnum;
     }
 
     public String getBirthDate() {
@@ -148,7 +149,7 @@ public class Person extends ModelBase {
                 this.lastName.equals(objectPerson.getLastName()) &&
                 this.getCreatedAt().equals(objectPerson.getCreatedAt()) &&
                 this.cpf.equals(objectPerson.getCPF()) && this.vaccines.equals(objectPerson.getVaccines()) &&
-                this.bloodTypeEnum.equals(objectPerson.getBloodType()) && this.sex.equals(objectPerson.getSex()) &&
+                this.bloodType.equals(objectPerson.getBloodType()) && this.sex.equals(objectPerson.getSex()) &&
                 this.birthDate.equals(objectPerson.getBirthDate()) && this.address.equals(objectPerson.getAddress());
     }
 
