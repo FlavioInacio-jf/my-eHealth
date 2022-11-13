@@ -69,7 +69,6 @@ public class Person extends ModelBase {
         this.vaccines = new ArrayList<>();
         this.address = address;
         this.sex = sex;
-        new Validation(this).validate();
     }
 
     public String getFirstName() {
