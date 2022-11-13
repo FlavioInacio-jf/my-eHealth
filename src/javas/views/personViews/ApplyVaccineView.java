@@ -85,7 +85,7 @@ public class ApplyVaccineView extends BaseFrame {
         try {
             applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
             JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
-        }catch (Error error) {
+        }catch (Error | IllegalAccessException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }
