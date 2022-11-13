@@ -10,8 +10,9 @@ import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+
+import static javas.modules.person.useCases.getAllPeople.GetAllPeople.getAllPeopleController;
 
 public class PersonView extends JPanel {
     private GenerateMedicalRecordView generateMedicalRecordView;
@@ -32,7 +33,6 @@ public class PersonView extends JPanel {
     private void init() {
         this.setLayout(new BorderLayout());
         this.setBorder(null);
-        JScrollPane scrollPane = new JScrollPane();
 
         // Configure north area
         JPanel jPanelNorth = new JPanel();
@@ -97,16 +97,21 @@ public class PersonView extends JPanel {
         model.addColumn("Data nascimento");
 
         // PopulateTable
-        ArrayList<Person> people = new ArrayList<>();
-        Iterator<Person> it = people.iterator();
-        while (it.hasNext()){
-            Person person = it.next();
-            model.addRow(new Object[]{
-                            person.getFullName(),
-                            person.getCPF(),
-                            person.getBloodType().toString(),
-                            person.getBirthDate()});
+        try {
+            ArrayList<Person> people = getAllPeopleController.execute();
+            Iterator<Person> it = people.iterator();
+            while (it.hasNext()){
+                Person person = it.next();
+                model.addRow(new Object[]{
+                        person.getFullName(),
+                        person.getCPF(),
+                        person.getBloodType().toString(),
+                        person.getBirthDate()});
+            }
+        }catch (IllegalArgumentException error) {
+            JOptionPane.showMessageDialog(this, error.getMessage());
         }
+
         // Initializing the JTable
         Table table = new Table(model) {
             @Override

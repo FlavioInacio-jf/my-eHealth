@@ -34,8 +34,8 @@ public class PersonRepository implements IPersonRepository {
                                                 PersonEntityConstants.ENTITY_NAME,
                                                 data.getId(), data.getFirstName(),
                                                 data.getLastName(), data.getCPF(),
-                                                data.getBloodType().toString(), data.getBirthDate(),
-                                                data.getSex(), data.getAddress().getStreet(),
+                                                data.getBloodType().getValue(), data.getBirthDate(),
+                                                data.getSex().getValue(), data.getAddress().getStreet(),
                                                 data.getAddress().getDistrict(), data.getAddress().getCity(),
                                                 data.getAddress().getPostalCode(), data.getAddress().getState());
             this.repository.execute(query);
@@ -58,11 +58,11 @@ public class PersonRepository implements IPersonRepository {
                                                 PersonEntityConstants.LAST_NAME_COLUMN_NAME,
                                                 data.getLastName(),
                                                 PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME,
-                                                data.getBloodType().toString(),
+                                                data.getBloodType().getValue(),
                                                 PersonEntityConstants.BIRTH_DATE_COLUMN_NAME,
                                                 data.getBirthDate(),
                                                 PersonEntityConstants.SEX_COLUMN_NAME,
-                                                data.getSex(),
+                                                data.getSex().getValue(),
                                                 PersonEntityConstants.STREET_COLUMN_NAME,
                                                 data.getAddress().getStreet(),
                                                 PersonEntityConstants.DISTRICT_COLUMN_NAME,
@@ -136,26 +136,31 @@ public class PersonRepository implements IPersonRepository {
 
     private Person resultSetToPerson(ResultSet rs) {
         try {
-
             // Person Columns
             String _id = rs.getString(1);
+
             String firstName = rs.getString(2);
             String lastName = rs.getString(3);
             String cpf = rs.getString(4);
-            BloodTypeEnum bloodType = BloodTypeEnum.valueOf(rs.getString(5));
+            BloodTypeEnum bloodType = BloodTypeEnum.valueOf(BloodTypeEnum.getEnum(rs.getString(5)));
             String birthDate = rs.getString(6);
             SexEnum sex = SexEnum.valueOf(rs.getString(7));
-
             // Address Columns
-            String street = rs.getNString(8);
+            String street = rs.getString(8);
+
             String district = rs.getString(9);
+
             String city = rs.getString(10);
+
             String postalCode = rs.getString(11);
+
             String state = rs.getString(12);
+
 
             Address address = new Address(street, district, city, postalCode, state);
             return new Person(_id, firstName, lastName, cpf, bloodType, sex, birthDate, address);
         }catch (SQLException error) {
+
             throw new CustomError(PersonErrorMessages.FAILED_CONVERT_RESULT_SET_TO_PERSON, error.getMessage());
         }
     }

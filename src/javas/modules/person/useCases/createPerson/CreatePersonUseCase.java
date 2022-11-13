@@ -13,11 +13,14 @@ public class CreatePersonUseCase {
     }
 
     public void handle(Person person) {
+
         Person personAlreadyExists = this.personRepository.findByCPF(person.getCPF());
 
         if (personAlreadyExists != null) {
-            throw new CustomError(PersonErrorMessages.PERSON_ALREADY_EXIST_TITLE + "\n",
+            throw new CustomError(PersonErrorMessages.PERSON_ALREADY_EXIST_TITLE,
                                   PersonErrorMessages.PERSON_ALREADY_EXIST_DETAIL);
         }
+
+        this.personRepository.create(person);
     }
 }

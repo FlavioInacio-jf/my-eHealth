@@ -4,14 +4,31 @@ import javas.modules.app.models.Address;
 import javas.modules.app.models.ModelBase;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.person.models.Person;
+import javas.validations.IsEnum;
+import javas.validations.NotEmpty;
+import javas.validations.NotNull;
+import javas.validations.Validate;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class HealthUnit extends ModelBase {
+
+    @Validate(fieldName = "Tipo")
+    @NotNull()
+    @IsEnum(enumClass = UnitTypeEnum.class, values = {"HOSPITAL", "UBS", "UPA"})
     private UnitTypeEnum type;
+
+    @Validate(fieldName = "Nome")
+    @NotEmpty()
     private String name;
+
+    @Validate(fieldName = "CNPJ")
+    @NotEmpty()
     private String cnpj;
+
+    @Validate(fieldName = "Endereço")
+    @NotNull()
     private Address address;
     private ArrayList<Person> people;
     

@@ -108,23 +108,21 @@ public class AddPersonView extends BaseFrame {
     }
 
     private void handleAddPerson() {
-
-        String firstName = this.firstName.getText();
-        String lastName = this.lastName.getText();
-        String bloodType = this.bloodType.getSelectedItem().toString();
-        String sex = this.sex.getSelectedItem().toString();
-        String cpf = this.cpf.getText();
-        String birthDate = this.birthDate.getText();
-        String street = this.street.getText();
-        String district = this.district.getText();
-        String city = this.city.getText();
-        String state = this.state.getText();
-        String postalCode = this.postalCode.getText();
-
         try {
-           createPersonController.execute(firstName, lastName, cpf,bloodType, sex, birthDate, street, district, city, state, postalCode);
+            String firstName = this.firstName.getText();
+            String lastName = this.lastName.getText();
+            String bloodType = BloodTypeEnum.getEnum(this.bloodType.getSelectedItem().toString());
+            String sex = SexEnum.getEnum(this.sex.getSelectedItem().toString());
+            String cpf = this.cpf.getText();
+            String birthDate = this.birthDate.getText();
+            String street = this.street.getText();
+            String district = this.district.getText();
+            String city = this.city.getText();
+            String state = this.state.getText();
+            String postalCode = this.postalCode.getText();
+            createPersonController.execute(firstName, lastName, cpf,bloodType, sex, birthDate, street, district, city, state, postalCode);
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
-        }catch (Error error) {
+        }catch (Error | IllegalAccessException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }

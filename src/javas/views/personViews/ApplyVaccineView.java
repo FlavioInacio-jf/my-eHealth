@@ -16,7 +16,6 @@ public class ApplyVaccineView extends BaseFrame {
     FormGroupInput personCPF;
     FormGroupInput healthUnitCNPJ;
     FormGroupInput name;
-    FormGroupInput date;
     FormGroupInput dose;
     FormGroupInput lot;
     public ApplyVaccineView() {
@@ -25,8 +24,6 @@ public class ApplyVaccineView extends BaseFrame {
         this.healthUnitCNPJ = new FormGroupInput("CNPJ (Unidade de saúde):");
         healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
         this.name = new FormGroupInput("Nome:");
-        this.date = new FormGroupInput("Data");
-        this.date.setMaskFormatter("##/##/####");
         this.dose = new FormGroupInput("Dose");
         this.lot = new FormGroupInput("Lote");
 
@@ -65,7 +62,6 @@ public class ApplyVaccineView extends BaseFrame {
         paneForm.add(this.personCPF);
         paneForm.add(this.healthUnitCNPJ);
         paneForm.add(this.name);
-        paneForm.add(this.date);
         paneForm.add(this.dose);
         paneForm.add(this.lot);
         paneForm.add(applyVaccineButton);
@@ -77,7 +73,6 @@ public class ApplyVaccineView extends BaseFrame {
 
         contentPane.add(header);
         contentPane.add(mainPanel);
-
     }
 
     private void handleApplyVaccine() {

@@ -12,4 +12,5 @@ public class HealthUnitErrorMessages {
 
     public static final String HEALTH_UNIT_NOT_FOUND_TITLE = "Unidade de saúde não foi encontrada!";
     public static final String HEALTH_UNIT_NOT_FOUND_DETAIL = "Unidade de saúde não existe no banco de dados!";
+    public static final String HEALTH_UNIT_TYPE_INVALID = "Tipo da unidade de saúde é inválido!";
 }

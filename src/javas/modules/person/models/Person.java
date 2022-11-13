@@ -5,24 +5,44 @@ import javas.modules.app.models.ModelBase;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
 import javas.modules.vaccine.models.Vaccine;
+import javas.validations.*;
 
 import java.util.ArrayList;
 
 public class Person extends ModelBase {
 
+    @Validate(fieldName = "Primeiro nome")
+    @NotEmpty()
     private String firstName;
 
+    @Validate(fieldName = "Último nome")
+    @NotEmpty()
     private String lastName;
 
+    @Validate(fieldName = "CPF")
+    @NotEmpty()
     private String cpf;
 
+    @Validate(fieldName = "Tipo Sanguíneo")
+    @NotNull()
+    @IsEnum(enumClass = BloodTypeEnum.class,
+            values = {"A", "A_PLUS", "A_LESS", "B", "B_LESS", "B_PLUS", "AB",
+                        "AB_PLUS", "AB_LESS", "O", "O_LESS", "O_PLUS"}
+    )
     private BloodTypeEnum bloodTypeEnum;
 
+    @Validate(fieldName = "Sexo")
+    @IsEnum(enumClass = SexEnum.class, values = {"MALE", "FEMALE"})
     private SexEnum sex;
 
+    @Validate(fieldName = "Data de nascimento")
+    @NotEmpty()
     private String birthDate;
 
     private ArrayList<Vaccine> vaccines;
+
+    @Validate(fieldName = "Endereço")
+    @NotNull()
     private Address address;
 
     public Person(
