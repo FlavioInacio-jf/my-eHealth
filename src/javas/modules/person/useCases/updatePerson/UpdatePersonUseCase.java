@@ -16,7 +16,7 @@ public class UpdatePersonUseCase {
         Person personExists = this.personRepository.findByCPF(cpf);
 
         if (personExists == null) {
-            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE + "\n", PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
+            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE, PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
         }
 
         personExists.setFirstName(person.getFirstName());

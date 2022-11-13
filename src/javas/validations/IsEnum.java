@@ -8,4 +8,6 @@ import java.lang.annotation.*;
 public @interface IsEnum {
     Class<? extends Enum<?>> enumClass();
     String[] values() default {};
+    String MESAGE = "Valor informado é inválido";
+    String message() default MESAGE;
 }

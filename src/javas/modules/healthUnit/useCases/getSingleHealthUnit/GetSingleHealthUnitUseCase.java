@@ -15,7 +15,7 @@ public class GetSingleHealthUnitUseCase {
     public HealthUnit handle(String cnpj) {
         HealthUnit healthUnitExists =  this.heathUnitRepository.findByCNPJ(cnpj);
         if (healthUnitExists == null) {
-            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE + "\n",
+            throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE,
                     HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
         }
 

@@ -15,7 +15,7 @@ public class GetSinglePersonUseCase {
         Person person = this.personRepository.findByCPF(cpf);
 
         if (person == null) {
-            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE + "\n", PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
+            throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE, PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
         }
         return person;
     }

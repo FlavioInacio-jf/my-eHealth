@@ -25,6 +25,7 @@ public class CreateHealthUnitController {
         Address address = new Address(street, district, city, state, postalCode);
         HealthUnit healthUnit = new HealthUnit(null, UnitTypeEnum.valueOf(type), name, cnpj, address);
         new Validation(healthUnit).validate();
+        new Validation(address).validate();
         this.createHealthUnitUseCase.handle(healthUnit);
     }
 }

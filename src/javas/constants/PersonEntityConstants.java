@@ -19,18 +19,18 @@ public class PersonEntityConstants {
 
     public static  String getQueryTable() {
         return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
-                String.format("( %s TEXT NOT NULL,", ID_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", FIRST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", LAST_NAME_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL UNIQUE,", CPF_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", BLOOD_TYPE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", BIRTH_DATE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", SEX_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", STREET_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", DISTRICT_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", CITY_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", POSTAL_CODE_COLUMN_NAME) +
-                String.format("%s TEXT NOT NULL,", STATE_COLUMN_NAME) +
+                String.format("( %s VARCHAR NOT NULL,", ID_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", FIRST_NAME_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", LAST_NAME_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL UNIQUE,", CPF_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", BLOOD_TYPE_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", BIRTH_DATE_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", SEX_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", STREET_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", DISTRICT_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", CITY_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", POSTAL_CODE_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", STATE_COLUMN_NAME) +
                 String.format("%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,", CREATED_AT_COLUMN_NAME) +
                 String.format("PRIMARY KEY (%s))", ID_COLUMN_NAME);
     }

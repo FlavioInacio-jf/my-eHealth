@@ -61,11 +61,11 @@ public class Validation {
 
     private boolean validateIsEnum(Field field, String name) throws IllegalAccessException {
         if (field.isAnnotationPresent(IsEnum.class)) {
-            String message = field.getAnnotation(NumericOnly.class).message();
+            String message = field.getAnnotation(IsEnum.class).message();
             String [] validValues = field.getAnnotation(IsEnum.class).values();
             String value = field.get(this.object).toString();
             for (String validValue : validValues) {
-                if (value == validValue) {
+                if (validValue.trim().equalsIgnoreCase(value.trim())) {
                     return true;
                 }
             }

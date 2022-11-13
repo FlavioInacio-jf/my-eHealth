@@ -30,6 +30,8 @@ public class UpdatePersonController {
         Address address = new Address(street, district, city, state, postalCode);
         Person person = new Person(null, firstName, lastName, cpf, BloodTypeEnum.valueOf(bloodType), sex, birthDate, address);
         new Validation(person).validate();
+        new Validation(address).validate();
+
         this.updatePersonUseCase.handle(cpf, person);
     }
 }
