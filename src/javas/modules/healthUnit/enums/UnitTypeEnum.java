@@ -1,8 +1,6 @@
 package javas.modules.healthUnit.enums;
 
 import javas.exceptions.HealthUnitErrorMessages;
-import javas.exceptions.PersonErrorMessages;
-import javas.modules.person.enums.BloodTypeEnum;
 
 import java.util.Arrays;
 
@@ -16,7 +14,7 @@ public enum UnitTypeEnum {
     }
 
     public static String[] getNames() {
-        String valuesStr = Arrays.toString(BloodTypeEnum.values());
+        String valuesStr = Arrays.toString(UnitTypeEnum.values());
         return valuesStr.substring(1, valuesStr.length()-1).replace(" ", "").split(",");
     }
     @Override

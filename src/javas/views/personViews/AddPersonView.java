@@ -32,7 +32,7 @@ public class AddPersonView extends BaseFrame {
         this.state = new FormGroupSelect("Estado", Addresses.validStates);
         this.birthDate.setMaskFormatter("##");
         this.postalCode = new FormGroupInput("CEP");
-        this.birthDate.setMaskFormatter("####-###");
+        this.postalCode.setMaskFormatter("#####-###");
 
 
         this.addPersonButton = new Button("Adicionar paciente");
@@ -47,14 +47,7 @@ public class AddPersonView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        JPanel header = new JPanel();
-        header.setBackground(Color.WHITE);
-        header.setLayout(new FlowLayout());
-        Title title = new Title("Registrar um novo paciente", SwingConstants.CENTER);
-        Icon vaccineIcon = new ImageIcon(this.getClass().getResource("../icons/add-user-icon.png"));
-
-        header.add(new JLabel(vaccineIcon));
-        header.add(title);
+        Header header = new Header("Registrar um novo paciente", this.getClass().getResource("../icons/add-user-icon.png"));
 
         // Form
         JPanel mainPanel = new JPanel();
@@ -121,7 +114,7 @@ public class AddPersonView extends BaseFrame {
             this.pack();
             this.dispose();
 
-        }catch (Error | IllegalAccessException error) {
+        }catch (Error | IllegalAccessException | IllegalArgumentException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }

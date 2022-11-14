@@ -4,10 +4,8 @@ import javas.constants.ViewConstants;
 import static javas.modules.person.useCases.getSinglePerson.GetSinglePerson.getSinglePersonController;
 
 import javas.modules.person.models.Person;
-import javas.views.components.BaseFrame;
+import javas.views.components.*;
 import javas.views.components.Button;
-import javas.views.components.FormGroupInput;
-import javas.views.components.Title;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -29,15 +27,8 @@ public class DeletePersonView extends BaseFrame {
         contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-        JPanel header = new JPanel();
-        header.setBackground(Color.WHITE);
-        header.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-
-        Title title = new Title("Excluir paciente", SwingConstants.CENTER);
-        Icon personIcon = new ImageIcon(this.getClass().getResource("../icons/remove-user-icon.png"));
-
-        header.add(new JLabel(personIcon));
-        header.add(title);
+        // Header
+        Header header = new Header("Excluir paciente", this.getClass().getResource("../icons/remove-user-icon.png"));
 
         FormGroupInput personCPF = new FormGroupInput("CPF");
         personCPF.setMaskFormatter("###.###.###-##");
@@ -86,7 +77,5 @@ public class DeletePersonView extends BaseFrame {
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
-
-
     }
 }

@@ -26,5 +26,6 @@ public class ViewConstants {
     // Health unit views constants
     public static final String DELETE_HEALTH_UNIT_TITLE = "Excluir unidade de saúde";
     public static final String GENERATE_RECORD_HEATH_UNIT = "Gerar relatório unidade de saúdes";
+    public static final String ADD_HEALTH_UNIT_TITLE =  "Adicionar unidade de saúde";
 
 }
