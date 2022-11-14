@@ -1,7 +1,7 @@
 package javas.modules.vaccine.repositories.impementations;
 
-import javas.modules.person.models.Vaccine;
-import javas.modules.person.repositories.IVaccineRepository;
+import javas.modules.vaccine.models.Vaccine;
+import javas.modules.vaccine.repositories.IVaccineRepository;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,8 +18,7 @@ public class VaccineRepositoryTest {
     @Test
     public void testCreate() {
         Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
-        this.repository.crate(null, null, vaccine);
-
+        this.repository.create(null, null, vaccine);
     }
 
     @Test
