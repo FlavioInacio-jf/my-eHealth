@@ -17,13 +17,13 @@ import javax.swing.table.TableCellRenderer;
 import static javas.modules.person.useCases.getAllPeople.GetAllPeople.getAllPeopleController;
 
 public class PersonView extends JPanel {
-    private GenerateMedicalRecordView generateMedicalRecordView;
-    private ApplyVaccineView applyVaccineView;
-    private DeletePersonView deletePersonView;
-    private UpdatePersonView updatePersonView;
-    private AddPersonView addPersonView;
+    private final GenerateMedicalRecordView generateMedicalRecordView;
+    private final ApplyVaccineView applyVaccineView;
+    private final DeletePersonView deletePersonView;
+    private final UpdatePersonView updatePersonView;
+    private final AddPersonView addPersonView;
     private ArrayList<Person> people;
-    private DefaultTableModel model;
+    private final DefaultTableModel model;
 
     public PersonView() {
         this.generateMedicalRecordView = new GenerateMedicalRecordView();
@@ -83,9 +83,7 @@ public class PersonView extends JPanel {
 
         ButtonWithIcon reportPersonButton = new ButtonWithIcon("Relatório");
         reportPersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-user-icon.png")));
-        reportPersonButton.addActionListener(e -> {
-            this.generateMedicalRecordView.setVisible(true);
-        });
+        reportPersonButton.addActionListener(e -> this.generateMedicalRecordView.setVisible(true));
         jPanelNorth.add(reportPersonButton);
 
         ButtonWithIcon vaccinePersonButton = new ButtonWithIcon("Vacinar");
@@ -130,6 +128,12 @@ public class PersonView extends JPanel {
         jPanelCenter.add(new JScrollPane(table));
 
         this.addPersonView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                populateTable();
+            }
+        });
+        this.updatePersonView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 populateTable();

@@ -11,7 +11,11 @@ import java.awt.*;
 import static javas.modules.person.useCases.getSinglePerson.GetSinglePerson.getSinglePersonController;
 
 public class GenerateMedicalRecordView extends BaseFrame {
+    private final FormGroupInput personCPF;
     public GenerateMedicalRecordView() {
+
+        this.personCPF = new FormGroupInput("CPF");
+        this.personCPF.setMaskFormatter("###.###.###-##");
         this.init();
     }
 
@@ -25,11 +29,8 @@ public class GenerateMedicalRecordView extends BaseFrame {
         // Header
         Header header = new Header("Gerar prontuário médico", this.getClass().getResource("../icons/report-user-icon.png"));
 
-        FormGroupInput personCPF = new FormGroupInput("CPF");
-        personCPF.setMaskFormatter("###.###.###-##");
-
         javas.views.components.Button buttonGenerate = new Button("Gerar prontuário");
-        buttonGenerate.addActionListener(e -> this.handleGenerateMedicalRecord(personCPF.getText()));
+        buttonGenerate.addActionListener(e -> this.handleGenerateMedicalRecord());
 
         JPanel formPanel = new JPanel();
         formPanel.setBackground(Color.WHITE);
@@ -51,12 +52,17 @@ public class GenerateMedicalRecordView extends BaseFrame {
         contentPane.add(mainPanel);
     }
 
-
-    private void handleGenerateMedicalRecord(String cpf){
-        try {
-            new MedialRecordView(getSinglePersonController.execute(cpf)).setVisible(true);
-        }catch (Error error) {
-            JOptionPane.showMessageDialog(this, error.getMessage());
+    private void handleGenerateMedicalRecord(){
+        String cpf = this.personCPF.getText();
+        if (!cpf.matches("(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")) {
+            JOptionPane.showMessageDialog(this, "CPF informado é inválido!");
+        }
+        else {
+            try {
+                new MedialRecordView(getSinglePersonController.execute(cpf)).setVisible(true);
+            }catch (Error error) {
+                JOptionPane.showMessageDialog(this, error.getMessage());
+            }
         }
     }
 }

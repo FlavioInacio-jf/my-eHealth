@@ -161,9 +161,8 @@ public class HealthUnitRepository implements IHealthUnitRepository {
             String postalCode = rs.getString(HealthUnitEntityConstants.POSTAL_CODE_COLUMN_NAME);
             String state = rs.getString(HealthUnitEntityConstants.STATE_COLUMN_NAME);
 
-            Address address = new Address(street, district, city, postalCode, state);
-            HealthUnit healthUnit = new HealthUnit(_id, type, name, cnpj, address);
-            return healthUnit;
+            Address address = new Address(street, district, city, state, postalCode);
+            return new HealthUnit(_id, type, name, cnpj, address);
         }catch (SQLException | IllegalArgumentException error) {
             throw new CustomError(HealthUnitErrorMessages.FAILED_CONVERT_RESULT_SET_TO_HEALTH_UNIT, error.getMessage());
         }

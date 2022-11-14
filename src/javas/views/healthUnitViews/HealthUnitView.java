@@ -128,6 +128,13 @@ public class HealthUnitView extends JPanel {
                 populateTable();
             }
         });
+        this.updateHealthUnitView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                populateTable();
+            }
+        });
+
         this.deleteHealthUnitView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

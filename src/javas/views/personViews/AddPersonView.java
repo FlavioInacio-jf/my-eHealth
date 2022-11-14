@@ -14,9 +14,9 @@ import java.awt.*;
 import static javas.modules.person.useCases.createPerson.CreatePerson.createPersonController;
 
 public class AddPersonView extends BaseFrame {
-    FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, postalCode;
-    FormGroupSelect bloodType, sex, state;
-    Button addPersonButton;
+    private final FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, postalCode;
+    private final FormGroupSelect bloodType, sex, state;
+    private final Button addPersonButton;
     public AddPersonView() {
         this.firstName = new FormGroupInput("Primeiro nome:");
         this.lastName = new FormGroupInput("Último nome");

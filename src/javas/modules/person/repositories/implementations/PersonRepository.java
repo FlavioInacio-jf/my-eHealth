@@ -151,27 +151,24 @@ public class PersonRepository implements IPersonRepository {
     private Person resultSetToPerson(ResultSet rs) {
         try {
             // Person Columns
-            String _id = rs.getString(1);
+            String _id = rs.getString(PersonEntityConstants.ID_COLUMN_NAME);
 
-            String firstName = rs.getString(2);
-            String lastName = rs.getString(3);
-            String cpf = rs.getString(4);
-            BloodTypeEnum bloodType = BloodTypeEnum.valueOf(BloodTypeEnum.getEnum(rs.getString(5)));
-            String birthDate = rs.getString(6);
-            SexEnum sex = SexEnum.valueOf(SexEnum.getEnum(rs.getString(7)));
+            String firstName = rs.getString(PersonEntityConstants.FIRST_NAME_COLUMN_NAME);
+            String lastName = rs.getString(PersonEntityConstants.LAST_NAME_COLUMN_NAME);
+            String cpf = rs.getString(PersonEntityConstants.CPF_COLUMN_NAME);
+            BloodTypeEnum bloodType = BloodTypeEnum.valueOf(BloodTypeEnum.getEnum(rs.getString(PersonEntityConstants.BLOOD_TYPE_COLUMN_NAME)));
+            String birthDate = rs.getString(PersonEntityConstants.BIRTH_DATE_COLUMN_NAME);
+            SexEnum sex = SexEnum.valueOf(SexEnum.getEnum(rs.getString(PersonEntityConstants.SEX_COLUMN_NAME)));
+
             // Address Columns
-            String street = rs.getString(8);
-
-            String district = rs.getString(9);
-
-            String city = rs.getString(10);
-
-            String postalCode = rs.getString(11);
-
-            String state = rs.getString(12);
+            String street = rs.getString(PersonEntityConstants.STREET_COLUMN_NAME);
+            String district = rs.getString(PersonEntityConstants.DISTRICT_COLUMN_NAME);
+            String city = rs.getString(PersonEntityConstants.CITY_COLUMN_NAME);
+            String postalCode = rs.getString(PersonEntityConstants.POSTAL_CODE_COLUMN_NAME);
+            String state = rs.getString(PersonEntityConstants.STATE_COLUMN_NAME);
 
 
-            Address address = new Address(street, district, city, postalCode, state);
+            Address address = new Address(street, district, city, state, postalCode);
             return new Person(_id, firstName, lastName, cpf, bloodType, sex, birthDate, address);
         }catch (SQLException error) {
 
