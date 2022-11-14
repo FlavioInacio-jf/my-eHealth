@@ -45,7 +45,7 @@ public class PersonRepositoryTest {
         Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(person.getId())));
-        assertTrue(this.repository.delete(person.getId()));
+        this.repository.delete(person.getId());
         assertEquals(null, this.repository.findById(person.getId()));
     }
 
