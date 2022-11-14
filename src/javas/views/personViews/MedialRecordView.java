@@ -65,12 +65,12 @@ public class MedialRecordView extends BaseFrame {
         contentTable.setBackground(Color.WHITE);
         contentTable.setBorder(null);
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID");
         model.addColumn("NOME");
         model.addColumn("DATA");
         model.addColumn("DOSE");
         model.addColumn("LOTE");
         model.addColumn("Nome Unidade de Saúde");
+        model.addColumn("Tipo Unidade de Saúde");
 
         Table vaccinesTable = new Table(model) {
             @Override
@@ -95,11 +95,12 @@ public class MedialRecordView extends BaseFrame {
         while(it.hasNext()) {
             Vaccine vaccine = (Vaccine) it.next();
             model.addRow(new Object[]{
-                    vaccine.getId(),
                     vaccine.getName(),
+                    vaccine.getCreatedAt(),
                     vaccine.getDose(),
                     vaccine.getLot(),
-                    vaccine.getHeathUnit().getName()});
+                    vaccine.getHeathUnit().getName(),
+                    vaccine.getHeathUnit().getType().toString()});
 
         }
         contentTable.add(vaccinesTable.getTableHeader());

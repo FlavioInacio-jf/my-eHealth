@@ -107,6 +107,13 @@ public class UpdateHealthUnitView extends BaseFrame {
             String postalCode = this.postalCode.getText();
 
             updateHealthUnitController.execute(type, name, cnpj, street, district, city, state, postalCode);
+
+            this.name.setText("");
+            this.cnpj.setText("");
+            this.street.setText("");
+            this.district.setText("");
+            this.city.setText("");
+            this.postalCode.setText("");
             JOptionPane.showMessageDialog(this, "Unidade de saúde atualizada com sucesso!");
         }catch (Error | IllegalAccessException | IllegalArgumentException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
@@ -115,16 +122,21 @@ public class UpdateHealthUnitView extends BaseFrame {
 
     public void handleSearchHealthUnit() {
         try {
-            String cnpj = this.cnpj.getText().trim();
-            HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
-            this.name.setText(healthUnit.getName());
-            this.type.setSelectItem(healthUnit.getType());
-            this.street.setText(healthUnit.getAddress().getStreet());
-            this.district.setText(healthUnit.getAddress().getDistrict());
-            this.city.setText(healthUnit.getAddress().getCity());
-            this.state.setSelectItem(healthUnit.getAddress().getState());
-            this.postalCode.setText(healthUnit.getAddress().getPostalCode());
-            this.formPanel.setVisible(true);
+            if (!this.cnpj.getText().matches("(^\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}$)")) {
+                JOptionPane.showMessageDialog(this, "CNPJ informado é inválido!");
+            }
+            else {
+                String cnpj = this.cnpj.getText().trim();
+                HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
+                this.name.setText(healthUnit.getName());
+                this.type.setSelectItem(healthUnit.getType());
+                this.street.setText(healthUnit.getAddress().getStreet());
+                this.district.setText(healthUnit.getAddress().getDistrict());
+                this.city.setText(healthUnit.getAddress().getCity());
+                this.state.setSelectItem(healthUnit.getAddress().getState());
+                this.postalCode.setText(healthUnit.getAddress().getPostalCode());
+                this.formPanel.setVisible(true);
+            }
         }catch (Error error) {
             this.formPanel.setVisible(false);
             JOptionPane.showMessageDialog(this, error.getMessage());

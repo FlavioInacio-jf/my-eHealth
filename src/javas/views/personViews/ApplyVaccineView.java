@@ -12,8 +12,8 @@ import static javas.constants.VaccineEntityConstants.VALID_DOSES;
 import static javas.modules.vaccine.useCases.applyVaccine.ApplyVaccine.applyVaccineController;
 
 public class ApplyVaccineView extends BaseFrame {
-    FormGroupInput personCPF, healthUnitCNPJ, name, lot;
-    FormGroupSelect dose;
+    private final FormGroupInput personCPF, healthUnitCNPJ, name, lot;
+    private final FormGroupSelect dose;
     public ApplyVaccineView() {
         this.personCPF = new FormGroupInput("CPF (paciente):");
         personCPF.setMaskFormatter("###.###.###-##");
@@ -67,21 +67,35 @@ public class ApplyVaccineView extends BaseFrame {
     }
 
     private void handleApplyVaccine() {
-        try {
-            String cpf = this.personCPF.getText();
-            String cnpj = this.healthUnitCNPJ.getText();
-            String vaccineName = this.name.getText();
-            int vaccineDose =  Integer.parseInt(this.dose.getSelectedItem().toString());
-            String vaccineLot = this.lot.getText();
-            applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
-            JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
-        }catch (Error | IllegalAccessException | NumberFormatException error) {
-            if (error instanceof NumberFormatException) {
-                JOptionPane.showMessageDialog(this, "O campo dose deve ser do tipo numérico");
-            }
-            else {
-                JOptionPane.showMessageDialog(this, error.getMessage());
+        if (!this.personCPF.getText().matches("(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")) {
+            JOptionPane.showMessageDialog(this, "CPF informado é inválido!");
+        }
+        else if (!healthUnitCNPJ.getText().matches("(^\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}$)")) {
+            JOptionPane.showMessageDialog(this, "CNPJ informado é inválido!");
+        }else {
+            try {
+                String cpf = this.personCPF.getText();
+                String cnpj = this.healthUnitCNPJ.getText();
+                String vaccineName = this.name.getText();
+                int vaccineDose =  Integer.parseInt(this.dose.getSelectedItem().toString());
+                String vaccineLot = this.lot.getText();
+                applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
+
+                this.personCPF.setText("");
+                this.healthUnitCNPJ.setText("");
+                this.name.setText("");
+                this.lot.setText("");
+
+                JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
+            }catch (Error | IllegalAccessException | NumberFormatException error) {
+                if (error instanceof NumberFormatException) {
+                    JOptionPane.showMessageDialog(this, "O campo dose deve ser do tipo numérico");
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, error.getMessage());
+                }
             }
         }
+
     }
 }

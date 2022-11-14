@@ -94,6 +94,13 @@ public class AddHealthUnitView extends BaseFrame {
             String city = this.city.getText().trim();
             String state = this.state.getSelectedItem().toString();
             String postalCode = this.postalCode.getText().trim();
+
+            this.name.setText("");
+            this.cnpj.setText("");
+            this.street.setText("");
+            this.district.setText("");
+            this.city.setText("");
+            this.postalCode.setText("");
             createHealthUnitController.execute(type, name, cnpj, street, district, city, state, postalCode);
             JOptionPane.showMessageDialog(this, "Unidade de saúde cadastrado com sucesso!");
         }catch (Error | IllegalAccessException | IllegalArgumentException error) {

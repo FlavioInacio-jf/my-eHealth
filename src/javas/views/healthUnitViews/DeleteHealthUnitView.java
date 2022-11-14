@@ -13,7 +13,11 @@ import static javas.modules.healthUnit.useCases.deleteHealthUnit.DeleteHealthUni
 import static javas.modules.healthUnit.useCases.getSingleHealthUnit.GetSingleHealthUnit.getSingleHealthUnitController;
 
 public class DeleteHealthUnitView extends BaseFrame {
+    private final FormGroupInput healthUnitCNPJ;
     public DeleteHealthUnitView() {
+        this.healthUnitCNPJ = new FormGroupInput("CNPJ");
+        this.healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
+
         this.init();
     }
 
@@ -26,12 +30,8 @@ public class DeleteHealthUnitView extends BaseFrame {
 
         Header header = new Header("Excluir unidade de saúde", this.getClass().getResource("../icons/remove-hospital-icon.png"));
 
-
-        FormGroupInput healthUnitCNPJ = new FormGroupInput("CNPJ");
-        healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
-
         javas.views.components.Button buttonDelete = new Button("Excluir unidade de saúde");
-        buttonDelete.addActionListener(e -> this.handleDeleteHealthUnit(healthUnitCNPJ.getText()));
+        buttonDelete.addActionListener(e -> this.handleDeleteHealthUnit());
         buttonDelete.setBackground(Color.RED);
 
         JPanel formPanel = new JPanel();
@@ -41,7 +41,7 @@ public class DeleteHealthUnitView extends BaseFrame {
         GridLayout formLayout = new GridLayout(2, 1);
         formLayout.setVgap(20);
         formPanel.setLayout(formLayout);
-        formPanel.add(healthUnitCNPJ);
+        formPanel.add(this.healthUnitCNPJ);
         formPanel.add(buttonDelete);
 
         JPanel mainPanel = new JPanel();
@@ -54,25 +54,30 @@ public class DeleteHealthUnitView extends BaseFrame {
         contentPane.add(mainPanel);
     }
 
-    private void handleDeleteHealthUnit(String cnpj) {
-        if (cnpj.length() < 14) {
-            JOptionPane.showMessageDialog(this, "CNPJ inválido");
+    private void handleDeleteHealthUnit() {
+        if (!healthUnitCNPJ.getText().matches("(^\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}$)")) {
+            JOptionPane.showMessageDialog(this, "CNPJ informado é inválido!");
         }
+        else {
+            int diaologConfirm = 1;
+            try {
+                String cnpj = this.healthUnitCNPJ.getText().trim();
 
-        int diaologConfirm = 1;
-        try {
-            HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
-            diaologConfirm  = JOptionPane.showConfirmDialog(this,
-                    String.format("Excluir unidade de saúde? %s?", healthUnit.getName()),
-                    "Confirmar exclusão da unidade de saúde",
-                    JOptionPane.YES_NO_CANCEL_OPTION);
+                HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
+                diaologConfirm  = JOptionPane.showConfirmDialog(this,
+                        String.format("Excluir unidade de saúde? %s?", healthUnit.getName()),
+                        "Confirmar exclusão da unidade de saúde",
+                        JOptionPane.YES_NO_CANCEL_OPTION);
 
-            if (diaologConfirm == 0) {
-                deleteHealthUnitController.execute(cnpj);
-                JOptionPane.showMessageDialog(this, "Unidade de saúde removida com sucesso!");
+                if (diaologConfirm == 0) {
+                    deleteHealthUnitController.execute(cnpj);
+                    this.healthUnitCNPJ.setText("");
+                    JOptionPane.showMessageDialog(this, "Unidade de saúde removida com sucesso!");
+                }
+            }catch (Error error) {
+                JOptionPane.showMessageDialog(this, error.getMessage());
             }
-        }catch (Error error) {
-            JOptionPane.showMessageDialog(this, error.getMessage());
         }
+
     }
 }
