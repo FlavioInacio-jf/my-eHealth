@@ -36,6 +36,6 @@ public class ApplyVaccineUseCase {
                     HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
         }
 
-        this.vaccineRepository.crate(personExists.getId(), healthUnitExists.getId(), vaccine);
+        this.vaccineRepository.create(personExists.getId(), healthUnitExists.getId(), vaccine);
     }
 }

@@ -22,7 +22,7 @@ public class VaccineRepository implements IVaccineRepository {
         this.statement = AppDataSource.execute();
     }
     @Override
-    public Vaccine crate(String _idUser, String _idHealthUnit, Vaccine data) {
+    public Vaccine create(String _idUser, String _idHealthUnit, Vaccine data) {
         return this.save(_idUser, _idHealthUnit, data);
     }
 

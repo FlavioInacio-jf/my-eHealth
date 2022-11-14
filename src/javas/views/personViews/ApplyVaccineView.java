@@ -44,9 +44,7 @@ public class ApplyVaccineView extends BaseFrame {
         paneForm.setBorder(new EmptyBorder(15, 0, 0, 0));
 
         Button applyVaccineButton = new Button("Cadastrar vacina");
-        applyVaccineButton.addActionListener(e -> {
-            handleApplyVaccine();
-        });
+        applyVaccineButton.addActionListener(e -> handleApplyVaccine());
         paneForm.add(this.personCPF);
         paneForm.add(this.healthUnitCNPJ);
         paneForm.add(this.name);
@@ -79,7 +77,7 @@ public class ApplyVaccineView extends BaseFrame {
             JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
         }catch (Error | IllegalAccessException | NumberFormatException error) {
             if (error instanceof NumberFormatException) {
-                JOptionPane.showMessageDialog(this, "Dose \n O campo só");
+                JOptionPane.showMessageDialog(this, "O campo dose deve ser do tipo numérico");
             }
             else {
                 JOptionPane.showMessageDialog(this, error.getMessage());
