@@ -70,7 +70,7 @@ public class VaccineRepositoryTest {
         Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
         this.repository.create(null, null, vaccine);
 
-        assertTrue(vaccine.equals(this.repository.findByHeathUnitId(null)));
+        assertTrue(vaccine.equals(this.repository.findByHealthUnitId(null)));
         this.repository.delete(vaccine.getId());
     }
 }
