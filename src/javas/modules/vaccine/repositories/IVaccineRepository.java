@@ -9,7 +9,7 @@ public interface IVaccineRepository {
     boolean delete(String _id);
     ArrayList<Vaccine> findByUserId(String userId);
 
-    ArrayList<Vaccine>  findByHeathUnitId(String healthUnitId);
+    ArrayList<Vaccine>  findByHealthUnitId(String healthUnitId);
 
     Vaccine findById(String _id);
 

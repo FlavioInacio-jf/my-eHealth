@@ -31,7 +31,7 @@ public class VaccineRepositoryTest {
         vaccine.setDose(2);
         this.repository.update(vaccine);
 
-        Vaccine updatedVaccine = this.repository.findById(vaccine.getId())));
+        Vaccine updatedVaccine = this.repository.findById(vaccine.getId());
 
         assertEquals(2, updatedVaccine.getDose());
         this.repository.delete(vaccine.getId());
@@ -44,7 +44,7 @@ public class VaccineRepositoryTest {
 
         assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
         this.repository.delete(vaccine.getId());
-        assertEquals(null, this.repository.findById(vaccine.getId())
+        assertEquals(null, this.repository.findById(vaccine.getId()));
     }
 
     @Test

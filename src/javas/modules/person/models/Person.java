@@ -21,7 +21,7 @@ public class Person extends ModelBase {
     private String lastName;
 
     @Validate(fieldName = "CPF")
-    @NotEmpty()
+    @NotEmpty(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)", message = "CPF informado é inválido!")
     private String cpf;
 
     @Validate(fieldName = "Tipo Sanguíneo")
@@ -38,10 +38,11 @@ public class Person extends ModelBase {
     private SexEnum sex;
 
     @Validate(fieldName = "Data de nascimento")
-    @NotEmpty()
+    @NotEmpty(regexp = "^(1[0-2]|0[1-9])/(3[01]"
+                       + "|[12][0-9]|0[1-9])/[0-9]{4}$", message = "Data de nascimento informada é inválida!")
     private String birthDate;
 
-    private ArrayList<Vaccine> vaccines;
+    private final ArrayList<Vaccine> vaccines;
 
     @Validate(fieldName = "Endereço")
     @NotNull()
@@ -148,10 +149,9 @@ public class Person extends ModelBase {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Person objectPerson)) {
             return false;
         }
-        Person objectPerson = (Person) object;
         return  getId().equals(objectPerson.getId()) &&
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&

@@ -22,15 +22,17 @@ public class AddPersonView extends BaseFrame {
         this.lastName = new FormGroupInput("Último nome");
         this.cpf = new FormGroupInput("CPF");
         this.cpf.setMaskFormatter("###.###.###-##");
+
         this.birthDate = new FormGroupInput("Nascimento");
         this.birthDate.setMaskFormatter("##/##/####");
+
         this.bloodType = new FormGroupSelect("Grupo sanguíneo", BloodTypeEnum.getNames());
         this.sex = new FormGroupSelect("Sexo", SexEnum.getNames());
         this.street = new FormGroupInput("Rua");
         this.district = new FormGroupInput("Bairro");
         this.city = new FormGroupInput("Cidade");
         this.state = new FormGroupSelect("Estado", Addresses.validStates);
-        this.birthDate.setMaskFormatter("##");
+
         this.postalCode = new FormGroupInput("CEP");
         this.postalCode.setMaskFormatter("#####-###");
 

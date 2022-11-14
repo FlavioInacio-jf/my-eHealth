@@ -24,7 +24,7 @@ public class HealthUnit extends ModelBase {
     private String name;
 
     @Validate(fieldName = "CNPJ")
-    @NotEmpty()
+    @NotEmpty(regexp = "(^\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}$)", message = "CNPJ informado é inválido!")
     private String cnpj;
 
     @Validate(fieldName = "Endereço")

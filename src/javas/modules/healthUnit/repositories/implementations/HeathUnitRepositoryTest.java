@@ -1,13 +1,11 @@
 package javas.modules.healthUnit.repositories.implementations;
 
 import javas.modules.app.models.Address;
-import javas.modules.app.models.ModelBase;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.junit.Test;
 

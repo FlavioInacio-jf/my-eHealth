@@ -22,7 +22,7 @@ public class Address {
     private String state;
 
     @Validate(fieldName = "CEP")
-    @NotEmpty()
+    @NotEmpty(regexp = "[0-9]{5}-[0-9]{3}", message = "CEP informado é inválido!")
     private String postalCode; // CEP
 
     public Address(

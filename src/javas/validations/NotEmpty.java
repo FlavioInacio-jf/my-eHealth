@@ -9,4 +9,5 @@ import java.lang.annotation.*;
 public @interface NotEmpty {
     String MESAGE = "Este campo não deve estar vazio";
     String message() default MESAGE;
+    String regexp() default "";
 }

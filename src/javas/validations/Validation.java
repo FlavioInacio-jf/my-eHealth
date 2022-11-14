@@ -3,7 +3,6 @@ package javas.validations;
 import javas.errors.CustomError;
 
 import java.lang.reflect.Field;
-import java.util.regex.Pattern;
 
 public class Validation {
     private final Object object;
@@ -31,7 +30,12 @@ public class Validation {
     private void validateNotEmpty(Field field, String name) throws IllegalAccessException {
         if (field.isAnnotationPresent(NotEmpty.class)) {
             String message = field.getAnnotation(NotEmpty.class).message();
+            String regex = field.getAnnotation(NotEmpty.class).regexp();
             if (field.get(this.object) == null || field.get(this.object).toString().trim().equals("")) {
+                throw new CustomError(name.isEmpty() ? getFieldName(field) : name, message);
+            }
+
+            if ((!regex.trim().isEmpty() && !field.get(this.object).toString().matches(regex))) {
                 throw new CustomError(name.isEmpty() ? getFieldName(field) : name, message);
             }
         }

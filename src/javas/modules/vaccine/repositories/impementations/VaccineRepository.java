@@ -81,7 +81,7 @@ public class VaccineRepository implements IVaccineRepository {
     }
 
     @Override
-    public ArrayList<Vaccine> findByHeathUnitId(String healthUnitId) {
+    public ArrayList<Vaccine> findByHealthUnitId(String healthUnitId) {
         return this.getAll(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK, healthUnitId);
     }
 
@@ -118,7 +118,6 @@ public class VaccineRepository implements IVaccineRepository {
             int dose = rs.getInt(3);
             String lot = rs.getString(4);
             String healthUnitID = rs.getString(5);
-            String personID = rs.getString(6);
             Date createdAt = rs.getDate(7);
 
             Vaccine vaccine = new Vaccine(_id, name, dose, lot);
