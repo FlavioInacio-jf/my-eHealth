@@ -4,7 +4,7 @@ import javas.modules.vaccine.models.Vaccine;
 import java.util.ArrayList;
 
 public interface IVaccineRepository {
-    Vaccine crate(String _idUser, String _idHealthUnit, Vaccine data);
+    Vaccine create(String _idUser, String _idHealthUnit, Vaccine data);
     boolean update(Vaccine data);
     boolean delete(String _id);
     ArrayList<Vaccine> findByUserId(String userId);

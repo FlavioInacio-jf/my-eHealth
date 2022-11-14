@@ -1,7 +1,7 @@
 package javas.modules.vaccine.repositories.impementations;
 
-import javas.modules.person.models.Vaccine;
-import javas.modules.person.repositories.IVaccineRepository;
+import javas.modules.vaccine.models.Vaccine;
+import javas.modules.vaccine.repositories.IVaccineRepository;
 import org.junit.Test;
 
 import java.util.ArrayList;
