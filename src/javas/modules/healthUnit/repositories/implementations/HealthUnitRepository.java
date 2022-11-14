@@ -10,10 +10,7 @@ import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
 
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class HealthUnitRepository implements IHealthUnitRepository {
     private final Statement statement;
@@ -62,8 +59,7 @@ public class HealthUnitRepository implements IHealthUnitRepository {
     public boolean update(HealthUnit data) {
         try {
             final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s', " +
-                            "                                 %s='%s', %s='%s', " +
-                            "                                 %s='%s', %s='%s',  WHERE %s='%s'",
+                                                                "%s='%s', %s='%s', %s='%s', %s='%s' WHERE %s='%s'",
                     HealthUnitEntityConstants.ENTITY_NAME,
                     HealthUnitEntityConstants.TYPE_COLUMN_NAME,
                     data.getType().toString(),

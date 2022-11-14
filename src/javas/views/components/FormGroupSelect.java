@@ -17,10 +17,10 @@ public class FormGroupSelect extends JPanel{
         this.label = new Label(title);
         this.label.setLabelFor(this.select);
 
-        Box box = new Box(BoxLayout.Y_AXIS);
+        Box box = new Box(BoxLayout.X_AXIS);
         box.setBackground(Color.WHITE);
         box.add(this.label);
-        box.add(Box.createVerticalStrut(5));
+        box.add(Box.createHorizontalStrut(5));
         box.add(this.select);
         this.setMaximumSize(new Dimension(500, 45));
         this.add(box);
@@ -29,5 +29,9 @@ public class FormGroupSelect extends JPanel{
 
     public Object getSelectedItem() {
         return this.select.getSelectedItem();
+    }
+
+    public void setSelectItem(Object object) {
+        this.select.getModel().setSelectedItem(object);
     }
 }
