@@ -49,15 +49,28 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testFindById() {
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        this.repository.create(null, null, vaccine);
 
+        assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
+        this.repository.delete(vaccine.getId());
     }
 
     @Test
     public void testFindByUserId() {
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        this.repository.create(null, null, vaccine);
 
+        assertTrue(vaccine.equals(this.repository.findByUserId(null)));
+        this.repository.delete(vaccine.getId());
     }
 
     @Test
     public void testFindByHealthUnitId() {
+        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        this.repository.create(null, null, vaccine);
+
+        assertTrue(vaccine.equals(this.repository.findByHeathUnitId(null)));
+        this.repository.delete(vaccine.getId());
     }
 }
