@@ -1,30 +1,26 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.views.components.BaseFrame;
+import javas.views.components.*;
 import javas.views.components.Button;
-import javas.views.components.FormGroupInput;
-import javas.views.components.Title;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+import static javas.constants.VaccineEntityConstants.VALID_DOSES;
 import static javas.modules.vaccine.useCases.applyVaccine.ApplyVaccine.applyVaccineController;
 
 public class ApplyVaccineView extends BaseFrame {
-    FormGroupInput personCPF;
-    FormGroupInput healthUnitCNPJ;
-    FormGroupInput name;
-    FormGroupInput dose;
-    FormGroupInput lot;
+    FormGroupInput personCPF, healthUnitCNPJ, name, lot;
+    FormGroupSelect dose;
     public ApplyVaccineView() {
         this.personCPF = new FormGroupInput("CPF (paciente):");
         personCPF.setMaskFormatter("###.###.###-##");
         this.healthUnitCNPJ = new FormGroupInput("CNPJ (Unidade de saúde):");
         healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
         this.name = new FormGroupInput("Nome:");
-        this.dose = new FormGroupInput("Dose");
+        this.dose = new FormGroupSelect("Dose", VALID_DOSES);
         this.lot = new FormGroupInput("Lote");
 
         this.init();
@@ -62,8 +58,13 @@ public class ApplyVaccineView extends BaseFrame {
         paneForm.add(this.personCPF);
         paneForm.add(this.healthUnitCNPJ);
         paneForm.add(this.name);
-        paneForm.add(this.dose);
-        paneForm.add(this.lot);
+
+
+        Column column = new Column(2, 10);
+        column.add(this.lot);
+        column.add(this.dose);
+
+        paneForm.add(column);
         paneForm.add(applyVaccineButton);
 
         JPanel mainPanel = new JPanel();
@@ -76,17 +77,21 @@ public class ApplyVaccineView extends BaseFrame {
     }
 
     private void handleApplyVaccine() {
-        String cpf = this.personCPF.getText();
-        String cnpj = this.healthUnitCNPJ.getText();
-        String vaccineName = this.name.getText();
-        int vaccineDose =  Integer.parseInt(this.dose.getText());
-        String vaccineLot = this.lot.getText();
-
         try {
+            String cpf = this.personCPF.getText();
+            String cnpj = this.healthUnitCNPJ.getText();
+            String vaccineName = this.name.getText();
+            int vaccineDose =  Integer.parseInt(this.dose.getSelectedItem().toString());
+            String vaccineLot = this.lot.getText();
             applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
             JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
-        }catch (Error | IllegalAccessException error) {
-            JOptionPane.showMessageDialog(this, error.getMessage());
+        }catch (Error | IllegalAccessException | NumberFormatException error) {
+            if (error instanceof NumberFormatException) {
+                JOptionPane.showMessageDialog(this, "Dose \n O campo só");
+            }
+            else {
+                JOptionPane.showMessageDialog(this, error.getMessage());
+            }
         }
     }
 }

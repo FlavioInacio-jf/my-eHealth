@@ -10,6 +10,7 @@ public class VaccineEntityConstants {
     public static final String HEATH_UNIT_COLUMN_NAME_FK = "heathUnitID";
     public static final String PERSON_COLUMN_NAME_FK = "personID";
     public static final String CREATED_AT_COLUMN_NAME = "createdAd";
+    public static final String[] VALID_DOSES = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
     public static  String getQueryTable() {
         return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +

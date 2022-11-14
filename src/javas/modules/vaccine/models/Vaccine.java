@@ -15,7 +15,6 @@ public class Vaccine extends ModelBase {
     private String name;
 
     @Validate(fieldName = "Dose")
-    @NotNull()
     @NumericOnly()
     private int dose;
 
