@@ -16,7 +16,7 @@ public class HealthUnit extends ModelBase {
 
     @Validate(fieldName = "Tipo")
     @NotNull()
-    @IsEnum(enumClass = UnitTypeEnum.class, values = {"HOSPITAL", "UBS", "UPA"})
+    @IsEnum(enumClass = UnitTypeEnum.class, values = {"hospital", "ubs", "upa"})
     private UnitTypeEnum type;
 
     @Validate(fieldName = "Nome")

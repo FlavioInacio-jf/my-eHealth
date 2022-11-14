@@ -33,15 +33,7 @@ public class ApplyVaccineView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        JPanel header = new JPanel();
-        header.setBackground(Color.WHITE);
-        header.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        Title title = new Title("Registrar nova aplicação de vacina", SwingConstants.CENTER);
-        Icon vaccineIcon = new ImageIcon(this.getClass().getResource("../icons/vaccine-icon.png"));
-
-        header.add(new JLabel(vaccineIcon));
-        header.add(title);
-
+        Header header = new Header("Registrar nova aplicação de vacina", this.getClass().getResource("../icons/vaccine-icon.png"));
 
         // Form layout setup
         JPanel paneForm = new JPanel();
