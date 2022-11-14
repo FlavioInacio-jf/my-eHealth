@@ -158,6 +158,6 @@ public class PersonTest {
         Person person3 = new Person(null, "Paula",
                 "Silva", "888.888.888-88", BloodTypeEnum.B_PLUS, SexEnum.FEMALE, "17/12/2005", null);
         assertTrue(person2.equals(person));
-        assertTrue(person3.equals(person));
+        assertFalse(person3.equals(person));
     }
 }
