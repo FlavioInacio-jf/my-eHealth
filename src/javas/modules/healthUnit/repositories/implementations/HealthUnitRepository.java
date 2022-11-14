@@ -10,7 +10,7 @@ import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.ArrayList; //
 
 public class HealthUnitRepository implements IHealthUnitRepository {
     private final Statement statement;
