@@ -5,6 +5,7 @@ import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
 import javas.views.components.*;
 import javas.views.components.Button;
+import javas.constants.Addresses;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,8 +14,8 @@ import java.awt.*;
 import static javas.modules.person.useCases.createPerson.CreatePerson.createPersonController;
 
 public class AddPersonView extends BaseFrame {
-    FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, state, postalCode;
-    FormGroupSelect bloodType, sex;
+    FormGroupInput firstName, lastName, cpf, birthDate, street, district, city, postalCode;
+    FormGroupSelect bloodType, sex, state;
     Button addPersonButton;
     public AddPersonView() {
         this.firstName = new FormGroupInput("Primeiro nome:");
@@ -28,10 +29,10 @@ public class AddPersonView extends BaseFrame {
         this.street = new FormGroupInput("Rua");
         this.district = new FormGroupInput("Bairro");
         this.city = new FormGroupInput("Cidade");
-        this.state = new FormGroupInput("Estado");
+        this.state = new FormGroupSelect("Estado", Addresses.validStates);
         this.birthDate.setMaskFormatter("##");
         this.postalCode = new FormGroupInput("CEP");
-        this.birthDate.setMaskFormatter("####-###");
+        this.postalCode.setMaskFormatter("#####-###");
 
 
         this.addPersonButton = new Button("Adicionar paciente");
@@ -46,14 +47,7 @@ public class AddPersonView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        JPanel header = new JPanel();
-        header.setBackground(Color.WHITE);
-        header.setLayout(new FlowLayout());
-        Title title = new Title("Registrar um novo paciente", SwingConstants.CENTER);
-        Icon vaccineIcon = new ImageIcon(this.getClass().getResource("../icons/add-user-icon.png"));
-
-        header.add(new JLabel(vaccineIcon));
-        header.add(title);
+        Header header = new Header("Registrar um novo paciente", this.getClass().getResource("../icons/add-user-icon.png"));
 
         // Form
         JPanel mainPanel = new JPanel();
@@ -87,24 +81,18 @@ public class AddPersonView extends BaseFrame {
         formPanel.add(fourthRow);
 
         JPanel thursdayRow = new Column(2, 0);
+        thursdayRow.add(this.postalCode);
         thursdayRow.add(this.city);
         thursdayRow.add(this.state);
         formPanel.add(thursdayRow);
-
-        JPanel sixthRow = new Column(1, 0);
-        sixthRow.add(this.postalCode);
-        formPanel.add(sixthRow);
 
         this.addPersonButton.addActionListener(e -> this.handleAddPerson());
         formPanel.add(this.addPersonButton);
 
         mainPanel.add(formPanel);
 
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
-        scrollPane.setBorder(null);
-
         contentPane.add(header);
-        contentPane.add(scrollPane);
+        contentPane.add(mainPanel);
     }
 
     private void handleAddPerson() {
@@ -118,12 +106,15 @@ public class AddPersonView extends BaseFrame {
             String street = this.street.getText();
             String district = this.district.getText();
             String city = this.city.getText();
-            String state = this.state.getText();
+            String state = this.state.getSelectedItem().toString();
             String postalCode = this.postalCode.getText();
 
             createPersonController.execute(firstName, lastName, cpf,bloodType, sex, birthDate, street, district, city, state, postalCode);
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
-        }catch (Error | IllegalAccessException error) {
+            this.pack();
+            this.dispose();
+
+        }catch (Error | IllegalAccessException | IllegalArgumentException error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }
     }

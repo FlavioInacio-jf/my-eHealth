@@ -1,16 +1,16 @@
 package javas.views.healthUnitViews;
 
-import javas.views.components.BaseFrame;
+import javas.modules.healthUnit.models.HealthUnit;
+import javas.views.components.*;
 import javas.constants.ViewConstants;
 import javas.views.components.Button;
-import javas.views.components.FormGroupInput;
-import javas.views.components.Title;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 import static javas.modules.healthUnit.useCases.deleteHealthUnit.DeleteHealthUnit.deleteHealthUnitController;
+import static javas.modules.healthUnit.useCases.getSingleHealthUnit.GetSingleHealthUnit.getSingleHealthUnitController;
 
 public class DeleteHealthUnitView extends BaseFrame {
     public DeleteHealthUnitView() {
@@ -24,14 +24,8 @@ public class DeleteHealthUnitView extends BaseFrame {
         contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-        JPanel header = new JPanel();
-        header.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        Header header = new Header("Excluir unidade de saúde", this.getClass().getResource("../icons/remove-hospital-icon.png"));
 
-        Title title = new Title("Excluir unidade de saúde", SwingConstants.CENTER);
-        Icon healthUnitIcon = new ImageIcon(this.getClass().getResource("../icons/remove-hospital-icon.png"));
-
-        header.add(new JLabel(healthUnitIcon));
-        header.add(title);
 
         FormGroupInput healthUnitCNPJ = new FormGroupInput("CNPJ");
         healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
@@ -41,6 +35,7 @@ public class DeleteHealthUnitView extends BaseFrame {
         buttonDelete.setBackground(Color.RED);
 
         JPanel formPanel = new JPanel();
+        formPanel.setBackground(Color.WHITE);
         formPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         formPanel.setAlignmentY(Component.TOP_ALIGNMENT);
         GridLayout formLayout = new GridLayout(2, 1);
@@ -53,6 +48,7 @@ public class DeleteHealthUnitView extends BaseFrame {
         mainPanel.setLayout(new FlowLayout());
 
         mainPanel.add(formPanel);
+        mainPanel.setBackground(Color.WHITE);
 
         contentPane.add(header);
         contentPane.add(mainPanel);
@@ -63,18 +59,20 @@ public class DeleteHealthUnitView extends BaseFrame {
             JOptionPane.showMessageDialog(this, "CNPJ inválido");
         }
 
-        int diaologConfirm = JOptionPane.showConfirmDialog(this, JOptionPane.ERROR_MESSAGE, "Excluir unidade de saúde?", JOptionPane.YES_NO_CANCEL_OPTION);
+        int diaologConfirm = 1;
+        try {
+            HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
+            diaologConfirm  = JOptionPane.showConfirmDialog(this,
+                    String.format("Excluir unidade de saúde? %s?", healthUnit.getName()),
+                    "Confirmar exclusão da unidade de saúde",
+                    JOptionPane.YES_NO_CANCEL_OPTION);
 
-        if (diaologConfirm == 0) {
-            try {
+            if (diaologConfirm == 0) {
                 deleteHealthUnitController.execute(cnpj);
                 JOptionPane.showMessageDialog(this, "Unidade de saúde removida com sucesso!");
-            }catch (Error error) {
-                JOptionPane.showMessageDialog(this, error.getMessage());
             }
+        }catch (Error error) {
+            JOptionPane.showMessageDialog(this, error.getMessage());
         }
-
-
-
     }
 }

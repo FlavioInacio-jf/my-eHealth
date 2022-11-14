@@ -13,13 +13,14 @@ public class UpdateHealthUnitUseCase {
     }
 
     public void handle(HealthUnit healthUnit) {
-        HealthUnit healthUnitExists =  this.heathUnitRepository.findByCNPJ(healthUnit.getCNPJ());
+        HealthUnit healthUnitExists = this.heathUnitRepository.findByCNPJ(healthUnit.getCNPJ());
         if (healthUnitExists == null) {
             throw new CustomError(HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_TITLE,
                     HealthUnitErrorMessages.HEALTH_UNIT_NOT_FOUND_DETAIL);
         }
         healthUnitExists.setId(healthUnitExists.getId());
         healthUnitExists.setName(healthUnit.getName());
+        healthUnitExists.setType(healthUnit.getType());
         healthUnitExists.setAddress(healthUnit.getAddress());
         this.heathUnitRepository.update(healthUnitExists);
     }

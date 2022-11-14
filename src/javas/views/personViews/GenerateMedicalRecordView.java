@@ -1,18 +1,14 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.person.repositories.IPersonRepository;
-import javas.modules.person.repositories.implementations.PersonRepository;
-import javas.modules.person.useCases.getSinglePerson.GetSinglePersonController;
-import javas.modules.person.useCases.getSinglePerson.GetSinglePersonUseCase;
-import javas.views.components.BaseFrame;
+import javas.views.components.*;
 import javas.views.components.Button;
-import javas.views.components.FormGroupInput;
-import javas.views.components.Title;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static javas.modules.person.useCases.getSinglePerson.GetSinglePerson.getSinglePersonController;
 
 public class GenerateMedicalRecordView extends BaseFrame {
     public GenerateMedicalRecordView() {
@@ -26,14 +22,8 @@ public class GenerateMedicalRecordView extends BaseFrame {
         contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-        JPanel header = new JPanel();
-        header.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-
-        Title title = new Title("Gerar prontuário médico", SwingConstants.CENTER);
-        Icon personIcon = new ImageIcon(this.getClass().getResource("../icons/report-user-icon.png"));
-
-        header.add(new JLabel(personIcon));
-        header.add(title);
+        // Header
+        Header header = new Header("Gerar prontuário médico", this.getClass().getResource("../icons/report-user-icon.png"));
 
         FormGroupInput personCPF = new FormGroupInput("CPF");
         personCPF.setMaskFormatter("###.###.###-##");
@@ -42,6 +32,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         buttonGenerate.addActionListener(e -> this.handleGenerateMedicalRecord(personCPF.getText()));
 
         JPanel formPanel = new JPanel();
+        formPanel.setBackground(Color.WHITE);
         formPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         formPanel.setAlignmentY(Component.TOP_ALIGNMENT);
         GridLayout formLayout = new GridLayout(2, 1);
@@ -51,6 +42,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         formPanel.add(buttonGenerate);
 
         JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.WHITE);
         mainPanel.setLayout(new FlowLayout());
 
         mainPanel.add(formPanel);
@@ -61,12 +53,8 @@ public class GenerateMedicalRecordView extends BaseFrame {
 
 
     private void handleGenerateMedicalRecord(String cpf){
-        IPersonRepository personRepository = new PersonRepository();
-        GetSinglePersonUseCase getSinglePersonUseCase = new GetSinglePersonUseCase(personRepository);
-        GetSinglePersonController getSinglePersonController = new GetSinglePersonController(getSinglePersonUseCase);
         try {
             new MedialRecordView(getSinglePersonController.execute(cpf)).setVisible(true);
-
         }catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }

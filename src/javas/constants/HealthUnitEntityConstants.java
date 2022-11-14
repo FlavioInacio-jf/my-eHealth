@@ -17,6 +17,7 @@ public class HealthUnitEntityConstants {
         return String.format("CREATE TABLE IF NOT EXISTS %s ", ENTITY_NAME) +
                 String.format("( %s VARCHAR NOT NULL,", ID_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", NAME_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", CNPJ_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", TYPE_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", STREET_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", DISTRICT_COLUMN_NAME) +

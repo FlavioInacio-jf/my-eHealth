@@ -47,13 +47,13 @@ public class Validation {
     }
 
     private void validateNumericOnly(Field field, String name) throws IllegalAccessException {
-        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         if (field.isAnnotationPresent(NumericOnly.class)) {
             String message = field.getAnnotation(NumericOnly.class).message();
             if (field.get(this.object) == null) {
                 throw new CustomError(name.isEmpty() ? getFieldName(field) : name, message);
             }
-            if (pattern.matcher((CharSequence) field.get(this.object)).matches()) {
+
+            if (!field.get(this.object).toString().matches("[+-]?\\d*(\\.\\d+)?")) {
                 throw new CustomError(name.isEmpty() ? getFieldName(field) : name, message);
             }
         }

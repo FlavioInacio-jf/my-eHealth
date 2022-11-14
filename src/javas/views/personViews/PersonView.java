@@ -5,6 +5,8 @@ import javas.modules.person.models.Person;
 import javas.views.components.*;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.*;
@@ -20,6 +22,8 @@ public class PersonView extends JPanel {
     private DeletePersonView deletePersonView;
     private UpdatePersonView updatePersonView;
     private AddPersonView addPersonView;
+    private ArrayList<Person> people;
+    private DefaultTableModel model;
 
     public PersonView() {
         this.generateMedicalRecordView = new GenerateMedicalRecordView();
@@ -27,6 +31,15 @@ public class PersonView extends JPanel {
         this.deletePersonView = new DeletePersonView();
         this.updatePersonView = new UpdatePersonView();
         this.addPersonView = new AddPersonView();
+        this.people = new ArrayList<>();
+        this.model = new DefaultTableModel();
+        this.model.addColumn("Nome");
+        this.model.addColumn("CPF");
+        this.model.addColumn("Tipo Sanguíneo");
+        this.model.addColumn("Sexo");
+        this.model.addColumn("Data nascimento");
+        this.model.addColumn("CIDADE");
+        this.model.addColumn("UF");
         this.init();
     }
 
@@ -90,30 +103,11 @@ public class PersonView extends JPanel {
         jPanelCenter.setBackground(Color.WHITE);
         jPanelCenter.setLayout(new GridLayout(1, 2));
 
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Nome");
-        model.addColumn("CPF");
-        model.addColumn("Grupo sanguíneo");
-        model.addColumn("Data nascimento");
-
         // PopulateTable
-        try {
-            ArrayList<Person> people = getAllPeopleController.execute();
-            Iterator<Person> it = people.iterator();
-            while (it.hasNext()){
-                Person person = it.next();
-                model.addRow(new Object[]{
-                        person.getFullName(),
-                        person.getCPF(),
-                        person.getBloodType().toString(),
-                        person.getBirthDate()});
-            }
-        }catch (IllegalArgumentException error) {
-            JOptionPane.showMessageDialog(this, error.getMessage());
-        }
+        this.populateTable();
 
         // Initializing the JTable
-        Table table = new Table(model) {
+        Table table = new Table(this.model) {
             @Override
             public boolean editCellAt(int row, int column, java.util.EventObject e){
                 return false;
@@ -134,6 +128,41 @@ public class PersonView extends JPanel {
 
         jPanelCenter.add(table.getTableHeader());
         jPanelCenter.add(new JScrollPane(table));
+
+        this.addPersonView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                populateTable();
+            }
+        });
+        this.deletePersonView.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                populateTable();
+            }
+        });
         this.add(jPanelCenter);
+    }
+
+    private void populateTable() {
+        try {
+            this.model.setRowCount(0);
+            this.people = getAllPeopleController.execute();
+            Iterator<Person> it = people.iterator();
+            while (it.hasNext()){
+                Person person = it.next();
+                this.model.addRow(new Object[]{
+                        person.getFullName(),
+                        person.getCPF(),
+                        person.getBloodType().toString(),
+                        person.getSex().toString(),
+                        person.getBirthDate(),
+                        person.getAddress().getCity(),
+                        person.getAddress().getState()
+                });
+            }
+        }catch (IllegalArgumentException error) {
+            JOptionPane.showMessageDialog(this, error.getMessage());
+        }
     }
 }

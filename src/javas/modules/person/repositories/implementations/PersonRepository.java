@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class PersonRepository implements IPersonRepository {
 
-    private final Statement repository;
+    private final Statement statement;
 
     public PersonRepository() {
-        this.repository = AppDataSource.execute();
+        this.statement = AppDataSource.execute();
     }
     @Override
     public Person create(Person data) {
@@ -51,8 +51,8 @@ public class PersonRepository implements IPersonRepository {
                                                 data.getSex().getValue(), data.getAddress().getStreet(),
                                                 data.getAddress().getDistrict(), data.getAddress().getCity(),
                                                 data.getAddress().getPostalCode(), data.getAddress().getState());
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return data;
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_CREATE_PERSON, error.getMessage());
@@ -88,8 +88,8 @@ public class PersonRepository implements IPersonRepository {
                                                 data.getAddress().getState(),
                                                 PersonEntityConstants.ID_COLUMN_NAME,
                                                 data.getId());
-            this.repository.executeUpdate(query);
-            this.repository.close();
+            this.statement.executeUpdate(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_UPDATE_PERSON, error.getMessage());
@@ -100,8 +100,8 @@ public class PersonRepository implements IPersonRepository {
     public boolean delete(String _id) {
         try {
             final String query = String.format("DELETE FROM %s WHERE %s='%s'", PersonEntityConstants.ENTITY_NAME, PersonEntityConstants.ID_COLUMN_NAME, _id);
-            this.repository.execute(query);
-            this.repository.close();
+            this.statement.execute(query);
+            this.statement.close();
             return true;
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_DELETE_PERSON, error.getMessage());
@@ -121,11 +121,11 @@ public class PersonRepository implements IPersonRepository {
     private Person findOne(String columnName, String valueColumn) {
         try {
             final String query = String.format("SELECT * FROM %s WHERE %s='%s' LIMIT 1", PersonEntityConstants.ENTITY_NAME, columnName, valueColumn);
-            ResultSet rs = this.repository.executeQuery(query);
+            ResultSet rs = this.statement.executeQuery(query);
             while (rs.next()) {
                 return this.resultSetToPerson(rs);
             }
-            this.repository.close();
+            this.statement.close();
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
         }
@@ -137,11 +137,11 @@ public class PersonRepository implements IPersonRepository {
         ArrayList<Person> listPeople = new ArrayList<>();
         try {
             final String query = String.format("SELECT * FROM %s", PersonEntityConstants.ENTITY_NAME);
-            ResultSet rs = this.repository.executeQuery(query);
+            ResultSet rs = this.statement.executeQuery(query);
             while (rs.next()) {
                 listPeople.add(this.resultSetToPerson(rs));
             }
-            this.repository.close();
+            this.statement.close();
             return listPeople;
         }catch (SQLException error) {
             throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
@@ -158,7 +158,7 @@ public class PersonRepository implements IPersonRepository {
             String cpf = rs.getString(4);
             BloodTypeEnum bloodType = BloodTypeEnum.valueOf(BloodTypeEnum.getEnum(rs.getString(5)));
             String birthDate = rs.getString(6);
-            SexEnum sex = SexEnum.valueOf(rs.getString(7));
+            SexEnum sex = SexEnum.valueOf(SexEnum.getEnum(rs.getString(7)));
             // Address Columns
             String street = rs.getString(8);
 
