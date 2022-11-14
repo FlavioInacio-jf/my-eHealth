@@ -1,10 +1,10 @@
 package javas.modules.vaccine.repositories.impementations;
 
+import javas.modules.vaccine.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 import org.junit.Test;
 
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -17,7 +17,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testCreate() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null,  VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
         assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
         this.repository.delete(vaccine.getId());
@@ -25,7 +25,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testUpdate() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
         vaccine.setDose(2);
@@ -39,7 +39,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testDelete() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
         assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
@@ -49,7 +49,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testFindById() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
         assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
@@ -58,7 +58,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testFindByUserId() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
         assertTrue(vaccine.equals(this.repository.findByUserId(null)));
@@ -67,7 +67,7 @@ public class VaccineRepositoryTest {
 
     @Test
     public void testFindByHealthUnitId() {
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
         assertTrue(vaccine.equals(this.repository.findByHealthUnitId(null)));

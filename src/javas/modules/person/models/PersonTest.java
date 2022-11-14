@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 import javas.modules.person.enums.SexEnum;
+import javas.modules.vaccine.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import org.junit.Test;
 
@@ -101,7 +102,7 @@ public class PersonTest {
     public void testApplyVaccine() {
         Person person = new Person(null, "Maria",
                 "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "11/11/2020");
         person.applyVaccine(vaccine);
         assertTrue(person.getVaccines().contains(vaccine));
     }
@@ -110,7 +111,7 @@ public class PersonTest {
     public void testGetVaccines() {
         Person person = new Person(null, "Maria",
                 "Souza", "888.888.888-88", BloodTypeEnum.A, SexEnum.FEMALE, "17/12/2005", null);
-        Vaccine vaccine = new Vaccine(null, "Hepatite C", 1, "157");
+        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "11/11/2020");
         person.applyVaccine(vaccine);
         assertTrue(person.getVaccines().contains(vaccine));
     }

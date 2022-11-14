@@ -8,6 +8,7 @@ import javas.exceptions.VaccineErrorMessages;
 import javas.modules.app.models.Address;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
+import javas.modules.vaccine.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 
@@ -30,17 +31,21 @@ public class VaccineRepository implements IVaccineRepository {
 
     private Vaccine save(String _idUser, String _idHealthUnit, Vaccine data) {
         try {
-            final String query = String.format("INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES ('%s', '%s', %s, '%s', '%s', '%s')",
+            final String query = String.format("INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s) VALUES ('%s', '%s', %s, '%s', '%s', '%s', '%s')",
                     VaccineEntityConstants.ENTITY_NAME,
                     VaccineEntityConstants.ID_COLUMN_NAME,
                     VaccineEntityConstants.NAME_COLUMN_NAME,
                     VaccineEntityConstants.DOSE_COLUMN_NAME,
                     VaccineEntityConstants.LOT_COLUMN_NAME,
+                    VaccineEntityConstants.APPLICATION_DATE_COLUMN_NAME,
                     VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK,
                     VaccineEntityConstants.PERSON_COLUMN_NAME_FK,
-                    data.getId(), data.getName(),
+                    data.getId(),
+                    data.getName().toString(),
                     data.getDose(),
-                    data.getLot(), _idHealthUnit,
+                    data.getLot(),
+                    data.getApplicationDate(),
+                    _idHealthUnit,
                     _idUser);
             this.statement.execute(query);
             this.statement.close();
@@ -53,14 +58,16 @@ public class VaccineRepository implements IVaccineRepository {
     @Override
     public boolean update(Vaccine data) {
         try {
-            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s, WHERE %s='%s'",
+            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s, %s='%s',, WHERE %s='%s'",
                     VaccineEntityConstants.ENTITY_NAME,
                     VaccineEntityConstants.NAME_COLUMN_NAME,
-                    data.getName(),
+                    data.getName().toString(),
                     VaccineEntityConstants.DOSE_COLUMN_NAME,
                     data.getDose(),
                     VaccineEntityConstants.LOT_COLUMN_NAME,
                     data.getLot(),
+                    VaccineEntityConstants.APPLICATION_DATE_COLUMN_NAME,
+                    data.getApplicationDate(),
                     VaccineEntityConstants.ID_COLUMN_NAME,
                     data.getId());
             this.statement.executeUpdate(query);
@@ -129,9 +136,10 @@ public class VaccineRepository implements IVaccineRepository {
         try {
             // Vaccine Columns
             String _id = rs.getString(VaccineEntityConstants.ID_COLUMN_NAME);
-            String name = rs.getString(VaccineEntityConstants.NAME_COLUMN_NAME);
+            VaccineName name = VaccineName.valueOf(VaccineName.getEnum(rs.getString(VaccineEntityConstants.NAME_COLUMN_NAME)));
             int dose = rs.getInt(VaccineEntityConstants.DOSE_COLUMN_NAME);
             String lot = rs.getString(VaccineEntityConstants.LOT_COLUMN_NAME);
+            String applicationDate = rs.getString(VaccineEntityConstants.APPLICATION_DATE_COLUMN_NAME);
 
             // Health Unit
             String healthUnitID = rs.getString(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK);
@@ -146,7 +154,7 @@ public class VaccineRepository implements IVaccineRepository {
             String postalCode = rs.getString(HealthUnitEntityConstants.POSTAL_CODE_COLUMN_NAME);
             String state = rs.getString(HealthUnitEntityConstants.STATE_COLUMN_NAME);
 
-            Vaccine vaccine = new Vaccine(_id, name, dose, lot);
+            Vaccine vaccine = new Vaccine(_id, name, dose, lot, applicationDate);
             Address address = new Address(street, district, city, postalCode, state);
             vaccine.setHeathUnit(new HealthUnit(healthUnitID, type, corporateName, cnpj, address));
             return vaccine;

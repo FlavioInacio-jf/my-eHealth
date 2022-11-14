@@ -10,4 +10,5 @@ public class VaccineErrorMessages {
 
     public static final String VACCINE_NOT_FOUND_TITLE = "Vacina não foi encontrado";
     public static final String VACCINE_NOT_FOUND_DETAIL = "Vacina não existe no banco de dados!";
+    public static final String VACCINE_NAME_INVALID = "Nome da vacina é inválido";
 }

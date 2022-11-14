@@ -2,8 +2,8 @@ package javas.modules.vaccine.useCases.getAllPersonVaccines;
 
 import org.junit.Test;
 
-public class GetAllPersonVaccinesUseCaseTest {
-    public GetAllPersonVaccinesUseCaseTest() {}
+public class GetAllVaccinesHealthUnitUseCaseTest {
+    public GetAllVaccinesHealthUnitUseCaseTest() {}
 
     @Test
     public void testHandle() {}

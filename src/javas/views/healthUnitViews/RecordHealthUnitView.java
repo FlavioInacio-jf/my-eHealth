@@ -1,6 +1,6 @@
-package javas.views.personViews;
+package javas.views.healthUnitViews;
 
-import javas.modules.person.models.Person;
+import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.vaccine.models.Vaccine;
 import javas.views.components.BaseFrame;
 import javas.views.components.LabelGroup;
@@ -13,15 +13,20 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MedialRecordView extends BaseFrame {
-    public MedialRecordView (Person person) {
-        this.init(person);
+public class RecordHealthUnitView extends BaseFrame {
+    private final HealthUnit healthUnit;
+    private final ArrayList<Vaccine> vaccines;
+    public RecordHealthUnitView(HealthUnit healthUnit, ArrayList<Vaccine> vaccines) {
+        this.healthUnit = healthUnit;
+        this.vaccines = vaccines;
+        this.init();
     }
 
-    public void init(Person person) {
-        this.setTitle("Registro médico de " + person.getFullName());
+    private void init(){
+        this.setTitle("Relatório da unidade de saúde de " + this.healthUnit.getName());
 
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.setBackground(Color.WHITE);
@@ -32,28 +37,26 @@ public class MedialRecordView extends BaseFrame {
         informationPanel.setBorder(new EmptyBorder(6, 0, 6, 0));
         informationPanel.setBackground(Color.WHITE);
         informationPanel.setLayout(new GridLayout(11, 1));
-        LabelGroup labelGroupFirstName = new LabelGroup("Primeiro nome:", person.getFirstName());
-        LabelGroup labelGroupLastName = new LabelGroup("Último nome:", person.getLastName());
-        LabelGroup labelGroupCPF = new LabelGroup("CPF:", person.getCPF());
-        LabelGroup labelGroupBloodType = new LabelGroup("Grupo sanguíneo:", person.getBloodType().toString());
-        LabelGroup labelGroupSex  = new LabelGroup("Sexo:", person.getSex().toString());
-        LabelGroup labelGroupStreet = new LabelGroup("Rua:", person.getAddress().getStreet());
-        LabelGroup labelGroupDistrict = new LabelGroup("Bairro:", person.getAddress().getDistrict());
-        LabelGroup labelGroupCity = new LabelGroup("Cidade:", person.getAddress().getCity());
-        LabelGroup labelGroupState = new LabelGroup("Estado:", person.getAddress().getState());
-        LabelGroup labelGroupPostalCode = new LabelGroup("CEP:", person.getAddress().getPostalCode());
-        Title title = new Title("Vacinas recebidas", SwingConstants.CENTER);
+        LabelGroup labelGroupName = new LabelGroup("Nome:", this.healthUnit.getName());
+        LabelGroup labelGroupType = new LabelGroup("Tipo:", this.healthUnit.getType().toString());
+        LabelGroup labelGroupCNPJ = new LabelGroup("CNPJ:", this.healthUnit.getCNPJ());
+        LabelGroup labelGroupStreet = new LabelGroup("Rua:", this.healthUnit.getAddress().getStreet());
+        LabelGroup labelGroupDistrict = new LabelGroup("Bairro:", this.healthUnit.getAddress().getDistrict());
+        LabelGroup labelGroupCity = new LabelGroup("Cidade:", this.healthUnit.getAddress().getCity());
+        LabelGroup labelGroupState = new LabelGroup("Estado:", this.healthUnit.getAddress().getState());
+        LabelGroup labelGroupPostalCode = new LabelGroup("CEP:", this.healthUnit.getAddress().getPostalCode());
+        LabelGroup labelGroupTotalVaccinesApplied = new LabelGroup("Vacinas aplicadas", Integer.toString(this.vaccines.size()));
+        Title title = new Title("Vacinas aplicadas nesta unidade de saúde", SwingConstants.CENTER);
 
-        informationPanel.add(labelGroupFirstName);
-        informationPanel.add(labelGroupLastName);
-        informationPanel.add(labelGroupCPF);
-        informationPanel.add(labelGroupBloodType);
-        informationPanel.add(labelGroupSex);
+        informationPanel.add(labelGroupName);
+        informationPanel.add(labelGroupType);
+        informationPanel.add(labelGroupCNPJ);
         informationPanel.add(labelGroupStreet);
         informationPanel.add(labelGroupDistrict);
         informationPanel.add(labelGroupCity);
         informationPanel.add(labelGroupState);
         informationPanel.add(labelGroupPostalCode);
+        informationPanel.add(labelGroupTotalVaccinesApplied);
 
         informationPanel.add(title);
 
@@ -69,8 +72,6 @@ public class MedialRecordView extends BaseFrame {
         model.addColumn("DATA");
         model.addColumn("DOSE");
         model.addColumn("LOTE");
-        model.addColumn("Nome Unidade de Saúde");
-        model.addColumn("Tipo Unidade de Saúde");
 
         Table vaccinesTable = new Table(model) {
             @Override
@@ -91,16 +92,14 @@ public class MedialRecordView extends BaseFrame {
         };
 
         // Populate table
-        Iterator it = person.getVaccines().iterator();
+        Iterator<Vaccine> it = this.vaccines.iterator();
         while(it.hasNext()) {
-            Vaccine vaccine = (Vaccine) it.next();
+            Vaccine vaccine = it.next();
             model.addRow(new Object[]{
                     vaccine.getName(),
                     vaccine.getApplicationDate(),
                     vaccine.getDose(),
-                    vaccine.getLot(),
-                    vaccine.getHeathUnit().getName(),
-                    vaccine.getHeathUnit().getType().toString()});
+                    vaccine.getLot()});
 
         }
         contentTable.add(vaccinesTable.getTableHeader());
@@ -110,4 +109,3 @@ public class MedialRecordView extends BaseFrame {
         contentPane.add(informationPanel, BorderLayout.NORTH);
     }
 }
-

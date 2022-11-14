@@ -1,6 +1,7 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
+import javas.modules.vaccine.VaccineName;
 import javas.views.components.*;
 import javas.views.components.Button;
 
@@ -12,16 +13,19 @@ import static javas.constants.VaccineEntityConstants.VALID_DOSES;
 import static javas.modules.vaccine.useCases.applyVaccine.ApplyVaccine.applyVaccineController;
 
 public class ApplyVaccineView extends BaseFrame {
-    private final FormGroupInput personCPF, healthUnitCNPJ, name, lot;
-    private final FormGroupSelect dose;
+    private final FormGroupInput personCPF, healthUnitCNPJ, lot, applicationDate;
+    private final FormGroupSelect dose, name;
     public ApplyVaccineView() {
         this.personCPF = new FormGroupInput("CPF (paciente):");
         personCPF.setMaskFormatter("###.###.###-##");
         this.healthUnitCNPJ = new FormGroupInput("CNPJ (Unidade de saúde):");
         healthUnitCNPJ.setMaskFormatter("##.###.###/####-##");
-        this.name = new FormGroupInput("Nome:");
+        this.name = new FormGroupSelect("Nome:", VaccineName.getNames());
         this.dose = new FormGroupSelect("Dose", VALID_DOSES);
         this.lot = new FormGroupInput("Lote");
+
+        this.applicationDate = new FormGroupInput("Data da aplicação");
+        this.applicationDate.setMaskFormatter("##/##/####");
 
         this.init();
     }
@@ -50,9 +54,10 @@ public class ApplyVaccineView extends BaseFrame {
         paneForm.add(this.name);
 
 
-        Column column = new Column(2, 10);
+        Column column = new Column(3, 10);
         column.add(this.lot);
         column.add(this.dose);
+        column.add(this.applicationDate);
 
         paneForm.add(column);
         paneForm.add(applyVaccineButton);
@@ -76,14 +81,14 @@ public class ApplyVaccineView extends BaseFrame {
             try {
                 String cpf = this.personCPF.getText();
                 String cnpj = this.healthUnitCNPJ.getText();
-                String vaccineName = this.name.getText();
+                String vaccineName = this.name.getSelectedItem().toString();
                 int vaccineDose =  Integer.parseInt(this.dose.getSelectedItem().toString());
                 String vaccineLot = this.lot.getText();
-                applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot);
+                String applicationDate = this.applicationDate.getText();
+                applyVaccineController.execute(cpf, cnpj, vaccineName, vaccineDose, vaccineLot, applicationDate);
 
                 this.personCPF.setText("");
                 this.healthUnitCNPJ.setText("");
-                this.name.setText("");
                 this.lot.setText("");
 
                 JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");

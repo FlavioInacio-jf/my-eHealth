@@ -155,7 +155,6 @@ public class Person extends ModelBase {
         return  getId().equals(objectPerson.getId()) &&
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&
-                this.getCreatedAt().equals(objectPerson.getCreatedAt()) &&
                 this.cpf.equals(objectPerson.getCPF()) && this.vaccines.equals(objectPerson.getVaccines()) &&
                 this.bloodType.equals(objectPerson.getBloodType()) && this.sex.equals(objectPerson.getSex()) &&
                 this.birthDate.equals(objectPerson.getBirthDate()) && this.address.equals(objectPerson.getAddress());

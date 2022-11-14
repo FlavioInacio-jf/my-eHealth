@@ -6,6 +6,7 @@ public class VaccineEntityConstants {
     public static final String NAME_COLUMN_NAME = "name";
     public static final String DOSE_COLUMN_NAME = "dose";
     public static final String LOT_COLUMN_NAME = "lot";
+    public static final String APPLICATION_DATE_COLUMN_NAME = "applicationDate";
 
     public static final String HEATH_UNIT_COLUMN_NAME_FK = "heathUnitID";
     public static final String PERSON_COLUMN_NAME_FK = "personID";
@@ -18,6 +19,7 @@ public class VaccineEntityConstants {
                 String.format("%s VARCHAR NOT NULL,", NAME_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", DOSE_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", LOT_COLUMN_NAME) +
+                String.format("%s VARCHAR NOT NULL,", APPLICATION_DATE_COLUMN_NAME) +
                 String.format("%s VARCHAR NOT NULL,", HEATH_UNIT_COLUMN_NAME_FK) +
                 String.format("%s VARCHAR NOT NULL,", PERSON_COLUMN_NAME_FK) +
                 String.format("%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,", CREATED_AT_COLUMN_NAME) +
