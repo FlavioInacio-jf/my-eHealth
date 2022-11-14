@@ -20,7 +20,7 @@ public class AddHealthUnitView extends BaseFrame {
         this.name = new FormGroupInput("Nome");
         this.cnpj = new FormGroupInput("CNPJ");
         this.cnpj.setMaskFormatter("##.###.###/####-##");
-        this.type = new FormGroupSelect("tipo", UnitTypeEnum.getNames());
+        this.type = new FormGroupSelect("Tipo", UnitTypeEnum.getNames());
         this.street = new FormGroupInput("Rua");
         this.district = new FormGroupInput("Bairro");
         this.city = new FormGroupInput("Cidade");
@@ -86,15 +86,14 @@ public class AddHealthUnitView extends BaseFrame {
 
     private void handleHealthUnit() {
         try {
-            String name = this.name.getText();
-            String cnpj = this.cnpj.getText();
+            String name = this.name.getText().trim();
+            String cnpj = this.cnpj.getText().trim();
             String type = UnitTypeEnum.getEnum(this.type.getSelectedItem().toString());
-            String street = this.street.getText();
-            String district = this.district.getText();
-            String city = this.city.getText();
+            String street = this.street.getText().trim();
+            String district = this.district.getText().trim();
+            String city = this.city.getText().trim();
             String state = this.state.getSelectedItem().toString();
-            String postalCode = this.postalCode.getText();
-
+            String postalCode = this.postalCode.getText().trim();
             createHealthUnitController.execute(type, name, cnpj, street, district, city, state, postalCode);
             JOptionPane.showMessageDialog(this, "Unidade de saúde cadastrado com sucesso!");
         }catch (Error | IllegalAccessException | IllegalArgumentException error) {

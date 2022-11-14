@@ -14,14 +14,14 @@ public class FormGroupInput extends JPanel {
     }
 
     private void init(String title) {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.input = new Input();
         this.label = new Label(title);
         this.label.setLabelFor(this.input);
 
         this.setBackground(Color.WHITE);
         this.add(this.label);
-        this.add(Box.createVerticalStrut(5));
+        this.add(Box.createHorizontalStrut(5));
         this.add(this.input);
     }
 
@@ -36,6 +36,10 @@ public class FormGroupInput extends JPanel {
 
     public String getText() {
         return this.input.getText();
+    }
+
+    public void setText(String string) {
+        this.input.setText(string);
     }
 
 }
