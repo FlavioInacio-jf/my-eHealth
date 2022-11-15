@@ -89,7 +89,7 @@ public class Address {
         }
         Address objectAddress = (Address) object;
         return  this.street.equals(objectAddress.getStreet()) &&
-                this.district.equals(objectAddress.getCity()) &&
+                this.district.equals(objectAddress.getDistrict()) &&
                 this.city.equals(objectAddress.getCity()) &&
                 this.state.equals(objectAddress.getState()) &&
                 this.postalCode.equals(objectAddress.getPostalCode());

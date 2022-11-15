@@ -76,13 +76,13 @@ public class VaccineTest {
     public void testSetApplicationDate(){
         Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         vaccine.setApplicationDate("03/12/2020");
-        assertEquals("03/12/2020", vaccine.getLot());
+        assertEquals("03/12/2020", vaccine.getApplicationDate());
     }
 
     @Test
     public void testGetApplicationDate(){
         Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
-        assertEquals("02/11/2022", vaccine.getLot());
+        assertEquals("02/11/2022", vaccine.getApplicationDate());
     }
 
     @Test
@@ -92,8 +92,6 @@ public class VaccineTest {
         Vaccine vaccine1 = new Vaccine(null, VaccineName.JANSSEN,  1, "157", "02/11/2022");
         vaccine1.setHeathUnit(healthUnit1);
 
-        Address address2 = address1;
-        HealthUnit hUnit2 = healthUnit1;
         Vaccine vaccine2 = vaccine1;
 
         Address address3 = new Address("a1", "b2", "c3", "d4", "e5");

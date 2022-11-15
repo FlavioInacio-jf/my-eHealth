@@ -58,15 +58,13 @@ public class HealthUnitRepository implements IHealthUnitRepository {
     @Override
     public boolean update(HealthUnit data) {
         try {
-            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s', " +
+            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', " +
                                                                 "%s='%s', %s='%s', %s='%s', %s='%s' WHERE %s='%s'",
                     HealthUnitEntityConstants.ENTITY_NAME,
                     HealthUnitEntityConstants.TYPE_COLUMN_NAME,
                     data.getType().toString(),
                     HealthUnitEntityConstants.NAME_COLUMN_NAME,
                     data.getName(),
-                    HealthUnitEntityConstants.CNPJ_COLUMN_NAME,
-                    data.getCNPJ(),
                     HealthUnitEntityConstants.STREET_COLUMN_NAME,
                     data.getAddress().getStreet(),
                     HealthUnitEntityConstants.DISTRICT_COLUMN_NAME,
@@ -97,11 +95,6 @@ public class HealthUnitRepository implements IHealthUnitRepository {
         }catch (SQLException error) {
             throw new CustomError(HealthUnitErrorMessages.UNABLE_DELETE_HEALTH_UNIT, error.getMessage());
         }
-    }
-
-    @Override
-    public HealthUnit findByName(String name) {
-        return this.findOne(HealthUnitEntityConstants.NAME_COLUMN_NAME, name);
     }
 
     @Override

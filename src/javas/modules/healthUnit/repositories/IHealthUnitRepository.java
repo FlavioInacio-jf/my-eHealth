@@ -9,8 +9,6 @@ public interface IHealthUnitRepository {
     boolean update(HealthUnit data);
     boolean delete(String _id);
 
-    HealthUnit findByName(String name);
-
     HealthUnit findByCNPJ(String cnpj);
     HealthUnit findById(String _id);
     ArrayList<HealthUnit> getAll();
