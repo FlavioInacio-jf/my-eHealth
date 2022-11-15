@@ -11,7 +11,7 @@ public class ApplyVaccineController {
         this.applyVaccineUseCase = applyVaccineUseCase;
     }
 
-    public void execute(String userCPF,
+    public Vaccine execute(String userCPF,
                         String healthUnitCNPJ,
                         String name,
                         int dose,
@@ -21,5 +21,6 @@ public class ApplyVaccineController {
         Vaccine vaccine = new Vaccine(null, VaccineName.valueOf(name), dose, lot, applicationDate);
         new Validation(vaccine).validate();
         this.applyVaccineUseCase.handle(userCPF, healthUnitCNPJ, vaccine);
+        return vaccine;
     }
 }
