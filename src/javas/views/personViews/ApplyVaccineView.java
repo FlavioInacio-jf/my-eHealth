@@ -1,7 +1,7 @@
 package javas.views.personViews;
 
 import javas.constants.ViewConstants;
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.views.components.*;
 import javas.views.components.Button;
 
@@ -81,7 +81,7 @@ public class ApplyVaccineView extends BaseFrame {
             try {
                 String cpf = this.personCPF.getText();
                 String cnpj = this.healthUnitCNPJ.getText();
-                String vaccineName = this.name.getSelectedItem().toString();
+                String vaccineName = VaccineName.getEnum(this.name.getSelectedItem().toString());
                 int vaccineDose =  Integer.parseInt(this.dose.getSelectedItem().toString());
                 String vaccineLot = this.lot.getText();
                 String applicationDate = this.applicationDate.getText();

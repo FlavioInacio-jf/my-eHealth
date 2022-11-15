@@ -34,4 +34,5 @@ public class FormGroupSelect extends JPanel{
     public void setSelectItem(Object object) {
         this.select.getModel().setSelectedItem(object);
     }
+
 }

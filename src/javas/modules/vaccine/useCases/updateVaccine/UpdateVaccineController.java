@@ -1,6 +1,6 @@
 package javas.modules.vaccine.useCases.updateVaccine;
 
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.validations.Validation;
 

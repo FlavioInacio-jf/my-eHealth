@@ -1,5 +1,6 @@
 package javas.modules.person.useCases.getAllPeople;
 
+import javas.constants.VaccineEntityConstants;
 import javas.modules.person.models.Person;
 import javas.modules.person.repositories.IPersonRepository;
 import javas.modules.vaccine.repositories.IVaccineRepository;
@@ -20,7 +21,7 @@ public class GetAllPeopleUseCase {
         Iterator<Person> it = people.iterator();
         while (it.hasNext()) {
             Person person = it.next();
-            person.applyVaccines(this.vaccineRepository.findByUserId(person.getId()));
+            person.applyVaccines(this.vaccineRepository.findAll(String.format("%s='%s'", VaccineEntityConstants.PERSON_COLUMN_NAME_FK, person.getId())));
         }
         return people;
     }

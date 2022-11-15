@@ -2,7 +2,7 @@ package javas.modules.vaccine.models;
 
 import javas.modules.app.models.ModelBase;
 import javas.modules.healthUnit.models.HealthUnit;
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.validations.*;
 
 

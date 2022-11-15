@@ -8,7 +8,7 @@ import javas.exceptions.VaccineErrorMessages;
 import javas.modules.app.models.Address;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 
@@ -91,36 +91,27 @@ public class VaccineRepository implements IVaccineRepository {
     }
 
     @Override
-    public ArrayList<Vaccine> findByUserId(String userId) {
-        return this.getAll(VaccineEntityConstants.PERSON_COLUMN_NAME_FK, userId);
-    }
-
-    @Override
-    public ArrayList<Vaccine> findByHealthUnitId(String healthUnitId) {
-        return this.getAll(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK, healthUnitId);
-    }
-
-    @Override
     public Vaccine findById(String _id) {
-       ArrayList<Vaccine> vaccines = this.getAll(VaccineEntityConstants.ID_COLUMN_NAME, _id);
+       ArrayList<Vaccine> vaccines = this.findAll(String.format("%s='%s'", VaccineEntityConstants.ID_COLUMN_NAME, _id));
        if (vaccines.isEmpty()) {
            return null;
        }
         return vaccines.get(0);
     }
 
-    private ArrayList<Vaccine> getAll(String columnName, String valueColumn) {
+    @Override
+    public ArrayList<Vaccine> findAll(String query) {
         ArrayList<Vaccine> listVaccines = new ArrayList<>();
         try {
-            final String query = String.format("SELECT * FROM %s INNER JOIN %s ON %s.%s = %s.%s where %s='%s'",
+            final String querySQL = String.format("SELECT * FROM %s INNER JOIN %s ON %s.%s = %s.%s where %s",
                                                                                             VaccineEntityConstants.ENTITY_NAME,
                                                                                             HealthUnitEntityConstants.ENTITY_NAME,
                                                                                             VaccineEntityConstants.ENTITY_NAME,
                                                                                             VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK,
                                                                                             HealthUnitEntityConstants.ENTITY_NAME,
                                                                                             HealthUnitEntityConstants.ID_COLUMN_NAME,
-                                                                                            columnName, valueColumn);
-            ResultSet rs = this.statement.executeQuery(query);
+                                                                                            query);
+            ResultSet rs = this.statement.executeQuery(querySQL);
             while (rs.next()) {
                 listVaccines.add(this.resultSetToVaccine(rs));
             }
@@ -130,7 +121,6 @@ public class VaccineRepository implements IVaccineRepository {
             throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
         }
     }
-
 
     private Vaccine resultSetToVaccine(ResultSet rs) {
         try {

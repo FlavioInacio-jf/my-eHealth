@@ -1,5 +1,6 @@
 package javas.modules.person.useCases.getSinglePerson;
 
+import javas.constants.VaccineEntityConstants;
 import javas.errors.CustomError;
 import javas.exceptions.PersonErrorMessages;
 import javas.modules.person.models.Person;
@@ -20,7 +21,7 @@ public class GetSinglePersonUseCase {
         if (person == null) {
             throw new CustomError(PersonErrorMessages.PERSON_NOT_FOUND_TITLE, PersonErrorMessages.PERSON_NOT_FOUND_DETAIL);
         }
-        person.applyVaccines(this.vaccineRepository.findByUserId(person.getId()));
+        person.applyVaccines(this.vaccineRepository.findAll(String.format("%s='%s'", VaccineEntityConstants.PERSON_COLUMN_NAME_FK, person.getId())));
         return person;
     }
 }

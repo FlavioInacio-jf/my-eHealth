@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import javas.modules.app.models.Address;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import org.junit.Test;
 
 public class VaccineTest {

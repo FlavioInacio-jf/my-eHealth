@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 import javas.modules.person.enums.SexEnum;
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import org.junit.Test;
 

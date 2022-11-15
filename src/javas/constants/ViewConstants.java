@@ -21,6 +21,7 @@ public class ViewConstants {
     public static final String DELETE_PERSON_VIEW_TITLE = "Excluir paciente";
     public static final String GENERATE_MEDICAL_RECORD_VIEW_TITLE = "Gerar relatório médico";
     public static final String APPLY_VACCINE_VIEW_TITLE =  "Cadastrar vacina";
+    public static final String STATISTICS_POPULATION_VIEW_TITLE =  "Estatísticas da população";
 
 
 

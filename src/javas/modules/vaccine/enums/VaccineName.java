@@ -1,4 +1,4 @@
-package javas.modules.vaccine;
+package javas.modules.vaccine.enums;
 
 import javas.exceptions.VaccineErrorMessages;
 

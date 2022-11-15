@@ -1,6 +1,7 @@
 package javas.views.healthUnitViews;
 
 
+import javas.constants.VaccineEntityConstants;
 import javas.constants.ViewConstants;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.vaccine.models.Vaccine;
@@ -16,7 +17,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static javas.modules.healthUnit.useCases.getSingleHealthUnit.GetSingleHealthUnit.getSingleHealthUnitController;
-import static javas.modules.vaccine.useCases.getAllVaccinesHealthUnit.GetAllVaccinesHealthUnit.getAllVaccinesHealthUnitController;
+import static javas.modules.vaccine.useCases.getAllVaccines.GetAllVaccines.getAllVaccinesController;
 
 public class GenerateRecordHealthUnitView extends BaseFrame {
     private final FormGroupInput healthUnitCNPJ;
@@ -67,7 +68,8 @@ public class GenerateRecordHealthUnitView extends BaseFrame {
         else {
             try {
                 HealthUnit healthUnit = getSingleHealthUnitController.execute(cnpj);
-                ArrayList<Vaccine> vaccines = getAllVaccinesHealthUnitController.execute(healthUnit.getCNPJ());
+                ArrayList<Vaccine> vaccines = getAllVaccinesController.execute(String.format("%s = '%s'",
+                                                                                VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK, healthUnit.getId()));
                 new RecordHealthUnitView(healthUnit, vaccines).setVisible(true);
             }catch (Error error) {
                 JOptionPane.showMessageDialog(this, error.getMessage());

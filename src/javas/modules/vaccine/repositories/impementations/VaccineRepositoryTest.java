@@ -1,6 +1,6 @@
 package javas.modules.vaccine.repositories.impementations;
 
-import javas.modules.vaccine.VaccineName;
+import javas.modules.vaccine.enums.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.modules.vaccine.repositories.IVaccineRepository;
 import org.junit.Test;
@@ -57,20 +57,11 @@ public class VaccineRepositoryTest {
     }
 
     @Test
-    public void testFindByUserId() {
+    public void testFindAll() {
         Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
         this.repository.create(null, null, vaccine);
 
-        assertTrue(vaccine.equals(this.repository.findByUserId(null)));
-        this.repository.delete(vaccine.getId());
-    }
-
-    @Test
-    public void testFindByHealthUnitId() {
-        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN, 1, "157", "02/11/2022");
-        this.repository.create(null, null, vaccine);
-
-        assertTrue(vaccine.equals(this.repository.findByHealthUnitId(null)));
+        assertTrue(vaccine.equals(this.repository.findAll("")));
         this.repository.delete(vaccine.getId());
     }
 }

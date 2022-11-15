@@ -17,20 +17,23 @@ import javax.swing.table.TableCellRenderer;
 import static javas.modules.person.useCases.getAllPeople.GetAllPeople.getAllPeopleController;
 
 public class PersonView extends JPanel {
-    private final GenerateMedicalRecordView generateMedicalRecordView;
-    private final ApplyVaccineView applyVaccineView;
-    private final DeletePersonView deletePersonView;
-    private final UpdatePersonView updatePersonView;
-    private final AddPersonView addPersonView;
+    private final JFrame generateMedicalRecordView,
+                        applyVaccineView,
+                        deletePersonView,
+                        updatePersonView,
+                        addPersonView,
+                        generateReportByRegionView;
     private ArrayList<Person> people;
     private final DefaultTableModel model;
 
     public PersonView() {
+        this.generateReportByRegionView = new GenerateReportByRegionView();
         this.generateMedicalRecordView = new GenerateMedicalRecordView();
         this.applyVaccineView = new ApplyVaccineView();
         this.deletePersonView = new DeletePersonView();
         this.updatePersonView = new UpdatePersonView();
         this.addPersonView = new AddPersonView();
+
         this.people = new ArrayList<>();
         this.model = new DefaultTableModel();
         this.model.addColumn("Nome");
@@ -86,6 +89,11 @@ public class PersonView extends JPanel {
         reportPersonButton.addActionListener(e -> this.generateMedicalRecordView.setVisible(true));
         jPanelNorth.add(reportPersonButton);
 
+        ButtonWithIcon reportByRegionButton = new ButtonWithIcon("Relatório por região");
+        reportByRegionButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/location-mark-icon.png")));
+        reportByRegionButton.addActionListener(e -> this.generateReportByRegionView.setVisible(true));
+        jPanelNorth.add(reportByRegionButton);
+
         ButtonWithIcon vaccinePersonButton = new ButtonWithIcon("Vacinar");
         vaccinePersonButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/vaccine-icon.png")));
         vaccinePersonButton.addActionListener(e -> {
@@ -111,7 +119,7 @@ public class PersonView extends JPanel {
                 return false;
             }
 
-            DefaultTableCellRenderer renderLeft = new DefaultTableCellRenderer();
+            final DefaultTableCellRenderer renderLeft = new DefaultTableCellRenderer();
 
             {
                 renderLeft.setHorizontalAlignment(SwingConstants.LEFT);

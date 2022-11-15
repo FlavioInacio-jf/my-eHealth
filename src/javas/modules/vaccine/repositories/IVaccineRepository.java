@@ -7,9 +7,7 @@ public interface IVaccineRepository {
     Vaccine create(String _idUser, String _idHealthUnit, Vaccine data);
     boolean update(Vaccine data);
     boolean delete(String _id);
-    ArrayList<Vaccine> findByUserId(String userId);
-
-    ArrayList<Vaccine>  findByHealthUnitId(String healthUnitId);
+    ArrayList<Vaccine> findAll(String query);
 
     Vaccine findById(String _id);
 
