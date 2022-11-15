@@ -22,9 +22,7 @@ public class CreatePersonUseCaseTest {
     @Test
     public void testHandle() {
         CreatePersonUseCase createPersonUseCase = new CreatePersonUseCase(this.personRepository);
-        Address address = new Address("Rua flavao", "Bairro Oliveira",
-                "Aracaju", "Sergipe", "987909123");
-
+        
         Person person = new  Person(null, "Inácio",
         "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", null);
 
