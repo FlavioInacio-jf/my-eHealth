@@ -8,8 +8,7 @@ import javas.modules.healthUnit.repositories.implementations.HealthUnitRepositor
 import javas.modules.healthUnit.useCases.createHealthUnit.CreateHealthUnitUseCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class CreateHealthUnitUseCaseTest {
     IHealthUnitRepository healthUnitRepository;
@@ -29,11 +28,6 @@ public class CreateHealthUnitUseCaseTest {
         createHealthUnitUseCase.handle(healthUnit);
         assertTrue(this.healthUnitRepository.findById(healthUnit.getId()).equals(healthUnit));
         this.healthUnitRepository.delete(healthUnit.getId());
-        try {
-            createHealthUnitUseCase.handle(healthUnit);
-            fail();
-        }catch (Error ignored) {
-
-        }
+        assertNull(this.healthUnitRepository.findById(healthUnit.getId()));
     }
 }
