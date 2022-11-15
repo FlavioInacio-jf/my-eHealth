@@ -28,7 +28,7 @@ public class GetSingleHealthUnitUseCaseTest {
 
         this.healthUnitRepository.create(healthUnit);
         assertTrue(getSingleHealthUnitUseCase.handle(healthUnit.getCNPJ()).equals(healthUnit));
-        this.healthUnitRepository.delete(healthUnit.getCNPJ());
+        this.healthUnitRepository.delete(healthUnit.getId());
 
         try {
             assertNull(getSingleHealthUnitUseCase.handle(healthUnit.getCNPJ()));
