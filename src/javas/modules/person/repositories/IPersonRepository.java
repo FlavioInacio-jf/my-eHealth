@@ -11,4 +11,5 @@ public interface IPersonRepository {
      Person findById(String _id);
      Person findByCPF(String cpf);
      ArrayList<Person> getAll();
+     ArrayList<Person> getAll(String querySQL);
 }

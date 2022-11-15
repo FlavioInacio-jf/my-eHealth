@@ -1,10 +1,8 @@
 package javas.views.personViews;
 
-import javas.constants.Addresses;
-import javas.constants.HealthUnitEntityConstants;
-import javas.constants.VaccineEntityConstants;
-import javas.constants.ViewConstants;
+import javas.constants.*;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
+import javas.modules.person.models.Person;
 import javas.modules.vaccine.enums.VaccineName;
 import javas.modules.vaccine.models.Vaccine;
 import javas.views.components.*;
@@ -14,19 +12,22 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static javas.constants.VaccineEntityConstants.VALID_DOSES;
+import static javas.modules.person.useCases.getAllPeople.GetAllPeople.getAllPeopleController;
 import static javas.modules.vaccine.useCases.getAllVaccines.GetAllVaccines.getAllVaccinesController;
 
 public class GenerateReportByRegionView extends BaseFrame {
     private final FormGroupSelect state;
-    private final PieChart unitTypeChart, vaccinesUsedChart, vaccineByDoseChart;
+    private final PieChart unitTypeChart, vaccinesUsedChart, vaccineByDoseChart, vaccinatedUnvaccinatedChart;
 
     public GenerateReportByRegionView() {
         this.state = new FormGroupSelect("Estado", Addresses.validStates);
         this.unitTypeChart = new PieChart("VACINADOS POR TIPO DE UNIDADE DE SAÚDE");
         this.vaccinesUsedChart = new PieChart("NOME DA VACINA");
         this.vaccineByDoseChart = new PieChart("APLICAÇÕES POR DOSE");
+        this.vaccinatedUnvaccinatedChart = new PieChart("VACINADOS E NÂO VACINADOS");
         this.init();
     }
 
@@ -50,9 +51,11 @@ public class GenerateReportByRegionView extends BaseFrame {
         mainPanel.setBackground(Color.WHITE);
 
         // GRAPHICS
-        JPanel graphicPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+        JPanel graphicPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         graphicPanel.setBorder(new EmptyBorder(40, 0, 0, 0));
         graphicPanel.setBackground(Color.WHITE);
+
+        graphicPanel.add(this.vaccinatedUnvaccinatedChart);
         graphicPanel.add(this.unitTypeChart);
         graphicPanel.add(this.vaccinesUsedChart);
         graphicPanel.add(this.vaccineByDoseChart);
@@ -92,6 +95,22 @@ public class GenerateReportByRegionView extends BaseFrame {
                                 VaccineEntityConstants.DOSE_COLUMN_NAME, key));
                 this.vaccineByDoseChart.setValue(key, (double) list.size());
             }
+
+            ArrayList<Person> allPeopleByState = getAllPeopleController.execute(String.format("%s='%s'", PersonEntityConstants.STATE_COLUMN_NAME, state));
+            int totalPeopleVaccinated = 0;
+            int totalUnvaccinatedPeople = 0;
+            Iterator<Person> it = allPeopleByState.iterator();
+            while (it.hasNext()) {
+                if (it.next().getVaccines().isEmpty()) {
+                    totalUnvaccinatedPeople += 1;
+                }
+                else {
+                    totalPeopleVaccinated += 1;
+                }
+            }
+            this.vaccinatedUnvaccinatedChart.setValue("Vacinados", (double) totalPeopleVaccinated);
+            this.vaccinatedUnvaccinatedChart.setValue("Não Vacinados", (double) totalUnvaccinatedPeople);
+
 
         } catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());

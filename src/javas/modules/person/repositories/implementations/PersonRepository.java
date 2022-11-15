@@ -148,6 +148,22 @@ public class PersonRepository implements IPersonRepository {
         }
     }
 
+    @Override
+    public ArrayList<Person> getAll(String querySQL) {
+        ArrayList<Person> listPeople = new ArrayList<>();
+        try {
+            final String query = String.format("SELECT * FROM %s WHERE %s", PersonEntityConstants.ENTITY_NAME, querySQL);
+            ResultSet rs = this.statement.executeQuery(query);
+            while (rs.next()) {
+                listPeople.add(this.resultSetToPerson(rs));
+            }
+            this.statement.close();
+            return listPeople;
+        }catch (SQLException error) {
+            throw new CustomError(PersonErrorMessages.UNABLE_SEARCH_PERSON, error.getMessage());
+        }
+    }
+
     private Person resultSetToPerson(ResultSet rs) {
         try {
             // Person Columns

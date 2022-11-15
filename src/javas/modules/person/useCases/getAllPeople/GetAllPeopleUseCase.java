@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GetAllPeopleUseCase {
-    private IPersonRepository personRepository;
-    private IVaccineRepository vaccineRepository;
+    private final IPersonRepository personRepository;
+    private final IVaccineRepository vaccineRepository;
     public GetAllPeopleUseCase(IPersonRepository personRepository, IVaccineRepository vaccineRepository) {
         this.personRepository = personRepository;
         this.vaccineRepository = vaccineRepository;
@@ -18,6 +18,16 @@ public class GetAllPeopleUseCase {
 
     public ArrayList<Person> handle() {
         ArrayList<Person> people = this.personRepository.getAll();
+        Iterator<Person> it = people.iterator();
+        while (it.hasNext()) {
+            Person person = it.next();
+            person.applyVaccines(this.vaccineRepository.findAll(String.format("%s='%s'", VaccineEntityConstants.PERSON_COLUMN_NAME_FK, person.getId())));
+        }
+        return people;
+    }
+
+    public ArrayList<Person> handle(String querySQL) {
+        ArrayList<Person> people = this.personRepository.getAll(querySQL);
         Iterator<Person> it = people.iterator();
         while (it.hasNext()) {
             Person person = it.next();
