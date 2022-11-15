@@ -21,7 +21,7 @@ public class Main {
 
             MainView mainView = new MainView();
            mainView.setVisible(true);
-        }catch (Error error) {
+        }catch (Error | NullPointerException error) {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
     }
