@@ -3,8 +3,6 @@ package javas.views;
 import javas.constants.ViewConstants;
 import javas.views.components.BaseFrame;
 import javas.views.components.TabbedPane;
-import javas.views.healthUnitViews.HealthUnitView;
-import javas.views.personViews.PersonView;
 
 import javax.swing.*;
 import java.awt.*;

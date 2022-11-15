@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.vaccine.models.Vaccine;

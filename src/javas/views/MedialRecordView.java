@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.modules.person.models.Person;
 import javas.modules.vaccine.models.Vaccine;

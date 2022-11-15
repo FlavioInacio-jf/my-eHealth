@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.ViewConstants;
 import javas.modules.person.enums.BloodTypeEnum;
@@ -49,7 +49,7 @@ public class AddPersonView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Registrar um novo paciente", this.getClass().getResource("../icons/add-user-icon.png"));
+        Header header = new Header("Registrar um novo paciente", this.getClass().getResource("icons/add-user-icon.png"));
 
         // Form
         JPanel mainPanel = new JPanel();

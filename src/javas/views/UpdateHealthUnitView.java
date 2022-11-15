@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 import javas.constants.Addresses;
 import javas.constants.ViewConstants;
@@ -45,7 +45,7 @@ public class UpdateHealthUnitView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Atualizar dados da unidade de saúde", this.getClass().getResource("../icons/update-hospital-icon.png"));
+        Header header = new Header("Atualizar dados da unidade de saúde", this.getClass().getResource("icons/update-hospital-icon.png"));
 
         // Search date health unit
         JPanel searchDateHealthUnitColumn = new Column(2, 0);

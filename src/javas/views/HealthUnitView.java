@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 import javas.constants.ViewConstants;
 import javas.modules.healthUnit.models.HealthUnit;
@@ -58,7 +58,7 @@ public class HealthUnitView extends JPanel {
         jPanelNorth.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ViewConstants.BORDER_COLOR));
 
         ButtonWithIcon addHealthUnitButton = new ButtonWithIcon("Adicionar");
-        addHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/add-hospital-icon.png")));
+        addHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("icons/add-hospital-icon.png")));
         addHealthUnitButton.addActionListener(e -> {
             if (!this.addHealthUnitView.isVisible()) {
                 this.addHealthUnitView.setVisible(true);
@@ -67,7 +67,7 @@ public class HealthUnitView extends JPanel {
         jPanelNorth.add(addHealthUnitButton);
 
         ButtonWithIcon updateHealthUnitButton = new ButtonWithIcon("Atualizar");
-        updateHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/update-hospital-icon.png")));
+        updateHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("icons/update-hospital-icon.png")));
         updateHealthUnitButton.addActionListener(e -> {
             if (!this.updateHealthUnitView.isVisible()) {
                 this.updateHealthUnitView.setVisible(true);
@@ -76,7 +76,7 @@ public class HealthUnitView extends JPanel {
         jPanelNorth.add(updateHealthUnitButton);
 
         ButtonWithIcon deleteHealthUnitButton = new ButtonWithIcon("Excluir");
-        deleteHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/remove-hospital-icon.png")));
+        deleteHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("icons/remove-hospital-icon.png")));
         deleteHealthUnitButton.addActionListener(e -> {
             if (!this.deleteHealthUnitView.isVisible()) {
                 this.deleteHealthUnitView.setVisible(true);
@@ -85,7 +85,7 @@ public class HealthUnitView extends JPanel {
         jPanelNorth.add(deleteHealthUnitButton);
 
         ButtonWithIcon reportHealthUnitButton = new ButtonWithIcon("Relatório");
-        reportHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("../icons/report-hospital-icon.png")));
+        reportHealthUnitButton.setIcon(new ImageIcon(this.getClass().getResource("icons/report-hospital-icon.png")));
         reportHealthUnitButton.addActionListener(e -> this.generateRecordHealthUnitView.setVisible(true));
         jPanelNorth.add(reportHealthUnitButton);
 

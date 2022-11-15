@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.*;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
@@ -38,7 +38,7 @@ public class GenerateReportByRegionView extends BaseFrame {
         contentPane.setLayout(new BorderLayout());
 
         // Header
-        Header header = new Header(ViewConstants.STATISTICS_POPULATION_VIEW_TITLE, this.getClass().getResource("../icons/location-mark-icon.png"));
+        Header header = new Header(ViewConstants.STATISTICS_POPULATION_VIEW_TITLE, this.getClass().getResource("icons/location-mark-icon.png"));
 
         JPanel column = new Column(1, 0);
         column.setBackground(Color.WHITE);

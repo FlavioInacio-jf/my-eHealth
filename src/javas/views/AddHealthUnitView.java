@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 import javas.constants.Addresses;
 import javas.constants.ViewConstants;
@@ -41,7 +41,7 @@ public class AddHealthUnitView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Adicionar unidade de saúde", this.getClass().getResource("../icons/add-hospital-icon.png"));
+        Header header = new Header("Adicionar unidade de saúde", this.getClass().getResource("icons/add-hospital-icon.png"));
 
         // Form
         JPanel mainPanel = new JPanel();

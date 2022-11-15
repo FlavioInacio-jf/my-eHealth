@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.Addresses;
 import javas.constants.ViewConstants;
@@ -58,7 +58,7 @@ public class UpdatePersonView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Atualizar dados de um paciente", this.getClass().getResource("../icons/update-user-icon.png"));
+        Header header = new Header("Atualizar dados de um paciente", this.getClass().getResource("icons/update-user-icon.png"));
 
         // Search date health unit
         JPanel searchDatePersonColumn = new Column(2, 0);

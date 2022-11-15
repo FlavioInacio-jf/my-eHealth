@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 
 import javas.constants.VaccineEntityConstants;
@@ -35,7 +35,7 @@ public class GenerateRecordHealthUnitView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Gerar relatório de uma unidade de saúde", this.getClass().getResource("../icons/report-hospital-icon.png"));
+        Header header = new Header("Gerar relatório de uma unidade de saúde", this.getClass().getResource("icons/report-hospital-icon.png"));
 
         javas.views.components.Button buttonGenerate = new Button("Gerar relatório");
         buttonGenerate.addActionListener(e -> this.handleGenerateHealthUnitRecord());

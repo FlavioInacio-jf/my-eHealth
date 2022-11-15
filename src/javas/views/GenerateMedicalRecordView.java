@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.ViewConstants;
 import javas.views.components.*;
@@ -27,7 +27,7 @@ public class GenerateMedicalRecordView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Gerar prontuário médico", this.getClass().getResource("../icons/report-user-icon.png"));
+        Header header = new Header("Gerar prontuário médico", this.getClass().getResource("icons/report-user-icon.png"));
 
         javas.views.components.Button buttonGenerate = new Button("Gerar prontuário");
         buttonGenerate.addActionListener(e -> this.handleGenerateMedicalRecord());

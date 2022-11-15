@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.ViewConstants;
 import static javas.modules.person.useCases.getSinglePerson.GetSinglePerson.getSinglePersonController;
@@ -32,7 +32,7 @@ public class DeletePersonView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Excluir paciente", this.getClass().getResource("../icons/remove-user-icon.png"));
+        Header header = new Header("Excluir paciente", this.getClass().getResource("icons/remove-user-icon.png"));
 
 
         Button buttonDelete = new Button("Excluir paciente");

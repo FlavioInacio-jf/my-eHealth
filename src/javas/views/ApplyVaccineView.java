@@ -1,4 +1,4 @@
-package javas.views.personViews;
+package javas.views;
 
 import javas.constants.ViewConstants;
 import javas.modules.vaccine.enums.VaccineName;
@@ -37,7 +37,7 @@ public class ApplyVaccineView extends BaseFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
         // Header
-        Header header = new Header("Registrar nova aplicação de vacina", this.getClass().getResource("../icons/vaccine-icon.png"));
+        Header header = new Header("Registrar nova aplicação de vacina", this.getClass().getResource("icons/vaccine-icon.png"));
 
         // Form layout setup
         JPanel paneForm = new JPanel();

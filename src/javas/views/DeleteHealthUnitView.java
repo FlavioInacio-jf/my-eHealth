@@ -1,4 +1,4 @@
-package javas.views.healthUnitViews;
+package javas.views;
 
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.views.components.*;
@@ -28,7 +28,7 @@ public class DeleteHealthUnitView extends BaseFrame {
         contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-        Header header = new Header("Excluir unidade de saúde", this.getClass().getResource("../icons/remove-hospital-icon.png"));
+        Header header = new Header("Excluir unidade de saúde", this.getClass().getResource("icons/remove-hospital-icon.png"));
 
         javas.views.components.Button buttonDelete = new Button("Excluir unidade de saúde");
         buttonDelete.addActionListener(e -> this.handleDeleteHealthUnit());
