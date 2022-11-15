@@ -91,9 +91,9 @@ public class MedialRecordView extends BaseFrame {
         };
 
         // Populate table
-        Iterator it = person.getVaccines().iterator();
+        Iterator<Vaccine> it = person.getVaccines().iterator();
         while(it.hasNext()) {
-            Vaccine vaccine = (Vaccine) it.next();
+            Vaccine vaccine = it.next();
             model.addRow(new Object[]{
                     vaccine.getName(),
                     vaccine.getApplicationDate(),

@@ -32,8 +32,8 @@ public class BarChart extends JPanel {
         this.add(chartPanel);
     }
 
-    public void setValue(Number value, Comparable rowKey,
-                         Comparable columnKey) {
+    public void setValue(Number value, Comparable<?> rowKey,
+                         Comparable<?> columnKey) {
         this.bar.setValue(value, rowKey, columnKey);
     }
 }

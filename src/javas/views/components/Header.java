@@ -3,7 +3,6 @@ package javas.views.components;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
-import java.util.Objects;
 
 public class Header extends JPanel {
     public  Header(String title, URL iconURL) {

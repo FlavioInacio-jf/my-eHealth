@@ -68,7 +68,7 @@ public class GeneralSettings extends JPanel {
             tables.add(PersonEntityConstants.ENTITY_NAME);
             tables.add(HealthUnitEntityConstants.ENTITY_NAME);
             tables.add(VaccineEntityConstants.ENTITY_NAME);
-            Iterator it = tables.iterator();
+            Iterator<String> it = tables.iterator();
 
             Statement stm = AppDataSource.execute();
             while (it.hasNext()) {

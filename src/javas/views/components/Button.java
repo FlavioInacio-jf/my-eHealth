@@ -3,7 +3,6 @@ package javas.views.components;
 import javas.constants.ViewConstants;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Button extends JButton {

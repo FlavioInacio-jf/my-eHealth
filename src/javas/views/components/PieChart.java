@@ -36,7 +36,7 @@ public class PieChart extends JPanel {
         this.add(chartPanel);
     }
 
-    public void setValue(Comparable key, Double value) {
+    public void setValue(Comparable<?> key, Double value) {
         this.pie.setValue(key, value);
     }
 }
