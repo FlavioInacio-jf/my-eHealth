@@ -14,20 +14,19 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+import static javas.constants.VaccineEntityConstants.VALID_DOSES;
 import static javas.modules.vaccine.useCases.getAllVaccines.GetAllVaccines.getAllVaccinesController;
 
 public class GenerateReportByRegionView extends BaseFrame {
     private final FormGroupSelect state;
-    private final PieChart barUnitTypeAndUnvaccinated;
-    private final PieChart pieVaccinesUsed;
+    private final PieChart unitTypeChart, vaccinesUsedChart, vaccineByDoseChart;
 
     public GenerateReportByRegionView() {
         this.state = new FormGroupSelect("Estado", Addresses.validStates);
-        this.barUnitTypeAndUnvaccinated = new PieChart("Vacinados por unidade de saúde");
-        this.pieVaccinesUsed = new PieChart("Vacinados por vacina");
+        this.unitTypeChart = new PieChart("VACINADOS POR TIPO DE UNIDADE DE SAÚDE");
+        this.vaccinesUsedChart = new PieChart("NOME DA VACINA");
+        this.vaccineByDoseChart = new PieChart("APLICAÇÕES POR DOSE");
         this.init();
     }
 
@@ -51,10 +50,12 @@ public class GenerateReportByRegionView extends BaseFrame {
         mainPanel.setBackground(Color.WHITE);
 
         // GRAPHICS
-        JPanel graphicPanel = new JPanel(new GridLayout(1, 2, 20, 20));
+        JPanel graphicPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+        graphicPanel.setBorder(new EmptyBorder(40, 0, 0, 0));
         graphicPanel.setBackground(Color.WHITE);
-        graphicPanel.add(this.barUnitTypeAndUnvaccinated);
-        graphicPanel.add(this.pieVaccinesUsed);
+        graphicPanel.add(this.unitTypeChart);
+        graphicPanel.add(this.vaccinesUsedChart);
+        graphicPanel.add(this.vaccineByDoseChart);
 
         mainPanel.add(column, BorderLayout.NORTH);
         mainPanel.add(graphicPanel, BorderLayout.CENTER);
@@ -71,34 +72,27 @@ public class GenerateReportByRegionView extends BaseFrame {
         try {
             // populate
             String state = this.state.getSelectedItem().toString();
-            HashMap<String, ArrayList<Vaccine>> stateAndVaccinesNameMap = new HashMap<>();
             for (String value: VaccineName.getNames()) {
-                ArrayList<Vaccine> valueMap = getAllVaccinesController.execute(
+                ArrayList<Vaccine> list = getAllVaccinesController.execute(
                         String.format("%s='%s' AND %s='%s'", HealthUnitEntityConstants.STATE_COLUMN_NAME, state,
                                 VaccineEntityConstants.NAME_COLUMN_NAME, value));
-                stateAndVaccinesNameMap.put(value, valueMap);
+                this.vaccinesUsedChart.setValue(value, (double) list.size());
             }
 
-            // Populate pie chart
-            for (Map.Entry<String, ArrayList<Vaccine>> pair : stateAndVaccinesNameMap.entrySet()) {
-                this.pieVaccinesUsed.setValue(pair.getKey(), (double) pair.getValue().size());
-            }
-
-
-            // vaccines
-
-            HashMap<String, ArrayList<Vaccine>> stateAndHealthUnitTypeMap = new HashMap<>();
-            for (String value: UnitTypeEnum.getNames()) {
-                ArrayList<Vaccine> valueMap = getAllVaccinesController.execute(
+            for (String key: UnitTypeEnum.getNames()) {
+                ArrayList<Vaccine> list = getAllVaccinesController.execute(
                         String.format("%s='%s' AND %s='%s'", HealthUnitEntityConstants.STATE_COLUMN_NAME, state,
-                                HealthUnitEntityConstants.TYPE_COLUMN_NAME, value));
-                stateAndHealthUnitTypeMap.put(value, valueMap);
+                                HealthUnitEntityConstants.TYPE_COLUMN_NAME, key));
+                this.unitTypeChart.setValue(key, (double) list.size());
             }
 
-            // Populate pie chart
-            for (Map.Entry<String, ArrayList<Vaccine>> pair : stateAndHealthUnitTypeMap.entrySet()) {
-                this.barUnitTypeAndUnvaccinated.setValue(pair.getKey(), (double) pair.getValue().size());
+            for (String key: VALID_DOSES) {
+                ArrayList<Vaccine> list = getAllVaccinesController.execute(
+                        String.format("%s='%s' AND %s='%s'", HealthUnitEntityConstants.STATE_COLUMN_NAME, state,
+                                VaccineEntityConstants.DOSE_COLUMN_NAME, key));
+                this.vaccineByDoseChart.setValue(key, (double) list.size());
             }
+
         } catch (Error error) {
             JOptionPane.showMessageDialog(this, error.getMessage());
         }

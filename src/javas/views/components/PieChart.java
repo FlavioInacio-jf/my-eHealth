@@ -21,14 +21,18 @@ public class PieChart extends JPanel {
         JFreeChart chart = ChartFactory.createPieChart(title, this.pie, true, true, true);
         chart.getPlot().setBackgroundPaint(Color.WHITE);
         chart.getPlot().setInsets(new RectangleInsets(0, 0, 0, 0));
+        chart.getPlot().setOutlinePaint(null);
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(null);
         chartPanel.setBackground(Color.WHITE);
-
-        this.setBackground(Color.WHITE);
         chartPanel.setBorder(null);
         chart.setBorderVisible(false);
+
+        this.setBackground(Color.WHITE);
+        this.setPreferredSize(new Dimension(300, 300));
+        this.setMaximumSize(new Dimension(300, 300));
+        this.setMinimumSize(new Dimension(300, 300));
         this.add(chartPanel);
     }
 

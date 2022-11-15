@@ -89,6 +89,7 @@ public class ApplyVaccineView extends BaseFrame {
 
                 this.personCPF.setText("");
                 this.healthUnitCNPJ.setText("");
+                this.applicationDate.setText("");
                 this.lot.setText("");
 
                 JOptionPane.showMessageDialog(this, "Vacina cadastrada com sucesso!");
