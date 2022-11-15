@@ -100,11 +100,6 @@ public class HealthUnitRepository implements IHealthUnitRepository {
     }
 
     @Override
-    public HealthUnit findByName(String name) {
-        return this.findOne(HealthUnitEntityConstants.NAME_COLUMN_NAME, name);
-    }
-
-    @Override
     public HealthUnit findByCNPJ(String cnpj) {
         return this.findOne(HealthUnitEntityConstants.CNPJ_COLUMN_NAME, cnpj);
     }

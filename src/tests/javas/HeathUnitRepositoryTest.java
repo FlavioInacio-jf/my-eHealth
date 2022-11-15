@@ -5,13 +5,11 @@ import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.healthUnit.repositories.IHealthUnitRepository;
 
-import java.util.ArrayList;
 
 import javas.modules.healthUnit.repositories.implementations.HealthUnitRepository;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HeathUnitRepositoryTest {
     
@@ -30,7 +28,7 @@ public class HeathUnitRepositoryTest {
     "Hospital Inacio", "21.987.127/0001-24", endereco);
         
         this.repository.create(unidade);
-        assertTrue(unidade.equals(this.repository.findByCNPJ(unidade.getCNPJ())));
+        assertTrue(unidade.equals(this.repository.findById(unidade.getId())));
         this.repository.delete(unidade.getId());
     }
 
@@ -40,46 +38,28 @@ public class HeathUnitRepositoryTest {
          "Aracaju", "Sergipe", "987909123");
 
         HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+    "Hospital Inacio", "21.987.127/0001-24", endereco);
 
         this.repository.create(unidade);
         unidade.setName("UBS SE");
-        unidade.setCNPJ("21. 987. 127/0001-25");
-        unidade.setId("teste");
+        unidade.setCNPJ("21.987.127/0001-25");
         unidade.setType(UnitTypeEnum.UBS);
         this.repository.update(unidade);
-
         assertTrue(this.repository.findByCNPJ(unidade.getCNPJ()).equals(unidade));
+        this.repository.delete(unidade.getId());
 
     }
 
     @Test 
     public void testDelete(){
-        IHealthUnitRepository repository2 = new HealthUnitRepository();
-
         Address endereco = new Address("Rua flavao", "Bairro Oliveira",
          "Aracaju", "Sergipe", "987909123");
-
-        HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+        HealthUnit healthUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
+    "Hospital Inacio", "21.987.127/0001-24", endereco);
         
-        this.repository.create(unidade);
-        this.repository.delete(unidade.getId());
-        assertEquals(repository, repository2);
-
-    }
-
-    @Test
-    public void testFindByName(){
-        Address endereco = new Address("Rua flavao", "Bairro Oliveira",
-         "Aracaju", "Sergipe", "987909123");
-
-        HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
-
-        this.repository.create(unidade);
-        assertTrue(unidade.equals(this.repository.findByName(unidade.getName())));
-        this.repository.delete(unidade.getId());
+        this.repository.create(healthUnit);
+        this.repository.delete(healthUnit.getId());
+        assertNull(this.repository.findById(healthUnit.getId()));
     }
 
     @Test
@@ -88,11 +68,12 @@ public class HeathUnitRepositoryTest {
          "Aracaju", "Sergipe", "987909123");
 
         HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+    "Hospital Inacio", "21.444.127/0001-24", endereco);
         
         this.repository.create(unidade);
         assertTrue(unidade.equals(this.repository.findByCNPJ(unidade.getCNPJ())));
         this.repository.delete(unidade.getId());
+
     }
 
     @Test
@@ -106,37 +87,39 @@ public class HeathUnitRepositoryTest {
         this.repository.create(unidade);
         assertTrue(unidade.equals(this.repository.findById(unidade.getId())));
         this.repository.delete(unidade.getId());
+
     }
 
     @Test
     public void testGetAll(){
-        Address endereco = new Address("Rua flavao", "Bairro Oliveira",
+        Address addressHealthUnit1 = new Address("Rua flavao", "Bairro Oliveira",
          "Aracaju", "Sergipe", "987909123");
 
-        Address endereco2 = new Address("Abbey Road", "Farolandia",
+        Address addressHealthUnit2 = new Address("Abbey Road", "Farolandia",
          "Liverpool", "Teste", "8329831298");
 
-         Address endereco3 = new Address("Salvador", "Aruana",
+        Address addressHealthUnit3 = new Address("Salvador", "Aruana",
          "Joao pessoa", "Paraiba", "1232342134342"); 
 
-        HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+        HealthUnit healthUnit1 = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
+    "Hospital Inacio", "21.987.127/0001-24", addressHealthUnit1);
 
-        HealthUnit unidade2 = new HealthUnit(null,UnitTypeEnum.UBS,
-    "UBS Inglaterra", "12. 768. 132/9991-38", endereco2);
+        HealthUnit healthUnit2 = new HealthUnit(null,UnitTypeEnum.UBS,
+    "UBS Inglaterra", "12.768.132/9991-38", addressHealthUnit2);
 
-        HealthUnit unidade3 = new HealthUnit(null,UnitTypeEnum.UPA,
-    "UPA Paraiba", "56. 198. 789/1243-57", endereco3);
+        HealthUnit healthUnit3 = new HealthUnit(null,UnitTypeEnum.UPA,
+    "UPA Paraiba", "56.198.789/1243-57", addressHealthUnit3);
 
-        ArrayList<HealthUnit> listunidades = new ArrayList<>();
-        listunidades.add(unidade);
-        listunidades.add(unidade2);
-        listunidades.add(unidade3);
+        this.repository.create(healthUnit1);
+        this.repository.create(healthUnit2);
+        this.repository.create(healthUnit3);
 
-        this.repository.create(unidade);
-        this.repository.create(unidade2);
-        this.repository.create(unidade3);
+        assertTrue(this.repository.getAll().contains(healthUnit1));
+        assertTrue(this.repository.getAll().contains(healthUnit2));
+        assertTrue(this.repository.getAll().contains(healthUnit3));
 
-        assertEquals(listunidades, this.repository.getAll());
+        this.repository.delete(healthUnit1.getId());
+        this.repository.delete(healthUnit2.getId());
+        this.repository.delete(healthUnit3.getId());
     }
 }
