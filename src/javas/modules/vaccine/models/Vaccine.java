@@ -87,9 +87,10 @@ public class Vaccine extends ModelBase {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Vaccine objectVaccine)) {
+        if (!(object instanceof Vaccine)) {
             return false;
         }
+        Vaccine objectVaccine = (Vaccine) object;
         return getId().equals(objectVaccine.getId()) &&
                 this.name.equals(objectVaccine.getName()) &&
                 this.getApplicationDate().equals(objectVaccine.getApplicationDate()) &&

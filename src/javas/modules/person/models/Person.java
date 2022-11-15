@@ -149,9 +149,10 @@ public class Person extends ModelBase {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Person objectPerson)) {
+        if (!(object instanceof Person)) {
             return false;
         }
+        Person objectPerson = (Person) object;
         return  getId().equals(objectPerson.getId()) &&
                 this.firstName.equals(objectPerson.getFirstName()) &&
                 this.lastName.equals(objectPerson.getLastName()) &&
