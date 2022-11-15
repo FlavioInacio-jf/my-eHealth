@@ -1,13 +1,12 @@
 package javas.modules.vaccine.models;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import javas.modules.app.models.Address;
 import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.healthUnit.models.HealthUnit;
 import javas.modules.vaccine.enums.VaccineName;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class VaccineTest {
     public VaccineTest() {}
@@ -87,22 +86,21 @@ public class VaccineTest {
 
     @Test
     public void testEquals() {
-        Address address = new Address("a", "b", "c", "d", "e");
-        HealthUnit hUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address);
-        Vaccine vaccine = new Vaccine(null, VaccineName.JANSSEN,  1, "157", "02/11/2022");
-        vaccine.setHeathUnit(hUnit);
+        Address address1 = new Address("a", "b", "c", "d", "e");
+        HealthUnit healthUnit1 = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address1);
+        Vaccine vaccine1 = new Vaccine(null, VaccineName.JANSSEN,  1, "157", "02/11/2022");
+        vaccine1.setHeathUnit(healthUnit1);
 
-        Address address2 = new Address("a", "b", "c", "d", "e");
-        HealthUnit hUnit2 = new HealthUnit(null,UnitTypeEnum.HOSPITAL, "HUSE", "1234", address2);
-        Vaccine vaccine2 = new Vaccine(null, VaccineName.JANSSEN,  1, "157", "02/11/2022");
-        vaccine2.setHeathUnit(hUnit2);
+        Address address2 = address1;
+        HealthUnit hUnit2 = healthUnit1;
+        Vaccine vaccine2 = vaccine1;
 
         Address address3 = new Address("a1", "b2", "c3", "d4", "e5");
-        HealthUnit hUnit3 = new HealthUnit(null,UnitTypeEnum.UBS, "Nestor Piva", "12312512", address3);
+        HealthUnit healthUnit3 = new HealthUnit(null,UnitTypeEnum.UBS, "Nestor Piva", "12312512", address3);
         Vaccine vaccine3 = new Vaccine(null, VaccineName.JANSSEN, 5, "62191", "02/11/2022");
-        vaccine3.setHeathUnit(hUnit3);
+        vaccine3.setHeathUnit(healthUnit3);
 
-        assertTrue(vaccine2.equals(vaccine));
-        assertTrue(vaccine3.equals(vaccine));
+        assertTrue(vaccine2.equals(vaccine1));
+        assertFalse(vaccine3.equals(vaccine1));
     }
 }

@@ -22,15 +22,14 @@ public class HeathUnitRepositoryTest {
 
     @Test
     public void testCreate(){
-        
         Address endereco = new Address("Rua flavao", "Bairro Oliveira",
-         "Aracaju", "Sergipe", "987909123");
+         "Aracaju", "Sergipe", "98790-123");
 
-        HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+        HealthUnit unidade = new HealthUnit(null, UnitTypeEnum.HOSPITAL,
+    "Hospital Inacio", "21.987.127/0001-24", endereco);
         
         this.repository.create(unidade);
-        assertEquals(unidade, this.repository.findByCNPJ(unidade.getCNPJ()));
+        assertTrue(unidade.equals(this.repository.findByCNPJ(unidade.getCNPJ())));
         this.repository.delete(unidade.getId());
     }
 
@@ -49,7 +48,7 @@ public class HeathUnitRepositoryTest {
         unidade.setType(UnitTypeEnum.UBS);
         this.repository.update(unidade);
 
-        assertEquals(this.repository.findByCNPJ(unidade.getCNPJ()), unidade);
+        assertTrue(this.repository.findByCNPJ(unidade.getCNPJ()).equals(unidade));
 
     }
 

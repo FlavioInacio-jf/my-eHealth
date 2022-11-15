@@ -6,100 +6,113 @@ import javas.modules.healthUnit.enums.UnitTypeEnum;
 import javas.modules.person.models.Person;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javas.modules.person.enums.SexEnum;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class HealthUnitTest {
-    public HealthUnitTest() {}
+    private final Address endereco;
 
-    Address endereco = new Address("Rua flavao", "Bairro Oliveira", "Aracaju", "Sergipe", "987909123");
-    
-    HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21. 987. 127/0001-24", endereco);
-    
-    Person paciente = new Person("teste", "Jose",
-        "Santos", "111.111.111-11", BloodTypeEnum.A_PLUS, SexEnum.MALE, "11/09/2001", null);
+    private final HealthUnit healthUnit;
 
-    ArrayList<Person> pacientes = new ArrayList<>();
+    private final Person patient;
+
+    private final ArrayList<Person> patients;
+
+    public HealthUnitTest() {
+        this.endereco = new Address("Rua flavao", "Bairro Oliveira", "Aracaju", "Sergipe", "987909123");
+
+       this.healthUnit = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
+                "Hospital Inacio", "21. 987. 127/0001-24", endereco);
+
+        this.patient = new Person("teste", "Jose",
+                "Santos", "111.111.111-11", BloodTypeEnum.A_PLUS, SexEnum.MALE, "11/09/2001", null);
+
+       this.patients = new ArrayList<>();
+    }
+
+
     
         @Test
-    public void testGetType() { 
-        
-        assertEquals(UnitTypeEnum.HOSPITAL, unidade.getType());
+    public void testGetType() {
+        assertEquals(UnitTypeEnum.HOSPITAL, healthUnit.getType());
     }
 
     @Test
     public void testSetType() {
 
-        unidade.setType(UnitTypeEnum.UBS);
-        assertEquals(UnitTypeEnum.UBS, unidade.getType());
+        healthUnit.setType(UnitTypeEnum.UBS);
+        assertEquals(UnitTypeEnum.UBS, healthUnit.getType());
     }
 
     @Test
     public void testGetName() {
-        assertEquals("Hospital Inacio", unidade.getName());
+        assertEquals("Hospital Inacio", healthUnit.getName());
     }
 
     @Test
     public void testSetName() {
-        unidade.setName("Hospital Saymon");
-        assertEquals("Hospital Saymon", unidade.getName());
+        healthUnit.setName("Hospital Saymon");
+        assertEquals("Hospital Saymon", healthUnit.getName());
     }
 
     @Test
     public void testGetAddress() {
-        assertEquals(endereco, unidade.getAddress());
+        assertEquals(endereco, healthUnit.getAddress());
     }
 
     @Test
     public void testSetAddress() {
         Address endereco2 = new Address("Rua Saymao", "Bairro oi", "Aracaju", "Sergipe", "987909123");
-        unidade.setAddress(endereco2);
+        healthUnit.setAddress(endereco2);
 
-        assertEquals(endereco2, unidade.getAddress());
+        assertEquals(endereco2, healthUnit.getAddress());
     }
 
     @Test
     public void testAddPerson() {
+
+        healthUnit.addPerson(patient);
+        patients.add(patient);
         
-        unidade.addPerson(paciente);
-        pacientes.add(paciente);
-        
-        assertEquals(pacientes, unidade.getPeople());
+        assertEquals(patients, healthUnit.getPeople());
     }
 
     @Test
     public void testRemovePerson() {
         Person paciente2 = new Person(null, "Roberto",
         "Tico", "212.212.212-22", BloodTypeEnum.AB, SexEnum.MALE, "12/12/2002", null);
-        
-        pacientes.add(paciente2);
-        unidade.addPerson(paciente);
-        unidade.addPerson(paciente2);
-        unidade.removePerson("teste");
 
-        assertEquals(pacientes, unidade.getPeople());
+        patients.add(paciente2);
+        healthUnit.addPerson(patient);
+        healthUnit.addPerson(paciente2);
+        healthUnit.removePerson("teste");
+
+        assertEquals(patients, healthUnit.getPeople());
     }
 
     @Test
     public void testGetCNPJ() {
-
-        assertEquals("21. 987. 127/0001-24", unidade.getCNPJ());
+        assertEquals("21. 987. 127/0001-24", healthUnit.getCNPJ());
     }
 
     @Test
     public void testSetCNPJ() {
-        unidade.setCNPJ("21. 987. 127/0001-98");
-        assertEquals("21. 987. 127/0001-98", unidade.getCNPJ());
+        healthUnit.setCNPJ("21. 987. 127/0001-98");
+        assertEquals("21. 987. 127/0001-98", healthUnit.getCNPJ());
     }
 
     @Test
     public void testEquals() {
+        HealthUnit healthUnit2 = this.healthUnit;
+        assertTrue(this.healthUnit.equals(healthUnit2));
 
+        HealthUnit healthUnit3 = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
+                "Hospital Inacio", "21. 987. 127/0001-24", null);
+
+        assertFalse(this.healthUnit.equals(healthUnit3));
     }
 
 }

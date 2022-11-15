@@ -1,8 +1,8 @@
 package javas.modules.app.models;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class AddressTest {
     private final Address address;
@@ -73,9 +73,14 @@ public class AddressTest {
 
     @Test
     public void testEquals() {
-        Address endereco2 = new Address("Abbey Road","Farolandia" , "Paris", 
+        Address address1 = new Address("Abbey Road","Farolandia" , "Paris",
      "Florida", "586939291");
+        Address address2 = address1;
 
-        address.equals(endereco2);
+        assertTrue(address1.equals(address2));
+
+        Address address3 = new Address("Road","Farolandia" , "Paris",
+                "Florida", "586939291");
+        assertFalse(address1.equals(address3));
     }
 }

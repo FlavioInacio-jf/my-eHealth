@@ -1,8 +1,8 @@
 package javas.modules.person.repositories.implementations;
 
-//modelo
-
+import javas.modules.app.models.Address;
 import javas.modules.person.enums.BloodTypeEnum;
+import javas.modules.person.enums.SexEnum;
 import javas.modules.person.models.Person;
 import javas.modules.person.repositories.IPersonRepository;
 import org.junit.Test;
@@ -22,10 +22,12 @@ public class PersonRepositoryTest {
 
     @Test
     public void testCreate() {
-        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
+        Address address = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person = new Person(null, "Inácio", "Santos", "555.555.556-05",
+                BloodTypeEnum.A_LESS, SexEnum.FEMALE, "03/04/1950", address);
         this.repository.create(person);
-        assertTrue(person.equals(this.repository.findById(person.getId())));
         this.repository.delete(person.getId());
+        assertTrue(person.equals(this.repository.findById(person.getId())));
     }
 
     @Test
@@ -51,10 +53,12 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindById() {
-        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
+        Address address = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person = new Person(null, "Inácio", "Santos", "555.555.586-05",
+                BloodTypeEnum.A_LESS, SexEnum.FEMALE, "03/04/1950", address);
         this.repository.create(person);
-        assertTrue(person.equals(this.repository.findById(person.getId())));
         this.repository.delete(person.getId());
+        assertTrue(person.equals(this.repository.findById(person.getId())));
     }
 
     @Test
@@ -70,7 +74,7 @@ public class PersonRepositoryTest {
         Person person1 = new Person(null, "Inácio", "Santos", null, null, null, null, null);
         Person person2 = new Person(null, "Arthur", "Correia", null, null, null, null, null);
         Person person3 = new Person(null, "Saymon", "Anderson", null, null, null, null, null);
-        Person person4 = new Person(null, "Carlos", "Estombelo", null, null, null, null, null);
+        Person person4 = new Person(null, "Carlos", "Junior", null, null, null, null, null);
 
         this.repository.create(person1);
         this.repository.create(person2);

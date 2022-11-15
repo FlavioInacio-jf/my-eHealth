@@ -20,9 +20,9 @@ public class AppDataSource {
             connection = DriverManager.getConnection(address);
             return true;
         } catch (SQLException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_USE_CONNECTION + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_USE_CONNECTION , error.getMessage());
         }catch (ClassNotFoundException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_CONNECT_DATABASE + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_CONNECT_DATABASE, error.getMessage());
         }
     }
 
@@ -36,7 +36,7 @@ public class AppDataSource {
                 return true;
             }
         }catch (SQLException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_DISCONNECT_DATABASE + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_DISCONNECT_DATABASE, error.getMessage());
         }
         return false;
     }
@@ -47,7 +47,7 @@ public class AppDataSource {
                 connect();
             }
         }catch (SQLException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_OPEN_DATABASE_CONNECTION + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_OPEN_DATABASE_CONNECTION, error.getMessage());
         }
         return connection;
     }
@@ -60,7 +60,7 @@ public class AppDataSource {
             }
             stm.close();
         }catch(Exception error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_CREATE_TABLES_DATABASE + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_CREATE_TABLES_DATABASE, error.getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ public class AppDataSource {
             }
             return connection.createStatement();
         }catch (SQLException error) {
-            throw new CustomError(AppDataSourceMessages.FAILED_EXECUTE_QUERY + "\n", error.getMessage());
+            throw new CustomError(AppDataSourceMessages.FAILED_EXECUTE_QUERY, error.getMessage());
         }
     }
 }
