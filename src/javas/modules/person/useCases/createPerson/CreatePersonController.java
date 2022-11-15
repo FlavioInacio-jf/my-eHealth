@@ -13,7 +13,7 @@ public class CreatePersonController {
         this.createPersonUseCase = createPersonUseCase;
     }
 
-    public void execute (
+    public Person execute (
             String firstName,
             String lastName,
             String cpf,
@@ -31,5 +31,7 @@ public class CreatePersonController {
         new Validation(person).validate();
         new Validation(address).validate();
         this.createPersonUseCase.handle(person);
+
+        return person;
     }
 }
