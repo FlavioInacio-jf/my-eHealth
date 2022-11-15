@@ -7,3 +7,5 @@
 OBSERVAÇÃO IMPORTANTE
 
 Para fazer os testes é necessário que o usuário limpe as tabelas do banco de dados. Isso pode ser feito através das configurações da aplicação, na opção Resetar BD.
+
+Pois tem regras de negocios que impedem cadastrar Unidade de saúdes com o mesmo CNP e pessoas com o mesmo CPF. Para evitar que os testes sofram interferência de dados já existentes no banco de dados
