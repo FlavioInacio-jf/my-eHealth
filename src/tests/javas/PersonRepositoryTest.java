@@ -89,6 +89,9 @@ public class PersonRepositoryTest {
         ArrayList<Person> listPeople;
         listPeople = this.repository.getAll();
         assertTrue(listPeople.size() > 1);
+
+        this.repository.delete(person1.getId());
+        this.repository.delete(person2.getId());
     }
 
 }
