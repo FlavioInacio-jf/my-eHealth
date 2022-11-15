@@ -29,8 +29,9 @@ O projeto my-eHealth
 ## ⚙️ Funcionalidades
 
 - Cadastrar pessoas e unidades de saúde
-- Guardar informações sobre as vacina
--
+- Organizar informações sobre pessoas, unidades de saúde e vacinas
+- Gerar estatísticas com base nas informações armazenadas
+
 ---
 
 
@@ -86,16 +87,6 @@ As seguintes bibliotecas foram adicionadas ao desenvolvimento do projeto:
 - **[JUnit]** - Usada para testar os métodos das classes.
 - **[Jfree Chart]** - Usada para gerar os gráficos da aplicação.
 - **[SQLite jdbc]** - Usada para fazer a conexão com o banco de dados SQLite.
-
-### **Utilitários**
-
--   Browser: **[Google Chrome](https://www.google.com/intl/pt-BR/chrome/)**
--   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
--   Fontes:  **[Inter](https://fonts.google.com/specimen/Inter)**,  **[Poppins](https://fonts.google.com/specimen/Poppins)**
--   Outros:  **[Insomnia](https://insomnia.rest/download)**
--   Outros:  **[Beekeeper](https://www.beekeeperstudio.io/)**
--   Outros:  **[StarUML](https://staruml.io/)**
-
 
 ---
 
