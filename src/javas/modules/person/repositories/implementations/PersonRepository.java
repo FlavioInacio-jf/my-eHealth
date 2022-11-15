@@ -63,8 +63,8 @@ public class PersonRepository implements IPersonRepository {
     public boolean update(Person data)  {
         try {
             final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s', " +
-                            "                                 %s='%s', %s='%s', %s='%s', %s='%s', %s='%s'," +
-                            "                                 %s='%s',  WHERE %s='%s'",
+                                                            "%s='%s', %s='%s', %s='%s', %s='%s', %s='%s'," +
+                                                            "%s='%s'  WHERE %s='%s'",
                                                 PersonEntityConstants.ENTITY_NAME,
                                                 PersonEntityConstants.FIRST_NAME_COLUMN_NAME,
                                                 data.getFirstName(),

@@ -27,13 +27,16 @@ public class PersonRepositoryTest {
         Person person = new Person(null, "Inácio", "Santos", "555.555.556-05",
                 BloodTypeEnum.A_LESS, SexEnum.FEMALE, "03/04/1950", address);
         this.repository.create(person);
-        this.repository.delete(person.getId());
         assertTrue(person.equals(this.repository.findById(person.getId())));
+
+        this.repository.delete(person.getId());
+
     }
 
     @Test
     public void testUpdate() {
-        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
+        Address address = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person = new Person(null, "Inácio", "Santos", "000.000.000-000", BloodTypeEnum.A_LESS, SexEnum.FEMALE, "11/11/2001", address);
         this.repository.create(person);
         person.setFirstName("Arthur");
         person.setFirstName("Correia");
@@ -45,7 +48,8 @@ public class PersonRepositoryTest {
 
     @Test
     public void testDelete() {
-        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
+        Address address = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person = new Person(null, "Inácio", "Santos", "111.1111.111-85", BloodTypeEnum.A_LESS, SexEnum.FEMALE, "11/11/2001", address);
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findById(person.getId())));
         this.repository.delete(person.getId());
@@ -58,13 +62,14 @@ public class PersonRepositoryTest {
         Person person = new Person(null, "Inácio", "Santos", "555.555.586-05",
                 BloodTypeEnum.A_LESS, SexEnum.FEMALE, "03/04/1950", address);
         this.repository.create(person);
-        this.repository.delete(person.getId());
         assertTrue(person.equals(this.repository.findById(person.getId())));
+        this.repository.delete(person.getId());
     }
 
     @Test
     public void testFindByCPF() {
-        Person person = new Person(null, "Inácio", "Santos", null, null, null, null, null);
+        Address address = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person = new Person(null, "Inácio", "Santos", "111.1111.111-85", BloodTypeEnum.A_LESS, SexEnum.FEMALE, "11/11/2001", address);
         this.repository.create(person);
         assertTrue(person.equals(this.repository.findByCPF(person.getCPF())));
         this.repository.delete(person.getId());
@@ -72,19 +77,18 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindAll() {
-        Person person1 = new Person(null, "Inácio", "Santos", null, null, null, null, null);
-        Person person2 = new Person(null, "Arthur", "Correia", null, null, null, null, null);
-        Person person3 = new Person(null, "Saymon", "Anderson", null, null, null, null, null);
-        Person person4 = new Person(null, "Carlos", "Junior", null, null, null, null, null);
+        Address address1 = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person1 = new Person(null, "Inácio", "Santos", "111.1111.111-85", BloodTypeEnum.A_LESS, SexEnum.FEMALE, "11/11/2001", address1);
+
+        Address address2 = new Address("R. de Aracajú", "Desembargador", "Aracaju", "SE", "44544-000");
+        Person person2 = new Person(null, "Jose", "Inácio", "555.444.211-75", BloodTypeEnum.A_LESS, SexEnum.FEMALE, "11/11/2001", address2);
 
         this.repository.create(person1);
         this.repository.create(person2);
-        this.repository.create(person3);
-        this.repository.create(person4);
 
         ArrayList<Person> listPeople;
         listPeople = this.repository.getAll();
-        assertTrue(listPeople.size() == 4);
+        assertTrue(listPeople.size() > 1);
     }
 
 }
