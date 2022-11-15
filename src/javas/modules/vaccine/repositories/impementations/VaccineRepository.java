@@ -31,7 +31,7 @@ public class VaccineRepository implements IVaccineRepository {
 
     private Vaccine save(String _idUser, String _idHealthUnit, Vaccine data) {
         try {
-            final String query = String.format("INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s) VALUES ('%s', '%s', %s, '%s', '%s', '%s', '%s')",
+            final String query = String.format("INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                     VaccineEntityConstants.ENTITY_NAME,
                     VaccineEntityConstants.ID_COLUMN_NAME,
                     VaccineEntityConstants.NAME_COLUMN_NAME,
@@ -58,7 +58,7 @@ public class VaccineRepository implements IVaccineRepository {
     @Override
     public boolean update(Vaccine data) {
         try {
-            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s, %s='%s',, WHERE %s='%s'",
+            final String query = String.format("UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s' WHERE %s='%s'",
                     VaccineEntityConstants.ENTITY_NAME,
                     VaccineEntityConstants.NAME_COLUMN_NAME,
                     data.getName().toString(),
@@ -92,11 +92,7 @@ public class VaccineRepository implements IVaccineRepository {
 
     @Override
     public Vaccine findById(String _id) {
-       ArrayList<Vaccine> vaccines = this.findAll(String.format("%s='%s'", VaccineEntityConstants.ID_COLUMN_NAME, _id));
-       if (vaccines.isEmpty()) {
-           return null;
-       }
-        return vaccines.get(0);
+       return this.findOne(String.format("%s='%s'", VaccineEntityConstants.ID_COLUMN_NAME, _id));
     }
 
     @Override
@@ -117,6 +113,22 @@ public class VaccineRepository implements IVaccineRepository {
             }
             this.statement.close();
             return listVaccines;
+        }catch (SQLException error) {
+            throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
+        }
+    }
+
+    private Vaccine findOne(String query) {
+        try {
+            final String querySQL = String.format("SELECT * FROM %s where %s",
+                    VaccineEntityConstants.ENTITY_NAME,
+                    query);
+            ResultSet rs = this.statement.executeQuery(querySQL);
+            while (rs.next()) {
+                return resultSetToVaccineWithoutJoin(rs);
+            }
+            this.statement.close();
+            return null;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.UNABLE_SEARCH_VACCINE, error.getMessage());
         }
@@ -147,6 +159,24 @@ public class VaccineRepository implements IVaccineRepository {
             Vaccine vaccine = new Vaccine(_id, name, dose, lot, applicationDate);
             Address address = new Address(street, district, city, postalCode, state);
             vaccine.setHeathUnit(new HealthUnit(healthUnitID, type, corporateName, cnpj, address));
+            return vaccine;
+        }catch (SQLException error) {
+            throw new CustomError(VaccineErrorMessages.FAILED_CONVERT_RESULT_SET_TO_VACCINE, error.getMessage());
+        }
+    }
+
+    private Vaccine resultSetToVaccineWithoutJoin(ResultSet rs) {
+        try {
+            // Vaccine Columns
+            String _id = rs.getString(VaccineEntityConstants.ID_COLUMN_NAME);
+            VaccineName name = VaccineName.valueOf(VaccineName.getEnum(rs.getString(VaccineEntityConstants.NAME_COLUMN_NAME)));
+            int dose = rs.getInt(VaccineEntityConstants.DOSE_COLUMN_NAME);
+            String lot = rs.getString(VaccineEntityConstants.LOT_COLUMN_NAME);
+            String applicationDate = rs.getString(VaccineEntityConstants.APPLICATION_DATE_COLUMN_NAME);
+            String healthUnitID = rs.getString(VaccineEntityConstants.HEATH_UNIT_COLUMN_NAME_FK);
+
+            Vaccine vaccine = new Vaccine(_id, name, dose, lot, applicationDate);
+            vaccine.setHeathUnit(new HealthUnit(healthUnitID, null, null, null, null));
             return vaccine;
         }catch (SQLException error) {
             throw new CustomError(VaccineErrorMessages.FAILED_CONVERT_RESULT_SET_TO_VACCINE, error.getMessage());

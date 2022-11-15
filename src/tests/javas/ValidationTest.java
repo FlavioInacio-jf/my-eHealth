@@ -38,7 +38,6 @@ public class ValidationTest {
                     SexEnum.FEMALE, "11/03/2012",
                     new Address("Rua de teste", "Bairro teste", "Aracaju", "SE", "44444-000"));
             new Validation(person).validate();
-
         }catch (CustomError | IllegalAccessException error) {
             fail();
         }
@@ -62,8 +61,7 @@ public class ValidationTest {
                     new Address("Rua de teste", "Bairro teste", "Aracaju", "SE", "44444-000"));
             new Validation(person).validate();
             fail();
-        }catch (CustomError | IllegalAccessException error) {
-            throw new RuntimeException(error);
+        }catch (CustomError | IllegalAccessException ignored) {
         }
 
         try {
@@ -73,8 +71,7 @@ public class ValidationTest {
                     new Address("Rua de teste", "Bairro teste", "Aracaju", "SE", "44444-000"));
             new Validation(person).validate();
             fail();
-        }catch (CustomError | IllegalAccessException error) {
-            throw new RuntimeException(error);
+        }catch (CustomError | IllegalAccessException ignored) {
         }
 
         try {
@@ -84,8 +81,7 @@ public class ValidationTest {
                     new Address("Rua de teste", "Bairro teste", "Aracaju", "SE", "44444-000"));
             new Validation(person).validate();
             fail();
-        }catch (CustomError | IllegalAccessException error) {
-            throw new RuntimeException(error);
+        }catch (CustomError | IllegalAccessException ignored) {
         }
 
         try {
@@ -96,7 +92,6 @@ public class ValidationTest {
             new Validation(person).validate();
             fail();
         }catch (CustomError | IllegalAccessException ignored) {
-
         }
 
         try {
@@ -107,7 +102,6 @@ public class ValidationTest {
             new Validation(person).validate();
             fail();
         }catch (CustomError | IllegalAccessException ignored) {
-
         }
 
         try {
@@ -117,8 +111,7 @@ public class ValidationTest {
                     null);
             new Validation(person).validate();
             fail();
-        }catch (CustomError | IllegalAccessException error) {
-            throw new RuntimeException(error);
+        }catch (CustomError | IllegalAccessException ignored) {
         }
 
         try {
@@ -126,7 +119,6 @@ public class ValidationTest {
             new Validation(address).validate();
             fail();
         }catch (CustomError | IllegalAccessException ignored) {
-
         }
 
         try {
@@ -134,7 +126,6 @@ public class ValidationTest {
             new Validation(address).validate();
             fail();
         }catch (CustomError | IllegalAccessException ignored) {
-
         }
     }
 }
