@@ -129,7 +129,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 
 ## 🦸 Autores
- <img style="border-radius: 50%;" src="https://i.ibb.co/B26fQkK/capture-Fl-vio-In-cio.jpg" width="100px;" alt=""/>
+
  <br />
  <sub><b>Flávio Inácio</b></sub>
  <br />
