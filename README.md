@@ -81,35 +81,11 @@ $ yarn dev
 
 ## 🗂 Bibliotecas Externas
 
-As seguintes ferramentas foram usadas na construção do projeto:
+As seguintes bibliotecas foram adicionadas ao desenvolvimento do projeto:
 
-#### **Front-end** 
-- **[React](https://pt-br.reactjs.org/)**
-- **[Nexjs](https://nextjs.org/)**
-- **[TypeScript](https://www.typescriptlang.org/)**
-- **[Styled Components](https://styled-components.com/)**
-- **[Axios](https://axios-http.com/docs/intro)**
-- **[React Icons](https://react-icons.github.io/react-icons/)**
-- **[React Query](https://react-query.tanstack.com/)**
-- **[Storybook](https://storybook.js.org/)**
-- **[React-toastify](https://storybook.js.org/)**
-- **[React-modal](https://www.npmjs.com/package/react-modal)**
-- **[React Hook Form](https://react-hook-form.com/)**
-- **[Nookies](https://www.npmjs.com/package/nookies)**
-- **[Json server](https://www.npmjs.com/package/json-server)**
-
-
-
-#### **Back-end** 
-- **[Express](https://expressjs.com/pt-br/)**
-- **[Bcrypt](https://www.npmjs.com/package/bcrypt)**
-- **[Joi](https://www.npmjs.com/package/joi)**
-- **[TypeScript](https://www.typescriptlang.org/)**
-- **[JSON Web Token](https://jwt.io/)**
-- **[SQLite](https://www.npmjs.com/package/sqlite3)**
-- **[Swagger](https://swagger.io/)**
-- **[TypeORM](https://typeorm.io/)**
-- **[UUID](https://www.npmjs.com/package/uuid)**
+- **[JUnit]** - Usada para testar os métodos das classes.
+- **[Jfree Chart]** - Usada para gerar os gráficos da aplicação.
+- **[SQLite jdbc]** - Usada para fazer a conexão com o banco de dados SQLite.
 
 ### **Utilitários**
 
