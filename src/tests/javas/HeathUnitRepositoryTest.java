@@ -34,20 +34,19 @@ public class HeathUnitRepositoryTest {
 
     @Test
     public void testUpdate(){
-        Address endereco = new Address("Rua flavao", "Bairro Oliveira",
+        Address address = new Address("Rua flavao", "Bairro Oliveira",
          "Aracaju", "Sergipe", "987909123");
 
-        HealthUnit unidade = new HealthUnit(null,UnitTypeEnum.HOSPITAL,
-    "Hospital Inacio", "21.987.127/0001-24", endereco);
+        HealthUnit healthUnit = new HealthUnit(null, UnitTypeEnum.HOSPITAL,
+    "Hospital Inacio", "21.987.127/0001-24", address);
 
-        this.repository.create(unidade);
-        unidade.setName("UBS SE");
-        unidade.setCNPJ("21.987.127/0001-25");
-        unidade.setType(UnitTypeEnum.UBS);
-        this.repository.update(unidade);
-        assertTrue(this.repository.findByCNPJ(unidade.getCNPJ()).equals(unidade));
-        this.repository.delete(unidade.getId());
+        this.repository.create(healthUnit);
 
+        healthUnit.setName("UBS SE");
+        healthUnit.setType(UnitTypeEnum.UBS);
+        this.repository.update(healthUnit);
+        assertTrue(this.repository.findById(healthUnit.getId()).equals(healthUnit));
+        this.repository.delete(healthUnit.getId());
     }
 
     @Test 
