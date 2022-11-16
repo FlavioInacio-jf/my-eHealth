@@ -1,6 +1,7 @@
 package tests.javas;
 
 
+import javas.modules.app.models.Address;
 import javas.modules.person.enums.BloodTypeEnum;
 import javas.modules.person.enums.SexEnum;
 import javas.modules.person.models.Person;
@@ -23,15 +24,17 @@ public class DeletePersonControllerTest {
     @Test
     public void testExecute() {
         DeletePersonController deletePersonController = new DeletePersonController(this.deletePersonUseCase);
-        Person person = new  Person(null, "Inácio",
-        "Santos", "000.000.000-00", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", null);
-        
-        this.personRepository.create(person);
-        assertTrue(person.equals(this.personRepository.findById(person.getId())));
-        deletePersonController.execute(person.getCPF());
-        assertNull(this.personRepository.findById(person.getId()));
 
         try {
+            Address address = new Address("Rua flavao", "Bairro Oliveira",
+                    "Aracaju", "Sergipe", "987909123");
+            Person person = new  Person(null, "Inácio",
+                    "Santos", "456.896.111-13", BloodTypeEnum.A_LESS, SexEnum.MALE, "11/09/2001", address);
+
+            this.personRepository.create(person);
+            assertTrue(person.equals(this.personRepository.findById(person.getId())));
+            deletePersonController.execute(person.getCPF());
+            assertNull(this.personRepository.findById(person.getId()));
             deletePersonController.execute(person.getCPF());
             fail();
         }catch (Error ignored) {
