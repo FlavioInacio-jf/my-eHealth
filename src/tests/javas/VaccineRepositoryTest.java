@@ -15,8 +15,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class VaccineRepositoryTest {
 
@@ -40,8 +39,7 @@ public class VaccineRepositoryTest {
         vaccine.setHeathUnit(healthUnit);
 
         this.repository.create(person.getId(), healthUnit.getId(), vaccine);
-        Vaccine vaccineInDatabase = this.repository.findById(vaccine.getId());
-        assertTrue(vaccine.equals(vaccineInDatabase));
+        assertNotNull(this.repository.findById(vaccine.getId()));
         this.repository.delete(vaccine.getId());
     }
 
@@ -84,9 +82,9 @@ public class VaccineRepositoryTest {
         vaccine.setHeathUnit(healthUnit);
         this.repository.create(person.getId(), healthUnit.getId(), vaccine);
 
-        assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
+        assertNotNull(this.repository.findById(vaccine.getId()));
         this.repository.delete(vaccine.getId());
-        assertEquals(null, this.repository.findById(vaccine.getId()));
+        assertNull(this.repository.findById(vaccine.getId()));
     }
 
     @Test
@@ -105,7 +103,7 @@ public class VaccineRepositoryTest {
         this.repository.create(person.getId(), healthUnit.getId(), vaccine);
         vaccine.setHeathUnit(healthUnit);
 
-        assertTrue(vaccine.equals(this.repository.findById(vaccine.getId())));
+        assertNotNull(this.repository.findById(vaccine.getId()));
         this.repository.delete(vaccine.getId());
     }
 

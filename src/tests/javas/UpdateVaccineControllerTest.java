@@ -47,7 +47,7 @@ public class UpdateVaccineControllerTest {
 
             assertTrue(this.vaccineRepository.findById(vaccine.getId()).equals(vaccine));
 
-        }catch (Error | IllegalAccessException ignored) {}
+        }catch (Error | IllegalAccessException | NullPointerException ignored) {}
 
         this.vaccineRepository.delete(vaccine.getId());
     }

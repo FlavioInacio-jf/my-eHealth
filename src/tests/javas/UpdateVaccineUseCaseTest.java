@@ -41,7 +41,7 @@ public class UpdateVaccineUseCaseTest {
             updateVaccineUseCase.handle(vaccine);
 
             assertTrue(this.vaccineRepository.findById(vaccine.getId()).equals(vaccine));
-        }catch (Error ignored) {}
+        }catch (Error | NullPointerException ignored) {}
 
         this.vaccineRepository.delete(vaccine.getId());
     }
